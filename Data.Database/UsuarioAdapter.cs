@@ -219,7 +219,6 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.EMail;
                 usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
-                cmdSave.ExecuteNonQuery();
                 //así se obtiene el ID que asignó al BD automáticamente
             }
             catch (Exception Ex)
@@ -229,37 +228,12 @@ namespace Data.Database
                 throw ExcepcionManejada;
             }
             finally
-
             {
                 this.CloseConnection();
             }
         }
 
-        /*public void Save(Usuario usuario)
-        {
-            if (usuario.State == BusinessEntity.States.New)
-            {
-                int NextID = 0;
-                foreach (Usuario usr in Usuarios)
-                {
-                    if (usr.ID > NextID)
-                    {
-                        NextID = usr.ID;
-                    }
-                }
-                usuario.ID = NextID + 1;
-                Usuarios.Add(usuario);
-            }
-            else if (usuario.State == BusinessEntity.States.Deleted)
-            {
-                this.Delete(usuario.ID);
-            }
-            else if (usuario.State == BusinessEntity.States.Modified)
-            {
-                Usuarios[Usuarios.FindIndex(delegate(Usuario u) { return u.ID == usuario.ID; })]=usuario;
-            }
-            usuario.State = BusinessEntity.States.Unmodified;            
-        }*/
+        
 
         public void Save(Usuario usuario)
         {

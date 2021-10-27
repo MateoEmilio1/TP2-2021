@@ -35,22 +35,8 @@ namespace Business.Logic
 
         public Usuario GetOne(int ID)
         {
-            /*
-             * 
-             debe recibir un ID y 
-            devolver un objeto de la clase
-            Business.Entities.Usuario.
-            Para ello deberá invocar al método GetOne de
-            UsuarioData y devolver lo mismo que este.
-
-            METODO GET ONE DE USUARIODATA
-            public Business.Entities.Usuario GetOne(int ID)
-        {
-            return Usuarios.Find(delegate(Usuario u) { return u.ID == ID; });
-        }
             
-             */            
-
+             
             return (UsuarioData.GetOne(ID));
         }
 
@@ -59,7 +45,7 @@ namespace Business.Logic
             return UsuarioData.GetAll(); // UsuarioData.GetAll() devuelve ---> return new List<Usuario>(Usuarios);
         }
 
-        public void Save(Business.Entities.Usuario usuario)
+        public void Save(Usuario usuario)
         {
             UsuarioData.Save(usuario);
 
