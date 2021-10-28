@@ -157,15 +157,18 @@ namespace UI.Web
                     this.LoadGrid();
                     break;
                 case FormModes.Alta:
-                    this.Entity = new Usuario();
-                    this.LoadEntity(this.Entity);
-                    this.SaveEntity(this.Entity);
-                    this.LoadGrid();
-                    break;
+                    if (Page.IsValid)
+                    {
+                        this.Entity = new Usuario();
+                        this.LoadEntity(this.Entity);
+                        this.SaveEntity(this.Entity);
+                        this.LoadGrid();
+                    }
+                         break;
                 default:
                     break;
             }
-            this.formPanel.Visible = false;
+            //this.formPanel.Visible = false;
         }
 
         private void EnableForm(bool condicion)
@@ -222,5 +225,9 @@ namespace UI.Web
             this.ClearForm();
             this.formPanel.Visible = false;
         }
+
+     
+
+
     }
 }
