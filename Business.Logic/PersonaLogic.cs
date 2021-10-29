@@ -71,6 +71,7 @@ namespace Business.Logic
         }
 
 
+
         public bool ExistePerson(int leg)
         {
             return PersonaData.ExistePersona(leg);

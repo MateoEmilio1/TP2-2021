@@ -14,10 +14,8 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack) //Indica que carga por primera vez
-            {
-                LoadGrid();
-            }
+            this.gridView.DataSource = Logic.GetAll();
+            this.gridView.DataBind();
 
 
         }
@@ -49,7 +47,7 @@ namespace UI.Web
 
         private void LoadGrid()
         {
-            this.gridView.DataSource = this.Logic.GetAll();
+            this.gridView.DataSource = Logic.GetAll();
             this.gridView.DataBind();
 
         }
@@ -221,6 +219,7 @@ namespace UI.Web
             this.EnableForm(true);
 
         }
+
 
         private void ClearForm()
 
