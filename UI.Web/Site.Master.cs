@@ -11,7 +11,18 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UsuarioActual"] == null)
+            {
+                bodyForm.Visible = false;
+            }
 
+
+        }
+
+        protected void lbCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActual"] = null;
+            Page.Response.Redirect("~/Login.aspx");
         }
     }
 }

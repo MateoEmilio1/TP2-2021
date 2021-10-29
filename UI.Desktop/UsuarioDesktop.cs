@@ -157,10 +157,7 @@ namespace UI.Desktop
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
         
         public override void Notificar(string titulo, string mensaje, MessageBoxButtons
                         botones, MessageBoxIcon icono)

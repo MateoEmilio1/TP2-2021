@@ -8,6 +8,9 @@
     </head>
     <body>
          <form id="bodyForm" runat="server">
+             <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Right">
+                 <asp:LinkButton ID="lbCerrarSesion" runat="server" ForeColor="Maroon" OnClick="lbCerrarSesion_Click" >Cerrar sesión</asp:LinkButton>
+             </asp:Panel>
         <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
         </asp:Menu>
         <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />

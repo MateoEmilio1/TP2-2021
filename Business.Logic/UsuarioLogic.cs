@@ -57,7 +57,15 @@ namespace Business.Logic
 
         }
 
+        public Usuario GetUsuarioLogin(string user, string pass)
+        {
+            return UsuarioData.GetUsuarioLogin(user, pass);
+        }
 
+        public bool Existe(string user)
+        {
+            return UsuarioData.Existe(user);
+        }
 
 
     }

@@ -121,10 +121,10 @@ namespace UI.Desktop
             this.txtApellido.Size = new System.Drawing.Size(100, 20);
             this.txtApellido.TabIndex = 4;
             // 
-            // txtUsuario
+            // txtNombreUsuario
             // 
             this.txtUsuario.Location = new System.Drawing.Point(449, 77);
-            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Name = "txtNombreUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtUsuario.TabIndex = 5;
             // 
