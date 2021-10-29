@@ -70,7 +70,7 @@ namespace Business.Logic
 
         }
 
-        
+
 
         public bool ExistePerson(int leg)
         {

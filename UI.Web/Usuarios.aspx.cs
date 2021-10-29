@@ -34,6 +34,16 @@ namespace UI.Web
             }
         }
 
+        PersonaLogic logic;
+        public PersonaLogic LogicPersona
+        {
+            get
+            {
+                if (logic == null)
+                    logic = new PersonaLogic();
+                return logic;
+            }
+        }
 
         private void LoadGrid()
         {
@@ -202,6 +212,8 @@ namespace UI.Web
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             this.formPanel.Visible = true;
+            seleccionarPersonaLabel.Visible = true;
+            personaTextBox.Text = " Persona no Seleccionada ";
             this.FormMode = FormModes.Alta;
             this.ClearForm();
             this.EnableForm(true);
@@ -222,11 +234,43 @@ namespace UI.Web
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
             this.ClearForm();
-            this.formPanel.Visible = false;
+            this.formPanel.Visible = true;
         }
 
-     
+        protected void seleccionarPersonaLabel_Click(object sender, EventArgs e)
+        {
+            LoadGridPersonas();
+            personasPanel.Visible = true;
+            personasSelecPanel.Visible = true;
+        }
 
+        private void LoadGridPersonas()
+        {
+            this.dgvPersonas.DataSource = this.LogicPersona.GetAll();
+            this.dgvPersonas.DataBind();
+        }
 
+        protected void dgvPersonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SelectedID = (int)this.dgvPersonas.SelectedValue;
+        }
+
+        private void LoadPersonaForm(int id)
+        {
+            this.Entity = this.Logic.GetOne(id);
+            //this.personaTextBox.Text = this.Entity.Persona.Apellido + " " + this.Entity.Persona.Nombre;
+            this.personaTextBox.Text = this.Entity.Apellido + " " + this.Entity.Nombre;
+
+        }
+        protected void lbSeleccionar_Click(object sender, EventArgs e)
+        {
+            LoadPersonaForm(SelectedID);
+            personasSelecPanel.Visible = personasPanel.Visible = false;
+        }
+
+        protected void lbCancelar_Click(object sender, EventArgs e)
+        {
+            personasSelecPanel.Visible = personasPanel.Visible = false;
+        }
     }
 }
