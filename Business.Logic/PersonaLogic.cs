@@ -70,7 +70,10 @@ namespace Business.Logic
 
         }
 
-        
+        public Personas GetPersonasLogin(string persona, string pass)
+        {
+            return PersonaData.GetPersonasLogin(persona, pass);
+        }
 
         public bool ExistePerson(int leg)
         {

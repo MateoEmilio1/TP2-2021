@@ -9,10 +9,6 @@
 <body>
     <form id="form1" runat="server">
     <asp:Panel ID="panelLogin" runat="server" HorizontalAlign="Center">
-        <br />
-        <br />
-        <br />
-        <br />
         <asp:Label ID="Label1" runat="server" Text="Usuario"></asp:Label>
         <br />
         <asp:TextBox ID="txtNombreUsuario" runat="server"></asp:TextBox>
