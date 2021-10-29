@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <div>
         </div>
-        <asp:Panel ID="Panel1" runat="server">
+        <asp:Panel ID="usuariosPanel" runat="server">
             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnSelectedIndexChanged="gridView_SelectedIndexChanged" HorizontalAlign="Center">
             <Columns>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -24,6 +24,9 @@
             <asp:Label ID="apellidoLabel" runat="server" Text="Apellido:"></asp:Label>
             <asp:TextBox ID="apellidoTextBox" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="apellidoTextBox" ErrorMessage="El apellido no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+            <br />
+            <asp:Label ID="tipoLabel" runat="server" Text="Tipo Persona:"></asp:Label>
+            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
             <br />
             <asp:Label ID="emailLabel" runat="server" Text="EMail:"></asp:Label>
             <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
@@ -58,5 +61,36 @@
         <asp:Panel ID="formActionsPanel" runat="server">
             <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
             <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
+        </asp:Panel>
+        <asp:Panel ID="Panel2" runat="server">
+            <asp:Label ID="Label1" runat="server" Text="Habilitado: "></asp:Label>
+            <asp:CheckBox ID="CheckBox1" runat="server" />
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Nombre de Usuario: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server" Height="15px" Width="200px"></asp:TextBox>
+            <br />
+            <asp:LinkButton ID="seleccionarPersonaLabel" runat="server" CausesValidation="False" OnClick="seleccionarPersonaLabel_Click">Seleccionar Persona  </asp:LinkButton>
+            <asp:TextBox ID="personaTextBox" runat="server" Width="164px">--Persona no seleccionada--</asp:TextBox>
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Clave: "></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server" Height="15px" Width="200px"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Repetir Clave: "></asp:Label>
+            <asp:TextBox ID="TextBox3" TextMode="Password" runat="server" Height="15px" Width="200px"></asp:TextBox>
+            <asp:Panel ID="personasPanel" runat="server" Visible="False">
+                <asp:GridView ID="dgvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" HorizontalAlign="Center" onselectedindexchanged="dgvPersonas_SelectedIndexChanged">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID" />
+                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="TipoPersona" HeaderText="Tipo Persona" />
+                        <asp:CommandField ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+            </asp:Panel>
+        </asp:Panel>
+        <asp:Panel ID="personasSelecPanel" runat="server">
+            <asp:LinkButton ID="lbSeleccionar" runat="server" OnClick="lbSeleccionar_Click">Seleccionar</asp:LinkButton>
+            <asp:LinkButton ID="lbCancelar" runat="server" OnClick="lbCancelar_Click">Cancelar</asp:LinkButton>
         </asp:Panel>
    </asp:Content>
