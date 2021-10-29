@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    class Personas : BusinessEntity
+    public class Personas : BusinessEntity
     {
         private string _Apellido;
         private string _Direccion;
@@ -16,7 +16,9 @@ namespace Business.Entities
         private int _Legajo;
         private string _Nombre;
         private string _Telefono;
-        private TipoPersonas _TipoPersona;
+        //private TipoPersonas _TipoPersona;
+        private string _TipoPersona;
+        private Plan _Plan;
 
         public string Apellido
         {
@@ -121,10 +123,44 @@ namespace Business.Entities
 
         public Personas() //Constructor base 
         {
-            this.TipoPersona = TipoPersonas.New;
+            this.Plan = new Plan();
         }
 
-      
+        public Plan Plan
+        {
+            get 
+            { 
+                return _Plan; 
+            }
+            set 
+            { 
+                _Plan = value; 
+            }
+        }
+
+        public string TipoPersona
+        {
+            get 
+            { 
+                return _TipoPersona; 
+            }
+            set 
+            { 
+                _TipoPersona = value; 
+            }
+        }
+
+        public string DescPlan
+        {
+            get { return _Plan.Descripcion; }
+        }
+
+        public string DescEspecialidad
+        {
+            get { return _Plan.DescEspecialidad; }
+        }
+
+        /*
         public TipoPersonas TipoPersona //Propiedad
         {
             get
@@ -144,5 +180,6 @@ namespace Business.Entities
             Modified,
             Unmodified
         }
+        */
     }
 }

@@ -20,7 +20,6 @@ namespace Business.Logic
 
         }
 
-        //LAB03, PUNTO 3- INCISO 4 (seguir con inciso 8 metodo GetOne)
         public UsuarioAdapter UsuarioData //Propiedad UsuarioData del tipo Data.Database.UsuarioAdapter
         {
             get

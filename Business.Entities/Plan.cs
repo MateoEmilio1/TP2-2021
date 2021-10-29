@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    class Plan : BusinessEntity
+    public class Plan : BusinessEntity
     {
         private string _Descripcion;
-        private int _IDEspecialidad;
+        private Especialidad _Especialidad;
 
+        public Plan()
+        {
+            this.Especialidad = new Especialidad();
+        }
         public string Descripcion
         {
             get 
@@ -24,17 +28,25 @@ namespace Business.Entities
 
         }
 
-        public int IDEspecialidad
+        public Especialidad Especialidad
         {
             get
             {
-                return _IDEspecialidad;
+                return _Especialidad;
             }
             set
             {
-                _IDEspecialidad = value;
+                _Especialidad = value;
             }
 
+        }
+
+        public string DescEspecialidad
+        {
+            get
+            {
+                return this.Especialidad.Descripcion;
+            }
         }
 
 
