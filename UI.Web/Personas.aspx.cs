@@ -20,13 +20,7 @@ namespace UI.Web
                 //ShowButtons(false);
                 //gridActionsPanel.Visible = true;
                 
-                /*
-                if (this.gridPersonas.SelectedIndex == -1)
-                {
-                    ShowButtons(false);
-                    gridActionsPanel.Visible = true;
-                }
-                */
+               
             }
         }
 
@@ -44,24 +38,24 @@ namespace UI.Web
         }
 
         private void LoadGrid()
-        { //El panel carga bien, pero no carga el grid
+        { 
             gridPersonas.DataSource = Logic.GetAll();
             gridPersonas.DataBind();
         }
-
+        
         public enum FormModes
         {
             Alta,
             Baja,
             Modificacion
         }
-
+        
         public FormModes FormMode
         {
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-
+        
         private Business.Entities.Persona Entity
         {
             get;

@@ -24,6 +24,7 @@ namespace Data.Database
                
                 cmdPersonas.Parameters.Add("@tipo", SqlDbType.Int).Value = tipo;
                 
+
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
 
 
@@ -48,9 +49,11 @@ namespace Data.Database
                             pers.TipoPersona = "Docente";
                             break;
                     }
-
+                    personas.Add(pers);
                 }
                 //cerramos la el DataReader y la conexión a la BD
+
+               
                 drPersonas.Close();
             }
             catch (Exception Ex)

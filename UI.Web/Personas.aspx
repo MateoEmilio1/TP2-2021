@@ -5,6 +5,7 @@
         </asp:Panel>
         <asp:GridView ID="gridPersonas" runat="server" HorizontalAlign="Center" OnSelectedIndexChanged="gridPersonas_SelectedIndexChanged" AutoGenerateColumns="False">
             <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" />
                 <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
