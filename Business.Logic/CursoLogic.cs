@@ -39,9 +39,17 @@ namespace Business.Logic
             CursoData.Delete(ID);
         }
 
-        
+        public bool ExisteComision(int ID)
+        {
+            return CursoData.ExisteComision(ID);
+        }
 
-        
+        public bool ExisteMateria(int ID)
+        {
+            return CursoData.ExisteMateria(ID);
+        }
+
+
 
 
     }

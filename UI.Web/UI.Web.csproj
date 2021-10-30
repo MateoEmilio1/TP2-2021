@@ -69,7 +69,6 @@
   <ItemGroup>
     <Content Include="Cursos.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Personas.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -88,13 +87,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personas.aspx.cs">
-      <DependentUpon>Personas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personas.aspx.designer.cs">
-      <DependentUpon>Personas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

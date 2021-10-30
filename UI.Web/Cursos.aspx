@@ -25,7 +25,7 @@
                 <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click">Nuevo</asp:LinkButton>
             </asp:Panel>
     </asp:Panel>
-        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Center">
+        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Left">
             
             <br />
             <br />
@@ -38,6 +38,7 @@
                     <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="IDComisionTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" ControlToValidate="IDComisionTextBox" ErrorMessage="Ingrese un número entero para la comisión" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                        <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="IDComisionTextBox" ErrorMessage="Comisión inexistente" ForeColor="Red" OnServerValidate="IDComision_Validate" Text="*" Visible="False"></asp:CustomValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -49,6 +50,7 @@
                     <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="IDMateriaTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator2" runat="server" Operator="DataTypeCheck" ControlToValidate="IDMateriaTextBox" ErrorMessage="Ingrese un número entero para la materia" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                        <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="IDMateriaTextBox" ErrorMessage="Comisión inexistente" OnServerValidate="IDMateria_Validate" Visible="False" Text="*" ForeColor="Red"></asp:CustomValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -77,8 +79,8 @@
             </table>
             <br />
             
-            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
             <asp:Panel ID="formActionsPanel" runat="server" HorizontalAlign="Center">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" style="margin-top: 19px" />
             <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
             &nbsp;
             <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>

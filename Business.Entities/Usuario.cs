@@ -17,6 +17,7 @@ namespace Business.Entities
         private string _apellido;
         private string _email;
         private bool _habilitado;
+        private int _idpersona;
 
         public string NombreUsuario //Propiedad
         {
@@ -91,6 +92,13 @@ namespace Business.Entities
 
         }
 
+                
+
+        public int IDPersona
+        {
+            get { return _idpersona; }
+            set { _idpersona= value; }
+        }
 
 
 

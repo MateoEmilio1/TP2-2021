@@ -74,7 +74,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPersona = new SqlCommand("SELECT * FROM PERSONAS WHERE id_persona = @id , ", sqlConn);
+                SqlCommand cmdPersona = new SqlCommand("SELECT * FROM PERSONAS WHERE id_persona = @id ", sqlConn);
                 cmdPersona.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersona.ExecuteReader();
                 if (drPersonas.Read())
