@@ -35,11 +35,10 @@
                     <td style="width: 103px">
                         <asp:Label ID="IDComisionLabel" runat="server" Text="IDComision"></asp:Label>
                     </td>
-                    <td dir="ltr" style="width: 312px">
+                    <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="IDComisionTextBox" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="IDComisionTextBox" ErrorMessage="Ingrese un número entero" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" ControlToValidate="IDComisionTextBox" ErrorMessage="Ingrese un número entero para la comisión" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
-                        <asp:Label ID="lblComisionInexistente" runat="server" ForeColor="Red" Text="Comisión Inexistente" Visible="False"></asp:Label>
+                        <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="IDComisionTextBox" ErrorMessage="Comisión inexistente" ForeColor="Red" OnServerValidate="IDComision_Validate" Text="*" Visible="False"></asp:CustomValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -48,11 +47,10 @@
                     <td style="width: 103px">
                         <asp:Label ID="IDMateriaLabel" runat="server" Text="IDMateria: "></asp:Label>
                     </td>
-                    <td dir="ltr" style="width: 312px">
+                    <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="IDMateriaTextBox" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="IDMateriaTextBox" ErrorMessage="Ingrese un número entero" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="CompareValidator2" runat="server" Operator="DataTypeCheck" ControlToValidate="IDMateriaTextBox" ErrorMessage="Ingrese un número entero para la materia" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
-                        <asp:Label ID="lblMatInexistente" runat="server" ForeColor="Red" Text="Materia Inexistente" Visible="False"></asp:Label>
+                        <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="IDMateriaTextBox" ErrorMessage="Comisión inexistente" OnServerValidate="IDMateria_Validate" Visible="False" Text="*" ForeColor="Red"></asp:CustomValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -61,9 +59,8 @@
                     <td style="width: 103px">
                         <asp:Label ID="cupoLabel" runat="server" Text="Cupo: "></asp:Label>
                     </td>
-                    <td style="width: 312px">
+                    <td style="width: 249px">
                         <asp:TextBox ID="CupoTextBox" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="CupoTextBox" ErrorMessage="Ingrese un número entero" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="CompareValidator4" runat="server" Operator="DataTypeCheck" ControlToValidate="CupoTextBox" ErrorMessage="Ingrese un número entero para el cupo" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
                     </td>
                     <td>&nbsp;</td>
@@ -73,9 +70,8 @@
                     <td style="width: 103px">
                         <asp:Label ID="anioLabel" runat="server" Text="Año: "></asp:Label>
                     </td>
-                    <td style="width: 312px">
+                    <td style="width: 249px">
                         <asp:TextBox ID="AñoTextBox" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un número entero" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="CompareValidator3" runat="server" Operator="DataTypeCheck" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un número entero para el año" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
                     </td>
                     <td>&nbsp;</td>

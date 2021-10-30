@@ -13,7 +13,7 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             if (!IsPostBack)
             {
                 LoadGrid();
@@ -104,7 +104,7 @@ namespace UI.Web
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
             IDComisionTextBox.Text = Convert.ToString(Entity.IDComision);
-            IDMateriaTextBox.Text = Convert.ToString(Entity.IDMateria);
+            IDMateriaTextBox.Text= Convert.ToString(Entity.IDMateria);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -134,67 +134,34 @@ namespace UI.Web
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            lblMatInexistente.Visible = false;
-            lblComisionInexistente.Visible = false;
-            switch (FormMode)
+            if (Page.IsValid)
             {
-                case FormModes.Baja:
-                    DeleteEntity(SelectedID);
-                    LoadGrid();
-                    break;
-
-                case FormModes.Modificacion:
-                    if (Page.IsValid)
-                    {
-                        if (Logic.ExisteComision(int.Parse(IDComisionTextBox.Text)))
-                        {
-                            if (Logic.ExisteMateria(int.Parse(IDComisionTextBox.Text)))
-                            {
-                                Entity = new Curso();
-                                Entity.ID = SelectedID;
-                                Entity.State = BusinessEntity.States.Modified;
-                                LoadEntity(Entity);
-                                SaveEntity(Entity);
-                                LoadGrid();
-                            }
-                            else
-                            {
-                                lblMatInexistente.Visible = true;
-                            }
-                        }
-                        else
-                        {
-                            lblComisionInexistente.Visible = true;
-                        }
-                    }
-                    break;
-                case FormModes.Alta:
-                    if (Page.IsValid)
-                    {
-                        if (Logic.ExisteComision(int.Parse(IDComisionTextBox.Text)))
-                        {
-                            if (Logic.ExisteMateria(int.Parse(IDComisionTextBox.Text)))
-                            {
-                                Entity = new Curso();
-                                LoadEntity(Entity);
-                                SaveEntity(Entity);
-                                LoadGrid();
-                            }
-                            else
-                            {
-                                lblMatInexistente.Visible = true;
-                            }
-                        }
-                        else
-                        {
-                            lblComisionInexistente.Visible = true;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                switch (FormMode)
+                {
+                    case FormModes.Baja:
+                        DeleteEntity(SelectedID);
+                        LoadGrid();
+                        break;
+                    case FormModes.Modificacion:
+                        Entity = new Curso();
+                        Entity.ID = SelectedID;
+                        Entity.State = BusinessEntity.States.Modified;
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
+                        break;
+                    case FormModes.Alta:
+                        Entity = new Curso();
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
+                        break;
+                    default:
+                        break;
+                }
+                formPanel.Visible = false;
             }
-            formPanel.Visible = false;
+            
         }
 
         private void EnableForm(bool condicion)
@@ -246,6 +213,14 @@ namespace UI.Web
             formPanel.Visible = false;
         }
 
+        protected void IDMateria_Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = Logic.ExisteMateria(int.Parse(IDMateriaTextBox.Text));
+        }
 
+        protected void IDComision_Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = Logic.ExisteComision(int.Parse(IDComisionTextBox.Text));
+        }
     }
 }
