@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Entities
 {
-    public class Personas : BusinessEntity
+    public class Persona : BusinessEntity
     {
         private string _Apellido;
         private string _Direccion;
@@ -121,7 +121,7 @@ namespace Business.Entities
         }
 
 
-        public Personas() //Constructor base 
+        public Persona() //Constructor base 
         {
             this.Plan = new Plan();
         }

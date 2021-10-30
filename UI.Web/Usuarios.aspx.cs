@@ -14,8 +14,10 @@ namespace UI.Web
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            this.gridView.DataSource = Logic.GetAll();
-            this.gridView.DataBind();
+            if (!IsPostBack) //Indica que carga por primera vez
+            {
+                LoadGrid();
+            }
 
 
         }
@@ -34,20 +36,10 @@ namespace UI.Web
             }
         }
 
-        PersonaLogic logic;
-        public PersonaLogic LogicPersona
-        {
-            get
-            {
-                if (logic == null)
-                    logic = new PersonaLogic();
-                return logic;
-            }
-        }
 
         private void LoadGrid()
         {
-            this.gridView.DataSource = Logic.GetAll();
+            this.gridView.DataSource = this.Logic.GetAll();
             this.gridView.DataBind();
 
         }
@@ -62,7 +54,7 @@ namespace UI.Web
         /*
          La propiedad se almacena dentro del ViewState de la página porque va a ser necesario mantenerla almacenada entre Postbacks
         */
-         
+
         public FormModes FormMode
         {
             get { return (FormModes)this.ViewState["FormMode"]; }
@@ -105,10 +97,10 @@ namespace UI.Web
 
         //asd
 
-        protected void gridView_SelectedIndexChanged (object sender, EventArgs e)
+        protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SelectedID = (int)this.gridView.SelectedValue;
-          
+
         }
 
         private void LoadForm(int id)
@@ -123,7 +115,7 @@ namespace UI.Web
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
-            
+
             EnableForm(true);
             if (this.IsEntitySelected)
             {
@@ -152,30 +144,37 @@ namespace UI.Web
         {
             switch (this.FormMode)
             {
+                
                 case FormModes.Baja:
                     this.DeleteEntity(this.SelectedID);
                     this.LoadGrid();
-                    break;
+                    formPanel.Visible = false;
+                break;
                 case FormModes.Modificacion:
-                    this.Entity = new Usuario();
-                    this.Entity.ID = this.SelectedID;
-                    this.Entity.State = BusinessEntity.States.Modified;
-                    this.LoadEntity(this.Entity);
-                    this.SaveEntity(this.Entity);
-                    this.LoadGrid();
-                    break;
-                case FormModes.Alta:
                     if (Page.IsValid)
+                    {
+                        this.Entity = new Usuario();
+                        this.Entity.ID = this.SelectedID;
+                        this.Entity.State = BusinessEntity.States.Modified;
+                        this.LoadEntity(this.Entity);
+                        this.SaveEntity(this.Entity);
+                        this.LoadGrid();
+                        formPanel.Visible = false;
+                    }
+                break;
+                case FormModes.Alta:
                     {
                         this.Entity = new Usuario();
                         this.LoadEntity(this.Entity);
                         this.SaveEntity(this.Entity);
                         this.LoadGrid();
+                        formPanel.Visible = false;
                     }
-                         break;
+                break;
                 default:
                     break;
             }
+            
             //this.formPanel.Visible = false;
         }
 
@@ -212,14 +211,11 @@ namespace UI.Web
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             this.formPanel.Visible = true;
-            seleccionarPersonaLabel.Visible = true;
-            personaTextBox.Text = " Persona no Seleccionada ";
             this.FormMode = FormModes.Alta;
             this.ClearForm();
             this.EnableForm(true);
 
         }
-
 
         private void ClearForm()
 
@@ -234,43 +230,11 @@ namespace UI.Web
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
             this.ClearForm();
-            this.formPanel.Visible = true;
+            this.formPanel.Visible = false;
         }
 
-        protected void seleccionarPersonaLabel_Click(object sender, EventArgs e)
-        {
-            LoadGridPersonas();
-            personasPanel.Visible = true;
-            personasSelecPanel.Visible = true;
-        }
 
-        private void LoadGridPersonas()
-        {
-            this.dgvPersonas.DataSource = this.LogicPersona.GetAll();
-            this.dgvPersonas.DataBind();
-        }
 
-        protected void dgvPersonas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.SelectedID = (int)this.dgvPersonas.SelectedValue;
-        }
 
-        private void LoadPersonaForm(int id)
-        {
-            this.Entity = this.Logic.GetOne(id);
-            //this.personaTextBox.Text = this.Entity.Persona.Apellido + " " + this.Entity.Persona.Nombre;
-            this.personaTextBox.Text = this.Entity.Apellido + " " + this.Entity.Nombre;
-
-        }
-        protected void lbSeleccionar_Click(object sender, EventArgs e)
-        {
-            LoadPersonaForm(SelectedID);
-            personasSelecPanel.Visible = personasPanel.Visible = false;
-        }
-
-        protected void lbCancelar_Click(object sender, EventArgs e)
-        {
-            personasSelecPanel.Visible = personasPanel.Visible = false;
-        }
     }
 }

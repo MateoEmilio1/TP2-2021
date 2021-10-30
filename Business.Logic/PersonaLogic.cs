@@ -33,7 +33,7 @@ namespace Business.Logic
             }
         }
 
-        public Personas GetOne(int ID)
+        public Persona GetOne(int ID)
         {
             return PersonaData.GetOne(ID);
         }
@@ -43,22 +43,22 @@ namespace Business.Logic
             return _persona.ExistePersona(leg);
         }
 
-        public List<Personas> GetAll()
+        public List<Persona> GetAll()
         {
             return PersonaData.GetAll(0);
         }
 
-        public List<Personas> GetAlumnos()
+        public List<Persona> GetAlumnos()
         {
             return PersonaData.GetAll(1);
         }
 
-        public List<Personas> GetDocentes()
+        public List<Persona> GetDocentes()
         {
             return PersonaData.GetAll(2);
         }
 
-        public void Save(Personas persona)
+        public void Save(Persona persona)
         {
             PersonaData.Save(persona);
 

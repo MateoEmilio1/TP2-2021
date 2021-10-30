@@ -13,10 +13,10 @@ namespace Data.Database
     public class PersonaAdapter:Adapter
     {
        
-        public List<Personas> GetAll(int tipo)
+        public List<Persona> GetAll(int tipo)
         {
             //instanciamos el objeto lista a retornar
-            List<Personas> personas = new List<Personas>();
+            List<Persona> personas = new List<Persona>();
             try
             {
                 this.OpenConnection();
@@ -29,7 +29,7 @@ namespace Data.Database
 
                 while (drPersonas.Read())
                 {
-                    Personas pers = new Personas();
+                    Persona pers = new Persona();
                     pers.ID = (int)drPersonas["id_persona"];
                     pers.Nombre = (string)drPersonas["nombre"];
                     pers.Apellido = (string)drPersonas["apellido"];
@@ -68,9 +68,9 @@ namespace Data.Database
 
         }
 
-        public Business.Entities.Personas GetOne(int ID)
+        public Business.Entities.Persona GetOne(int ID)
         {
-            Personas pers = new Personas();
+            Persona pers = new Persona();
             try
             {
                 this.OpenConnection();
@@ -161,7 +161,7 @@ namespace Data.Database
             }
         }
 
-        public void Update(Personas persona)
+        public void Update(Persona persona)
         {
             try
             {
@@ -201,7 +201,7 @@ namespace Data.Database
             }
         }
 
-        public void Insert(Personas persona)
+        public void Insert(Persona persona)
         {
             try
             {
@@ -242,7 +242,7 @@ namespace Data.Database
             }
         }
 
-        public void Save(Personas persona)
+        public void Save(Persona persona)
         {
             if (persona.State == BusinessEntity.States.Deleted)
             {
