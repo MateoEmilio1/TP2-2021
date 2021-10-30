@@ -212,5 +212,15 @@ namespace UI.Web
             ClearForm();
             formPanel.Visible = false;
         }
+
+        protected void IDMateria_Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = Logic.ExisteMateria(int.Parse(IDMateriaTextBox.Text));
+        }
+
+        protected void IDComision_Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = Logic.ExisteComision(int.Parse(IDComisionTextBox.Text));
+        }
     }
 }

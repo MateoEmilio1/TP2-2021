@@ -167,5 +167,50 @@ namespace Data.Database
             curso.State = BusinessEntity.States.Unmodified;
         }
 
+        public bool ExisteMateria(int ID)
+        {
+            bool existe;
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdGetOne = new SqlCommand("select * from materias where id_materia=@id", sqlConn);
+                cmdGetOne.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                existe = Convert.ToBoolean(cmdGetOne.ExecuteScalar());
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                    new Exception("Error al validar la existencia de la persona", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return existe;
+        }
+
+        public bool ExisteComision(int ID)
+        {
+            bool existe;
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdGetOne = new SqlCommand("select * from comisiones where id_materia=@id", sqlConn);
+                cmdGetOne.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                existe = Convert.ToBoolean(cmdGetOne.ExecuteScalar());
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                    new Exception("Error al validar la existencia de la persona", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return existe;
+        }
     }
 }
