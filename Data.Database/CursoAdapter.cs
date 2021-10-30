@@ -196,7 +196,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdGetOne = new SqlCommand("select * from comisiones where id_materia=@id", sqlConn);
+                SqlCommand cmdGetOne = new SqlCommand("select * from comisiones where id_comision=@id", sqlConn);
                 cmdGetOne.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 existe = Convert.ToBoolean(cmdGetOne.ExecuteScalar());
             }
