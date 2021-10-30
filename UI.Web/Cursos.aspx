@@ -31,15 +31,15 @@
             <br />
             <table style="width:100%;">
                 <tr>
-                    <td style="width: 468px">&nbsp;</td>
-                    <td style="width: 103px">
+                    <td style="width: 468px; height: 30px;"></td>
+                    <td style="width: 103px; height: 30px;">
                         <asp:Label ID="IDComisionLabel" runat="server" Text="IDComision"></asp:Label>
                     </td>
-                    <td dir="ltr" style="width: 249px">
+                    <td dir="ltr" style="width: 249px; height: 30px;">
                         <asp:TextBox ID="IDComisionTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" ControlToValidate="IDComisionTextBox" ErrorMessage="Ingrese un número entero para la comisión" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
                     </td>
-                    <td dir="ltr">&nbsp;</td>
+                    <td dir="ltr" style="height: 30px"></td>
                 </tr>
                 <tr>
                     <td style="width: 468px">&nbsp;</td>

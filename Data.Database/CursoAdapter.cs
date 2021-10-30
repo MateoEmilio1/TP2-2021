@@ -141,6 +141,7 @@ namespace Data.Database
             {
                 Exception ExcepcionManejada =
                     new Exception("Error al crear un nuevo curso", Ex);
+                
                 throw ExcepcionManejada;
             }
             finally

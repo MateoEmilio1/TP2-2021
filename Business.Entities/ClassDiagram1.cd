@@ -69,7 +69,7 @@
   <Class Name="Business.Entities.Plan">
     <Position X="4" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAABAAAAAAAEAAAAAEAAAAA=</HashCode>
+      <HashCode>AAEAAABAAAAAAAAAAAAAAAABAAAAAAAEAAACAAAAAAA=</HashCode>
       <FileName>Plan.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -88,15 +88,8 @@
       <FileName>Materia.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entities.Personas">
+  <Class Name="Business.Entities.Persona">
     <Position X="2.25" Y="6.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Business.Entities.Personas.TipoPersonas" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Personas.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true">
       <Path>
         <Point X="8" Y="4.401" />
@@ -106,8 +99,8 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>EAAAAAEAACgAAQCEACAAhEAEAAUAAAAAEAAAAgAABAA=</HashCode>
-      <FileName>Personas.cs</FileName>
+      <HashCode>EAAAAAEAACgAAQCEBCAAhEAEAAUAAAABEAACAgAABAI=</HashCode>
+      <FileName>Persona.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.AlumnoInscripcion">
@@ -136,7 +129,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AQIAAIAAIAAAACACAAAAAAABgAAAAAAEAAAAAAAABAA=</HashCode>
+      <HashCode>AQIAAIAAIAAAACACAAAAAAAAgAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Curso.cs</FileName>
     </TypeIdentifier>
   </Class>

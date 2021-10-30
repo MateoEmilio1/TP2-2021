@@ -20,7 +20,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM PERSONAS WHERE TIPO_PERSONA = @tipo",sqlConn);
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM PERSONAS WHERE tipo_persona = @tipo",sqlConn);
                
                 cmdPersonas.Parameters.Add("@tipo", SqlDbType.Int).Value = tipo;
                 
@@ -41,10 +41,10 @@ namespace Data.Database
 
                     switch ((int)drPersonas["tipo_persona"])
                     {
-                        case 1:
+                        case 0:
                             pers.TipoPersona = "Alumno";
                             break;
-                        case 2:
+                        case 1:
                             pers.TipoPersona = "Docente";
                             break;
                     }

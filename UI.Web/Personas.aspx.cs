@@ -13,55 +13,78 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadGrid();
-            if (this.GridView.SelectedIndex == -1)
+            if (!IsPostBack)
             {
-                ShowButtons(false);
-                gridActionsPanel.Visible = true;
+                LoadGrid();
+
+                //ShowButtons(false);
+                //gridActionsPanel.Visible = true;
+                
+                /*
+                if (this.gridPersonas.SelectedIndex == -1)
+                {
+                    ShowButtons(false);
+                    gridActionsPanel.Visible = true;
+                }
+                */
             }
         }
 
         PersonaLogic _logic;
-
         private PersonaLogic Logic
         {
             get
             {
                 if (_logic == null)
+                {
                     _logic = new PersonaLogic();
+                }
                 return _logic;
             }
         }
 
-        Persona _Entity;
+        private void LoadGrid()
+        { //El panel carga bien, pero no carga el grid
+            gridPersonas.DataSource = Logic.GetAll();
+            gridPersonas.DataBind();
+        }
 
-        private Persona Entity
+        public enum FormModes
         {
-            get
-            {
-                if (_Entity != null)
-                    return _Entity;
-                else
-                    return null;
-            }
-            set
-            {
-                _Entity = value;
-            }
+            Alta,
+            Baja,
+            Modificacion
+        }
+
+        public FormModes FormMode
+        {
+            get { return (FormModes)ViewState["FormMode"]; }
+            set { ViewState["FormMode"] = value; }
+        }
+
+        private Business.Entities.Persona Entity
+        {
+            get;
+            set;
         }
 
         private int SelectedID
         {
             get
             {
-                if (this.ViewState["SelectedID"] != null)
-                    return (int)this.ViewState["SelectedID"];
+                if (ViewState["SelectedID"] != null)
+                {
+                    return (int)ViewState["SelectedID"];
+                }
                 else
+                {
                     return 0;
+                }
             }
             set
             {
-                this.ViewState["SelectedID"] = value;
+                ViewState["SelectedID"] = value;
+
             }
         }
 
@@ -69,212 +92,107 @@ namespace UI.Web
         {
             get
             {
-                return (this.SelectedID != 0);
+                return (SelectedID != 0);
             }
         }
 
-        private void LoadGrid()
+        protected void gridPersonas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            SelectedID = (int)gridPersonas.SelectedValue;
+        }
+
+
+        protected void editarLinkButton_Click(object sender, EventArgs e)
+        {
+            EnableForm(true);
+            if (IsEntitySelected)
             {
-                this.GridView.DataSource = this.Logic.GetAll();
-                this.GridView.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
-            }
-        }
-
-        private void ShowButtons(bool enable)
-        {
-            this.lbEliminar.Visible = enable;
-            this.lbEditar.Visible = enable;
-        }
-
-        private void LoadDdlEspecialidades()
-        {
-            EspecialidadLogic el = new EspecialidadLogic();
-            this.ddlEspecialidades.DataSource = el.GetAll();
-            this.ddlEspecialidades.DataTextField = "Descripcion";
-            this.ddlEspecialidades.DataValueField = "ID";
-            this.ddlEspecialidades.DataBind();
-            ListItem init = new ListItem();
-            init.Text = "--Seleccionar Especialidad--";
-            init.Value = "-1";
-            this.ddlEspecialidades.Items.Add(init);
-            this.ddlEspecialidades.SelectedValue = "-1";
-        }
-
-        private void LoadDdlPlanes()
-        {
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = new List<Plan>();
-            foreach (Plan p in pl.GetAll())
-            {
-                if (p.Especialidad.ID == Convert.ToInt32(this.ddlEspecialidades.SelectedValue))
-                {
-                    planes.Add(p);
-                }
-            }
-            this.ddlPlanes.DataSource = planes;
-            this.ddlPlanes.DataTextField = "Descripcion";
-            this.ddlPlanes.DataValueField = "ID";
-            this.ddlPlanes.DataBind();
-            ListItem init = new ListItem();
-            init.Text = "--Seleccionar Plan--";
-            init.Value = "-1";
-            this.ddlPlanes.Items.Add(init);
-            this.ddlPlanes.SelectedValue = "-1";
-        }
-
-        private void EnableForm(bool enable)
-        {
-            this.lblApellido.Visible = enable;
-            this.txtApellido.Visible = enable;
-            this.lblNombre.Visible = enable;
-            this.txtNombre.Visible = enable;
-            this.lblLegajo.Visible = enable;
-            this.txtLegajo.Visible = enable;
-            this.lblDireccion.Visible = enable;
-            this.txtDireccion.Visible = enable;
-            this.lblTelefono.Visible = enable;
-            this.txtTelefono.Visible = enable;
-            this.lblEmail.Visible = enable;
-            this.txtEmail.Visible = enable;
-            this.lblFechaNacimiento.Visible = enable;
-            this.txtDia.Visible = enable;
-            this.txtMes.Visible = enable;
-            this.txtAnio.Visible = enable;
-            this.lblTipoPersona.Visible = enable;
-            this.ddlTipoPersona.Visible = enable;
-            this.lblEspecialidad.Visible = enable;
-            this.ddlEspecialidades.Visible = enable;
-            this.lblPlan.Visible = enable;
-            this.ddlPlanes.Visible = enable;
-        }
-
-        private void ClearForm()
-        {
-            this.txtApellido.Text = string.Empty;
-            this.txtNombre.Text = string.Empty;
-            this.txtLegajo.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtTelefono.Text = string.Empty;
-            this.txtEmail.Text = string.Empty;
-            this.txtDia.Text = "dd";
-            this.txtMes.Text = "mm";
-            this.txtAnio.Text = "aaaa";
-            this.ddlPlanes.Items.Clear();
-            this.GridView.SelectedIndex = -1;
-        }
-
-        private void DeleteEntity(int id)
-        {
-            try
-            {
-                this.Logic.Delete(id);
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
+                formPanel.Visible = true; //panel del form donde edito todo
+                FormMode = FormModes.Modificacion;
+                LoadForm(SelectedID);
             }
         }
 
         private void LoadForm(int id)
         {
-            try
-            {
-                this.Entity = this.Logic.GetOne(id);
-                this.txtApellido.Text = this.Entity.Apellido;
-                this.txtNombre.Text = this.Entity.Nombre;
-                this.txtLegajo.Text = this.Entity.Legajo.ToString();
-                this.txtDireccion.Text = this.Entity.Direccion;
-                this.txtTelefono.Text = this.Entity.Telefono;
-                this.txtEmail.Text = this.Entity.Email;
-                this.txtDia.Text = this.Entity.FechaNacimiento.Day.ToString();
-                this.txtMes.Text = this.Entity.FechaNacimiento.Month.ToString();
-                this.txtAnio.Text = this.Entity.FechaNacimiento.Year.ToString();
-                this.ddlTipoPersona.SelectedValue = this.Entity.TipoPersona;
-                this.ddlEspecialidades.SelectedValue = this.Entity.Plan.Especialidad.ID.ToString();
-                this.LoadDdlPlanes();
-                this.ddlPlanes.SelectedValue = this.Entity.Plan.ID.ToString();
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
-            }
+            Entity = Logic.GetOne(id);
+            txtApellido.Text = Convert.ToString(Entity.Apellido);
+            txtNombre.Text = Convert.ToString(Entity.Nombre);
+            txtLegajo.Text = this.Entity.Legajo.ToString();
+            txtDireccion.Text = this.Entity.Direccion;
+            txtTelefono.Text = this.Entity.Telefono;
+            txtEmail.Text = this.Entity.Email;
+            txtDia.Text = this.Entity.FechaNacimiento.Day.ToString();
+            txtMes.Text = this.Entity.FechaNacimiento.Month.ToString();
+            txtAnio.Text = this.Entity.FechaNacimiento.Year.ToString();
+            ddlTipoPersona.SelectedValue = this.Entity.TipoPersona;
+            //ddlEspecialidades.SelectedValue = this.Entity.Plan.Especialidad.ID.ToString();
+            // No ponemos el Plan ver si lo ponemos
         }
-
-        private void LoadEntity(Persona pers)
-        {
-            pers.Apellido = this.txtApellido.Text;
-            pers.Nombre = this.txtNombre.Text;
-            pers.Legajo = Convert.ToInt32(this.txtLegajo.Text);
-            pers.Direccion = this.txtDireccion.Text;
-            pers.Telefono = this.txtTelefono.Text;
-            pers.Email = this.txtEmail.Text;
-            pers.FechaNacimiento = new DateTime(Convert.ToInt32(txtAnio.Text), Convert.ToInt32(txtMes.Text), Convert.ToInt32(txtDia.Text));
-            pers.TipoPersona = this.ddlTipoPersona.SelectedValue;
-            pers.Plan.Especialidad.ID = Convert.ToInt32(this.ddlEspecialidades.SelectedValue);
-            pers.Plan.ID = Convert.ToInt32(this.ddlPlanes.SelectedValue);
-        }
-
-        private void SaveEntity(Persona pers)
-        {
-            try
-            {
-                this.Logic.Save(pers);
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
-            }
-        }
-
-        private void ClearSession()
-        {
-            Session["SelectedID"] = null;
-        }
-
-        protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.SelectedID = (int)this.GridView.SelectedValue;
-            this.ShowButtons(true);
-        }
-
-        protected void editarLinkButton_Click(object sender, EventArgs e)
-        {
-            if (this.IsEntitySelected)
-            {
-                this.LoadDdlEspecialidades();
-                this.formPanel.Visible = true;
-                this.gridActionsPanel.Visible = false;
-                this.FormMode = FormModes.Modificacion;
-                this.EnableForm(true);
-                this.LoadForm(this.SelectedID);
-            }
+        private void EnableForm(bool condicion)
+        { //cambiar text box
+            this.lblApellido.Visible = condicion;
+            this.txtApellido.Visible = condicion;
+            this.lblNombre.Visible = condicion;
+            this.txtNombre.Visible = condicion;
+            this.lblLegajo.Visible = condicion;
+            this.txtLegajo.Visible = condicion;
+            this.lblDireccion.Visible = condicion;
+            this.txtDireccion.Visible = condicion;
+            this.lblTelefono.Visible = condicion;
+            this.txtTelefono.Visible = condicion;
+            this.lblEmail.Visible = condicion;
+            this.txtEmail.Visible = condicion;
+            this.lblFechaNacimiento.Visible = condicion;
+            this.txtDia.Visible = condicion;
+            this.txtMes.Visible = condicion;
+            this.txtAnio.Visible = condicion;
+            this.lblTipoPersona.Visible = condicion;
+            this.ddlTipoPersona.Visible = condicion;
+            //this.lblEspecialidad.Visible = condicion;
+            //this.ddlEspecialidades.Visible = condicion;
+            //this.lblPlan.Visible = condicion; // se va?
+            //this.ddlPlanes.Visible = condicion;
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (IsEntitySelected)
             {
-                this.DeleteEntity(this.SelectedID);
-                this.LoadGrid();
+                formPanel.Visible = true;
+                FormMode = FormModes.Baja;
+                EnableForm(false);
+                LoadForm(SelectedID);
                 this.ShowButtons(false);
             }
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
-            this.LoadDdlEspecialidades();
-            this.formPanel.Visible = true;
-            this.gridActionsPanel.Visible = false;
-            this.FormMode = FormModes.Alta;
-            this.ClearForm();
-            this.EnableForm(true);
+            formPanel.Visible = true;
+            FormMode = FormModes.Alta;
+            ClearForm();
+            EnableForm(true);
+
         }
+
+        private void ClearForm()
+
+        {
+            txtApellido.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtLegajo.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtDia.Text = string.Empty;
+            txtMes.Text = string.Empty;
+            txtAnio.Text = string.Empty;
+            ddlTipoPersona.SelectedValue = string.Empty;
+            //ddlEspecialidades.SelectedValue = string.Empty;
+        }
+
+   
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
@@ -292,7 +210,7 @@ namespace UI.Web
                     }
                     break;
                 case FormModes.Alta:
-                    this.Entity = new Persona();
+                    this.Entity = new Business.Entities.Persona();
                     this.LoadEntity(this.Entity);
                     if (!Logic.Existe(Entity.Legajo))
                     {
@@ -310,6 +228,43 @@ namespace UI.Web
             this.ShowButtons(false);
         }
 
+        private void LoadEntity(Business.Entities.Persona pers)
+        {
+            pers.Apellido = this.txtApellido.Text;
+            pers.Nombre = this.txtNombre.Text;
+            pers.Legajo = Convert.ToInt32(this.txtLegajo.Text);
+            pers.Direccion = this.txtDireccion.Text;
+            pers.Telefono = this.txtTelefono.Text;
+            pers.Email = this.txtEmail.Text;
+            pers.FechaNacimiento = new DateTime(Convert.ToInt32(txtAnio.Text), Convert.ToInt32(txtMes.Text), Convert.ToInt32(txtDia.Text));
+            pers.TipoPersona = this.ddlTipoPersona.SelectedValue;
+            //pers.Plan.Especialidad.ID = Convert.ToInt32(this.ddlEspecialidades.SelectedValue); // se va?
+            //pers.Plan.ID = Convert.ToInt32(this.ddlPlanes.SelectedValue);
+        }
+
+        private void SaveEntity(Business.Entities.Persona pers)
+        {
+            try
+            {
+                this.Logic.Save(pers);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        private void ClearSession()
+        {
+            Session["SelectedID"] = null;
+        }
+
+        private void ShowButtons(bool condicion)
+        {
+            this.eliminarLinkButton.Visible = condicion;
+            this.editarLinkButton.Visible = condicion;
+        }
+
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
             this.ClearForm();
@@ -318,12 +273,8 @@ namespace UI.Web
             this.ShowButtons(false);
         }
 
-        protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.LoadDdlPlanes();
-            this.formPanel.Visible = true;
-            this.gridActionsPanel.Visible = false;
-        }
+
+        //PLANES Y ESPECIALIDADES
+       
     }
-}
 }
