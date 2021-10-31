@@ -18,6 +18,10 @@ namespace UI.Web
             {
                 LoadGrid();
             }
+            IDComisionDDL.SelectedValue = null;
+            IDMateriaDDL.SelectedValue = null;
+            IDComisionDDL.DataBind();
+            IDMateriaDDL.DataBind();
         }
 
         CursoLogic _logic;
@@ -103,8 +107,8 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionDDL.Text = Convert.ToString(Entity.IDComision);
-            IDMateriaDDL.Text= Convert.ToString(Entity.IDMateria);
+            IDComisionDDL.SelectedValue = Convert.ToString(Entity.IDComision);
+            IDMateriaDDL.SelectedValue = Convert.ToString(Entity.IDMateria);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -123,8 +127,8 @@ namespace UI.Web
         {
             curso.AnioCalendario = int.Parse(AñoTextBox.Text);
             curso.Cupo = int.Parse(CupoTextBox.Text);
-            curso.IDComision = int.Parse(IDComisionDDL.Text);
-            curso.IDMateria = int.Parse(IDMateriaDDL.Text);
+            curso.IDComision = int.Parse(IDComisionDDL.SelectedValue);
+            curso.IDMateria = int.Parse(IDMateriaDDL.SelectedValue);
         }
 
         private void SaveEntity(Curso curso)
@@ -143,18 +147,26 @@ namespace UI.Web
                         LoadGrid();
                         break;
                     case FormModes.Modificacion:
-                        Entity = new Curso();
-                        Entity.ID = SelectedID;
-                        Entity.State = BusinessEntity.States.Modified;
-                        LoadEntity(Entity);
-                        SaveEntity(Entity);
-                        LoadGrid();
+                        if (Page.IsValid)
+                        {
+                            this.Entity = new Curso();
+                            this.Entity.ID = this.SelectedID;
+                            this.Entity.State = BusinessEntity.States.Modified;
+                            this.LoadEntity(this.Entity);
+                            this.SaveEntity(this.Entity);
+                            this.LoadGrid();
+                            formPanel.Visible = false;
+                        }
                         break;
                     case FormModes.Alta:
-                        Entity = new Curso();
-                        LoadEntity(Entity);
-                        SaveEntity(Entity);
-                        LoadGrid();
+                        if (Page.IsValid)
+                        {
+                            this.Entity = new Curso();
+                            this.LoadEntity(this.Entity);
+                            this.SaveEntity(this.Entity);
+                            this.LoadGrid();
+                            formPanel.Visible = false;
+                        }
                         break;
                     default:
                         break;
@@ -203,8 +215,8 @@ namespace UI.Web
         {
             AñoTextBox.Text = string.Empty;
             CupoTextBox.Text = string.Empty;
-            IDComisionDDL.Text = string.Empty;
-            IDMateriaDDL.Text = string.Empty;
+            IDComisionDDL.SelectedValue = null;
+            IDMateriaDDL.SelectedValue = null;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

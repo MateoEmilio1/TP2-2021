@@ -175,6 +175,7 @@ namespace UI.Web
                     }
                     break;
                 case FormModes.Alta:
+                    if (Page.IsValid)
                     {
                         this.Entity = new Usuario();
                         this.LoadEntity(this.Entity);
