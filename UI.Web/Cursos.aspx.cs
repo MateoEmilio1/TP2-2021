@@ -103,8 +103,8 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionTextBox.Text = Convert.ToString(Entity.IDComision);
-            IDMateriaTextBox.Text= Convert.ToString(Entity.IDMateria);
+            IDComisionDDL.Text = Convert.ToString(Entity.IDComision);
+            IDMateriaDDL.Text= Convert.ToString(Entity.IDMateria);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -123,8 +123,8 @@ namespace UI.Web
         {
             curso.AnioCalendario = int.Parse(AñoTextBox.Text);
             curso.Cupo = int.Parse(CupoTextBox.Text);
-            curso.IDComision = int.Parse(IDComisionTextBox.Text);
-            curso.IDMateria = int.Parse(IDMateriaTextBox.Text);
+            curso.IDComision = int.Parse(IDComisionDDL.Text);
+            curso.IDMateria = int.Parse(IDMateriaDDL.Text);
         }
 
         private void SaveEntity(Curso curso)
@@ -169,8 +169,8 @@ namespace UI.Web
         {
             AñoTextBox.Enabled = condicion;
             CupoTextBox.Enabled = condicion;
-            IDComisionTextBox.Enabled = condicion;
-            IDMateriaTextBox.Enabled = condicion;
+            IDComisionDDL.Enabled = condicion;
+            IDMateriaDDL.Enabled = condicion;
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
@@ -203,8 +203,8 @@ namespace UI.Web
         {
             AñoTextBox.Text = string.Empty;
             CupoTextBox.Text = string.Empty;
-            IDComisionTextBox.Text = string.Empty;
-            IDMateriaTextBox.Text = string.Empty;
+            IDComisionDDL.Text = string.Empty;
+            IDMateriaDDL.Text = string.Empty;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

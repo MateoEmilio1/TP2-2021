@@ -25,21 +25,23 @@
                 <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click">Nuevo</asp:LinkButton>
             </asp:Panel>
     </asp:Panel>
-        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Center">
+        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Left">
             
             <br />
             <br />
             <table style="width:100%;">
                 <tr>
-                    <td style="width: 468px; height: 30px;"></td>
-                    <td style="width: 103px; height: 30px;">
+                    <td style="width: 468px">&nbsp;</td>
+                    <td style="width: 103px">
                         <asp:Label ID="IDComisionLabel" runat="server" Text="IDComision"></asp:Label>
                     </td>
-                    <td dir="ltr" style="width: 249px; height: 30px;">
-                        <asp:TextBox ID="IDComisionTextBox" runat="server"></asp:TextBox>
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" ControlToValidate="IDComisionTextBox" ErrorMessage="Ingrese un número entero para la comisión" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                    <td dir="ltr" style="width: 249px">
+                        <asp:DropDownList ID="IDComisionDDL" runat="server" DataSourceID="DSIDComision" DataTextField="id_comision" DataValueField="id_comision">
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="DSIDComision" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringExpress %>" SelectCommand="SELECT [id_comision] FROM [comisiones]"></asp:SqlDataSource>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="DropDownList1" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
-                    <td dir="ltr" style="height: 30px"></td>
+                    <td dir="ltr">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 468px">&nbsp;</td>
@@ -47,8 +49,10 @@
                         <asp:Label ID="IDMateriaLabel" runat="server" Text="IDMateria: "></asp:Label>
                     </td>
                     <td dir="ltr" style="width: 249px">
-                        <asp:TextBox ID="IDMateriaTextBox" runat="server"></asp:TextBox>
-                        <asp:CompareValidator ID="CompareValidator2" runat="server" Operator="DataTypeCheck" ControlToValidate="IDMateriaTextBox" ErrorMessage="Ingrese un número entero para la materia" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                        <asp:DropDownList ID="IDMateriaDDL" runat="server" DataSourceID="DSIDMateria" DataTextField="id_materia" DataValueField="id_materia">
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="DSIDMateria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringExpress %>" SelectCommand="SELECT [id_materia] FROM [materias]"></asp:SqlDataSource>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownList2" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -60,6 +64,7 @@
                     <td style="width: 249px">
                         <asp:TextBox ID="CupoTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator4" runat="server" Operator="DataTypeCheck" ControlToValidate="CupoTextBox" ErrorMessage="Ingrese un número entero para el cupo" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese cupo" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -71,14 +76,15 @@
                     <td style="width: 249px">
                         <asp:TextBox ID="AñoTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator3" runat="server" Operator="DataTypeCheck" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un número entero para el año" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
             <br />
             
-            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
             <asp:Panel ID="formActionsPanel" runat="server" HorizontalAlign="Center">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" style="margin-top: 19px" />
             <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
             &nbsp;
             <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>

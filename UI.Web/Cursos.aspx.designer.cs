@@ -87,22 +87,31 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Label IDComisionLabel;
 
         /// <summary>
-        /// IDComisionTextBox control.
+        /// IDComisionDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IDComisionTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList IDComisionDDL;
 
         /// <summary>
-        /// CompareValidator1 control.
+        /// DSIDComision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        protected global::System.Web.UI.WebControls.SqlDataSource DSIDComision;
+
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
         /// IDMateriaLabel control.
@@ -114,22 +123,31 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Label IDMateriaLabel;
 
         /// <summary>
-        /// IDMateriaTextBox control.
+        /// IDMateriaDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IDMateriaTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList IDMateriaDDL;
 
         /// <summary>
-        /// CompareValidator2 control.
+        /// DSIDMateria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator2;
+        protected global::System.Web.UI.WebControls.SqlDataSource DSIDMateria;
+
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// cupoLabel control.
@@ -159,6 +177,15 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator4;
 
         /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+
+        /// <summary>
         /// anioLabel control.
         /// </summary>
         /// <remarks>
@@ -186,13 +213,13 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator3;
 
         /// <summary>
-        /// ValidationSummary1 control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
         /// formActionsPanel control.
@@ -202,6 +229,15 @@ namespace UI.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel formActionsPanel;
+
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
 
         /// <summary>
         /// aceptarLinkButton control.

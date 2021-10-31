@@ -21,25 +21,36 @@ namespace UI.Web
 
 
         }
-
-
-        UsuarioLogic _logic;
-        private UsuarioLogic Logic
+        PersonaLogic _PersLog;
+        private PersonaLogic PersLog
         {
             get
             {
-                if (_logic == null)
+                if (_PersLog == null)
                 {
-                    _logic = new UsuarioLogic();
+                    _PersLog = new PersonaLogic();
                 }
-                return _logic;
+                return _PersLog;
+            }
+        }
+
+        UsuarioLogic _UsrLog;
+        private UsuarioLogic UsrLog
+        {
+            get
+            {
+                if (_UsrLog == null)
+                {
+                    _UsrLog = new UsuarioLogic();
+                }
+                return _UsrLog;
             }
         }
 
 
         private void LoadGrid()
         {
-            this.gridView.DataSource = this.Logic.GetAll();
+            this.gridView.DataSource = this.UsrLog.GetAll();
             this.gridView.DataBind();
 
         }
@@ -87,6 +98,8 @@ namespace UI.Web
         }
 
 
+
+
         private bool IsEntitySelected
         {
             get
@@ -105,12 +118,13 @@ namespace UI.Web
 
         private void LoadForm(int id)
         {
-            this.Entity = this.Logic.GetOne(id);
-            this.nombreTextBox.Text = this.Entity.Nombre;
-            this.apellidoTextBox.Text = this.Entity.Apellido;
-            this.emailTextBox.Text = this.Entity.EMail;
-            this.habilitadoCheckBox.Checked = this.Entity.Habilitado;
-            this.nombreUsuarioTextBox.Text = this.Entity.NombreUsuario;
+            this.Entity = this.UsrLog.GetOne(id);
+            this.habilitadoCheckBox.Checked = Entity.Habilitado;
+            this.nombreUsuarioTextBox.Text = Entity.NombreUsuario;
+            this.claveTextBox.Text = Entity.Clave;
+            this.repetirClaveTextBox.Text = Entity.Clave;
+            this.idPersonaTextBox.Text = Entity.IDPersona.ToString();
+            LoadPersona(Entity.IDPersona);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -127,9 +141,7 @@ namespace UI.Web
 
         private void LoadEntity(Usuario usuario)
         {
-            usuario.Nombre = this.nombreTextBox.Text;
-            usuario.Apellido = this.apellidoTextBox.Text;
-            usuario.EMail = this.emailTextBox.Text;
+            usuario.IDPersona = int.Parse(this.idPersonaTextBox.Text);
             usuario.NombreUsuario = this.nombreUsuarioTextBox.Text;
             usuario.Clave = this.claveTextBox.Text;
             usuario.Habilitado = this.habilitadoCheckBox.Checked;
@@ -137,19 +149,19 @@ namespace UI.Web
 
         private void SaveEntity(Usuario usuario)
         {
-            this.Logic.Save(usuario);
+            this.UsrLog.Save(usuario);
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
             switch (this.FormMode)
             {
-                
+
                 case FormModes.Baja:
                     this.DeleteEntity(this.SelectedID);
                     this.LoadGrid();
                     formPanel.Visible = false;
-                break;
+                    break;
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {
@@ -161,7 +173,7 @@ namespace UI.Web
                         this.LoadGrid();
                         formPanel.Visible = false;
                     }
-                break;
+                    break;
                 case FormModes.Alta:
                     {
                         this.Entity = new Usuario();
@@ -170,20 +182,18 @@ namespace UI.Web
                         this.LoadGrid();
                         formPanel.Visible = false;
                     }
-                break;
+                    break;
                 default:
                     break;
             }
-            
+
             //this.formPanel.Visible = false;
         }
 
         private void EnableForm(bool condicion)
 
         {
-            this.nombreTextBox.Enabled = condicion;
-            this.apellidoTextBox.Enabled = condicion;
-            this.emailTextBox.Enabled = condicion;
+            this.idPersonaTextBox.Enabled = condicion;
             this.nombreUsuarioTextBox.Enabled = condicion;
             this.claveTextBox.Visible = condicion;
             this.claveLabel.Visible = condicion;
@@ -205,7 +215,7 @@ namespace UI.Web
 
         private void DeleteEntity(int id)
         {
-            this.Logic.Delete(id);
+            this.UsrLog.Delete(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
@@ -220,11 +230,14 @@ namespace UI.Web
         private void ClearForm()
 
         {
+            this.idPersonaTextBox.Text = string.Empty;
             this.nombreTextBox.Text = string.Empty;
             this.apellidoTextBox.Text = string.Empty;
             this.emailTextBox.Text = string.Empty;
             this.habilitadoCheckBox.Checked = false;
             this.nombreUsuarioTextBox.Text = string.Empty;
+            this.claveTextBox.Text = string.Empty;
+            this.repetirClaveTextBox.Text = string.Empty;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
@@ -233,8 +246,30 @@ namespace UI.Web
             this.formPanel.Visible = false;
         }
 
+        public Persona Per { get; set; }
 
+        protected void BuscarPersona_Click(object sender, EventArgs e)
+        {
+            Persona Per = new Persona();
+            LoadPersona(int.Parse(idPersonaTextBox.Text));
+        }
 
+        protected void LoadPersona(int id)
+        {
+            Per = PersLog.GetOne(id);
+            if (Per.ID != 0)
+            {
+                nombreTextBox.Text = Per.Nombre;
+                apellidoTextBox.Text = Per.Apellido;
+                emailTextBox.Text = Per.Email;
+            }
+            else
+            {
+                nombreTextBox.Text = String.Empty;
+                apellidoTextBox.Text = String.Empty;
+                emailTextBox.Text = String.Empty;
+            }
 
+        }
     }
 }

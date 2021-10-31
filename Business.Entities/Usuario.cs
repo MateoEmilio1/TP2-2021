@@ -13,10 +13,8 @@ namespace Business.Entities
 
         private string _nombreUsuario;
         private string _clave;
-        private string _nombre;
-        private string _apellido;
-        private string _email;
         private bool _habilitado;
+        private int _IDPersona;
 
         public string NombreUsuario //Propiedad
         {
@@ -42,42 +40,7 @@ namespace Business.Entities
             }
 
         }
-        public string Nombre //Propiedad
-        {
-            get
-            {
-                return _nombre;
-            }
-            set
-            {
-                _nombre = value;
-            }
-
-        }
-        public string Apellido //Propiedad
-        {
-            get
-            {
-                return _apellido;
-            }
-            set
-            {
-                _apellido = value;
-            }
-
-        }
-        public string EMail //Propiedad
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
-
-        }
+        
         public bool Habilitado //Propiedad
         {
             get
@@ -94,6 +57,11 @@ namespace Business.Entities
 
 
 
+        public int IDPersona
+        {
+            get { return _IDPersona; }
+            set { _IDPersona = value; }
+        }
 
     }
 }
