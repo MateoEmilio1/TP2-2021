@@ -17,11 +17,10 @@ namespace UI.Web
             if (!IsPostBack)
             {
                 LoadGrid();
+                IDComisionDDL.DataBind();
+                IDMateriaDDL.DataBind();
             }
-            IDComisionDDL.SelectedValue = null;
-            IDMateriaDDL.SelectedValue = null;
-            IDComisionDDL.DataBind();
-            IDMateriaDDL.DataBind();
+            
         }
 
         CursoLogic _logic;
@@ -107,8 +106,8 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionDDL.SelectedValue = Convert.ToString(Entity.IDComision);
-            IDMateriaDDL.SelectedValue = Convert.ToString(Entity.IDMateria);
+            IDComisionDDL.SelectedItem.Text = Convert.ToString(Entity.IDComision);
+            IDMateriaDDL.SelectedItem.Text = Convert.ToString(Entity.IDMateria);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -127,8 +126,8 @@ namespace UI.Web
         {
             curso.AnioCalendario = int.Parse(AñoTextBox.Text);
             curso.Cupo = int.Parse(CupoTextBox.Text);
-            curso.IDComision = int.Parse(IDComisionDDL.SelectedValue);
-            curso.IDMateria = int.Parse(IDMateriaDDL.SelectedValue);
+            curso.IDComision = int.Parse(IDComisionDDL.SelectedItem.Text);
+            curso.IDMateria = int.Parse(IDMateriaDDL.SelectedItem.Text);
         }
 
         private void SaveEntity(Curso curso)
@@ -138,13 +137,13 @@ namespace UI.Web
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
+            
                 switch (FormMode)
                 {
                     case FormModes.Baja:
                         DeleteEntity(SelectedID);
                         LoadGrid();
+                        formPanel.Visible = false;
                         break;
                     case FormModes.Modificacion:
                         if (Page.IsValid)
@@ -171,8 +170,8 @@ namespace UI.Web
                     default:
                         break;
                 }
-                formPanel.Visible = false;
-            }
+                
+            
             
         }
 
@@ -215,8 +214,8 @@ namespace UI.Web
         {
             AñoTextBox.Text = string.Empty;
             CupoTextBox.Text = string.Empty;
-            IDComisionDDL.SelectedValue = null;
-            IDMateriaDDL.SelectedValue = null;
+            IDComisionDDL.SelectedItem.Text = null;
+            IDMateriaDDL.SelectedItem.Text = null;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

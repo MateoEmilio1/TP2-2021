@@ -18,11 +18,11 @@
         <br />
         <br />
         <asp:Panel ID="gridActionsPanel" runat="server">
-                <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click">Editar</asp:LinkButton>
+                <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click" CausesValidation="False">Editar</asp:LinkButton>
                 &nbsp;
-                <asp:LinkButton ID="eliminarLinkButton" runat="server" OnClick="eliminarLinkButton_Click">Eliminar</asp:LinkButton>
+                <asp:LinkButton ID="eliminarLinkButton" runat="server" OnClick="eliminarLinkButton_Click" CausesValidation="False">Eliminar</asp:LinkButton>
                 &nbsp;
-                <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click">Nuevo</asp:LinkButton>
+                <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click" CausesValidation="False">Nuevo</asp:LinkButton>
             </asp:Panel>
     </asp:Panel>
         <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Left">
@@ -39,7 +39,6 @@
                         <asp:DropDownList ID="IDComisionDDL" runat="server" DataSourceID="DSIDComision" DataTextField="id_comision" DataValueField="id_comision">
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="DSIDComision" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_comision] FROM [comisiones]"></asp:SqlDataSource>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="DropDownList1" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -52,7 +51,6 @@
                         <asp:DropDownList ID="IDMateriaDDL" runat="server" DataSourceID="DSIDMateria" DataTextField="id_materia" DataValueField="id_materia">
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="DSIDMateria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_materia] FROM [materias]"></asp:SqlDataSource>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownList2" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -64,7 +62,7 @@
                     <td style="width: 249px">
                         <asp:TextBox ID="CupoTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator4" runat="server" Operator="DataTypeCheck" ControlToValidate="CupoTextBox" ErrorMessage="Ingrese un número entero para el cupo" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="CupoTextBox" ErrorMessage="Ingrese cupo" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="CupoTextBox" EnableViewState="False" ErrorMessage="El cupo no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -76,8 +74,8 @@
                     <td style="width: 249px">
                         <asp:TextBox ID="AñoTextBox" runat="server"></asp:TextBox>
                         <asp:CompareValidator ID="CompareValidator3" runat="server" Operator="DataTypeCheck" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un número entero para el año" ForeColor="Red" Type="Integer">*</asp:CompareValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="AñoTextBox" ErrorMessage="Ingrese un año" ForeColor="Red" Visible="False">*</asp:RequiredFieldValidator>
-                    </td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="AñoTextBox" EnableViewState="False" ErrorMessage="El año no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
@@ -87,7 +85,7 @@
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" style="margin-top: 19px" />
             <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
             &nbsp;
-            <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
+            <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click" CausesValidation="False">Cancelar</asp:LinkButton>
               </asp:Panel>
             </asp:Panel>
         
