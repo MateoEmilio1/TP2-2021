@@ -16,6 +16,7 @@ namespace UI.Web
             if (!IsPostBack)
             {
                 LoadGrid();
+                ddlIDPlan.DataBind();
                 formPanel.Visible = false;
                 formActionsPanel.Visible = false;
                 //ShowButtons(false);
@@ -40,7 +41,7 @@ namespace UI.Web
 
         private void LoadGrid()
         { 
-            gridPersonas.DataSource = Logic.GetAll(0);
+            gridPersonas.DataSource = Logic.GetAll();
             gridPersonas.DataBind();
         }
         
@@ -121,8 +122,8 @@ namespace UI.Web
             txtDia.Text = this.Entity.FechaNacimiento.Day.ToString();
             txtMes.Text = this.Entity.FechaNacimiento.Month.ToString();
             txtAnio.Text = this.Entity.FechaNacimiento.Year.ToString();
-            ddlTipoPersona.SelectedValue = this.Entity.TipoPersona;
-            ddlIDPlan.SelectedValue = this.Entity.IDPlan.ToString();
+            ddlTipoPersona.SelectedItem.Text = this.Entity.TipoPersona;
+            ddlIDPlan.SelectedItem.Text = this.Entity.IDPlan.ToString();
     
         }
         private void EnableForm(bool condicion)
@@ -192,12 +193,13 @@ namespace UI.Web
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {
-                        this.Entity = this.Logic.GetOne(this.SelectedID);
+                        this.Entity = new Persona();
+                        this.Entity.ID = this.SelectedID;
                         this.Entity.State = BusinessEntity.States.Modified;
                         this.LoadEntity(this.Entity);
                         this.SaveEntity(this.Entity);
                         this.LoadGrid();
-                        this.ClearSession();
+                        formPanel.Visible = false;
                     }
                     break;
                 case FormModes.Alta:
@@ -228,7 +230,8 @@ namespace UI.Web
             pers.Telefono = this.txtTelefono.Text;
             pers.Email = this.txtEmail.Text;
             pers.FechaNacimiento = new DateTime(Convert.ToInt32(txtAnio.Text), Convert.ToInt32(txtMes.Text), Convert.ToInt32(txtDia.Text));
-            pers.TipoPersona = this.ddlTipoPersona.SelectedValue;
+            pers.TipoPersona = this.ddlTipoPersona.SelectedItem.Text;
+            pers.IDPlan = int.Parse(this.ddlIDPlan.SelectedItem.Text);
             //pers.Plan.Especialidad.ID = Convert.ToInt32(this.ddlEspecialidades.SelectedValue); // se va?
             //pers.Plan.ID = Convert.ToInt32(this.ddlPlanes.SelectedValue);
         }

@@ -71,6 +71,64 @@ namespace Data.Database
 
         }
 
+        public List<Persona> GetAll()
+        {
+            //instanciamos el objeto lista a retornar
+            List<Persona> personas = new List<Persona>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM PERSONAS", sqlConn);
+
+                //cmdPersonas.Parameters.Add("@tipo", SqlDbType.Int).Value = tipo;
+
+
+                SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
+
+
+                while (drPersonas.Read())
+                {
+                    Persona pers = new Persona();
+                    pers.ID = (int)drPersonas["id_persona"];
+                    pers.Nombre = (string)drPersonas["nombre"];
+                    pers.Apellido = (string)drPersonas["apellido"];
+                    pers.Email = (string)drPersonas["email"];
+                    pers.Direccion = (string)drPersonas["direccion"];
+                    pers.Telefono = (string)drPersonas["telefono"];
+                    pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
+                    pers.Legajo = (int)drPersonas["legajo"];
+
+                    switch ((int)drPersonas["tipo_persona"])
+                    {
+                        case 0:
+                            pers.TipoPersona = "Alumno";
+                            break;
+                        case 1:
+                            pers.TipoPersona = "Docente";
+                            break;
+                    }
+                    personas.Add(pers);
+                }
+                //cerramos la el DataReader y la conexión a la BD
+
+
+                drPersonas.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                new Exception("Error al recuperar lista de personas", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            //devolvemos el objeto
+            return personas;
+
+        }
+
         public Business.Entities.Persona GetOne(int ID)
         {
             Persona pers = new Persona();
@@ -183,13 +241,13 @@ namespace Data.Database
                 switch (persona.TipoPersona)
                 {
                     case "Alumno":
-                        cmdUpdate.Parameters.Add("@tipoP", SqlDbType.Int).Value = 2;
+                        cmdUpdate.Parameters.Add("@tipoP", SqlDbType.Int).Value = 0;
                         break;
                     case "Docente":
-                        cmdUpdate.Parameters.Add("@tipoP", SqlDbType.Int).Value = 3;
+                        cmdUpdate.Parameters.Add("@tipoP", SqlDbType.Int).Value = 1;
                         break;
                 }
-                cmdUpdate.Parameters.Add("@idPlan", SqlDbType.Int).Value = persona.Plan.ID;
+                cmdUpdate.Parameters.Add("@idPlan", SqlDbType.Int).Value = persona.IDPlan;
                 cmdUpdate.ExecuteNonQuery();
             }
             catch (Exception Ex)

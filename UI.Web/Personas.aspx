@@ -3,7 +3,7 @@
     <asp:Panel ID="gridPanel" runat="server">
         <asp:Panel ID="Panel2" runat="server">
         </asp:Panel>
-        <asp:GridView ID="gridPersonas" runat="server" HorizontalAlign="Center" OnSelectedIndexChanged="gridPersonas_SelectedIndexChanged" AutoGenerateColumns="False">
+        <asp:GridView ID="gridPersonas" runat="server" HorizontalAlign="Center" DataKeyNames="ID" OnSelectedIndexChanged="gridPersonas_SelectedIndexChanged" AutoGenerateColumns="False">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" />
                 <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
@@ -80,7 +80,6 @@
                             <asp:DropDownList ID="ddlTipoPersona" runat="server" Width="150px">
                                 <asp:ListItem>Alumno</asp:ListItem>
                                 <asp:ListItem>Docente</asp:ListItem>
-                                <asp:ListItem Value="No docente">No Docente</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlTipoPersona" ErrorMessage="El campo Tipo de Persona es obligatorio" ForeColor="#FF3300">*</asp:RequiredFieldValidator>
                         </td>
