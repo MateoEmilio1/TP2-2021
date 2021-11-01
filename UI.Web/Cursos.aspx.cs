@@ -13,14 +13,15 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
-                LoadGrid();
+                LoadGrid(); 
+                
                 IDComisionDDL.DataBind();
                 IDMateriaDDL.DataBind();
             }
-            
+
         }
 
         CursoLogic _logic;
@@ -137,42 +138,42 @@ namespace UI.Web
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            
-                switch (FormMode)
-                {
-                    case FormModes.Baja:
-                        DeleteEntity(SelectedID);
-                        LoadGrid();
+
+            switch (FormMode)
+            {
+                case FormModes.Baja:
+                    DeleteEntity(SelectedID);
+                    LoadGrid();
+                    formPanel.Visible = false;
+                    break;
+                case FormModes.Modificacion:
+                    if (Page.IsValid)
+                    {
+                        this.Entity = new Curso();
+                        this.Entity.ID = this.SelectedID;
+                        this.Entity.State = BusinessEntity.States.Modified;
+                        this.LoadEntity(this.Entity);
+                        this.SaveEntity(this.Entity);
+                        this.LoadGrid();
                         formPanel.Visible = false;
-                        break;
-                    case FormModes.Modificacion:
-                        if (Page.IsValid)
-                        {
-                            this.Entity = new Curso();
-                            this.Entity.ID = this.SelectedID;
-                            this.Entity.State = BusinessEntity.States.Modified;
-                            this.LoadEntity(this.Entity);
-                            this.SaveEntity(this.Entity);
-                            this.LoadGrid();
-                            formPanel.Visible = false;
-                        }
-                        break;
-                    case FormModes.Alta:
-                        if (Page.IsValid)
-                        {
-                            this.Entity = new Curso();
-                            this.LoadEntity(this.Entity);
-                            this.SaveEntity(this.Entity);
-                            this.LoadGrid();
-                            formPanel.Visible = false;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                
-            
-            
+                    }
+                    break;
+                case FormModes.Alta:
+                    if (Page.IsValid)
+                    {
+                        this.Entity = new Curso();
+                        this.LoadEntity(this.Entity);
+                        this.SaveEntity(this.Entity);
+                        this.LoadGrid();
+                        formPanel.Visible = false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
+
         }
 
         private void EnableForm(bool condicion)

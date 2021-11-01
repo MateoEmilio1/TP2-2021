@@ -39,6 +39,7 @@ namespace Data.Database
                     pers.Telefono = (string)drPersonas["telefono"];
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
+                    pers.IDPlan = (int)drPersonas["id_plan"];
 
                     switch ((int)drPersonas["tipo_persona"])
                     {
@@ -97,6 +98,7 @@ namespace Data.Database
                     pers.Telefono = (string)drPersonas["telefono"];
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
+                    pers.IDPlan = (int)drPersonas["id_plan"];
 
                     switch ((int)drPersonas["tipo_persona"])
                     {
@@ -148,6 +150,7 @@ namespace Data.Database
                     pers.Telefono = (string)drPersonas["telefono"];
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
+                    pers.IDPlan = (int)drPersonas["id_plan"];
                     switch ((int)drPersonas["tipo_persona"])
                     {
                         case 1:
@@ -282,13 +285,13 @@ namespace Data.Database
                 switch (persona.TipoPersona)
                 {
                     case "Alumno":
-                        cmdInsert.Parameters.Add("@tipoP", SqlDbType.Int).Value = 2;
+                        cmdInsert.Parameters.Add("@tipoP", SqlDbType.Int).Value = 0;
                         break;
                     case "Docente":
-                        cmdInsert.Parameters.Add("@tipoP", SqlDbType.Int).Value = 3;
+                        cmdInsert.Parameters.Add("@tipoP", SqlDbType.Int).Value = 1;
                         break;
                 }
-                cmdInsert.Parameters.Add("@idPlan", SqlDbType.Int).Value = persona.Plan.ID;
+                cmdInsert.Parameters.Add("@idPlan", SqlDbType.Int).Value = persona.IDPlan;
                 persona.ID = Decimal.ToInt32((decimal)cmdInsert.ExecuteScalar());
             }
             catch (Exception Ex)

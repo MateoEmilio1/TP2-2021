@@ -9,21 +9,19 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class Personas : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 LoadGrid();
-                ddlIDPlan.DataBind();
-                formPanel.Visible = false;
-                formActionsPanel.Visible = false;
-                //ShowButtons(false);
-                //gridActionsPanel.Visible = true;
                 
-               
+                ddlTipoPersona.DataBind();
+                ddlIDPlan.DataBind();
             }
+
         }
 
         PersonaLogic _logic;
@@ -40,25 +38,31 @@ namespace UI.Web
         }
 
         private void LoadGrid()
-        { 
+        {
             gridPersonas.DataSource = Logic.GetAll();
             gridPersonas.DataBind();
+            ddlTipoPersona.DataBind();
+            ddlIDPlan.DataBind();
+
         }
-        
+
         public enum FormModes
         {
             Alta,
             Baja,
             Modificacion
         }
-        
+
+        /*
+         La propiedad se almacena dentro del ViewState de la página porque va a ser necesario mantenerla almacenada entre Postbacks
+        */
+
         public FormModes FormMode
         {
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-        
-        private Business.Entities.Persona Entity
+        private Persona Entity
         {
             get;
             set;
@@ -84,6 +88,7 @@ namespace UI.Web
             }
         }
 
+
         private bool IsEntitySelected
         {
             get
@@ -92,104 +97,66 @@ namespace UI.Web
             }
         }
 
-        protected void gridPersonas_SelectedIndexChanged(object sender, EventArgs e)
+        //asd
+
+        protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedID = (int)gridPersonas.SelectedValue;
-        }
-
-
-        protected void editarLinkButton_Click(object sender, EventArgs e)
-        {
-            EnableForm(true);
-            if (IsEntitySelected)
-            {
-                formActionsPanel.Visible = true;
-                formPanel.Visible = true; //panel del form donde edito todo
-                FormMode = FormModes.Modificacion;
-                LoadForm(SelectedID);
-            }
         }
 
         private void LoadForm(int id)
         {
             Entity = Logic.GetOne(id);
-            txtApellido.Text = Convert.ToString(Entity.Apellido);
+            txtApellido.Text = Entity.Apellido;
+            txtDireccion.Text = Entity.Direccion;
+            txtEmail.Text = Entity.Email;
+            calFechaNac.SelectedDate = Entity.FechaNacimiento;
+            ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
+            ddlIDPlan.SelectedItem.Text = Convert.ToString(Entity.IDPlan);
+            txtLegajo.Text = Convert.ToString(Entity.Legajo);
             txtNombre.Text = Convert.ToString(Entity.Nombre);
-            txtLegajo.Text = this.Entity.Legajo.ToString();
-            txtDireccion.Text = this.Entity.Direccion;
-            txtTelefono.Text = this.Entity.Telefono;
-            txtEmail.Text = this.Entity.Email;
-            txtDia.Text = this.Entity.FechaNacimiento.Day.ToString();
-            txtMes.Text = this.Entity.FechaNacimiento.Month.ToString();
-            txtAnio.Text = this.Entity.FechaNacimiento.Year.ToString();
-            ddlTipoPersona.SelectedItem.Text = this.Entity.TipoPersona;
-            ddlIDPlan.SelectedItem.Text = this.Entity.IDPlan.ToString();
-    
-        }
-        private void EnableForm(bool condicion)
-        { //cambiar text box
-            
-            this.txtApellido.Visible = condicion;    
-            this.txtNombre.Visible = condicion;    
-            this.txtLegajo.Visible = condicion; 
-            this.txtDireccion.Visible = condicion;
-            this.txtTelefono.Visible = condicion;
-            this.txtEmail.Visible = condicion;
-            this.txtDia.Visible = condicion;
-            this.txtMes.Visible = condicion;
-            this.txtAnio.Visible = condicion;
-            this.ddlTipoPersona.Visible = condicion;
-            this.ddlIDPlan.Visible = condicion;
+            txtTelefono.Text = Convert.ToString(Entity.Telefono);
         }
 
-        protected void eliminarLinkButton_Click(object sender, EventArgs e)
+        private void LoadEntity(Persona per)
         {
+            per.Apellido = txtApellido.Text;
+            per.Direccion = txtDireccion.Text;
+            per.Email = txtEmail.Text;
+            per.FechaNacimiento = calFechaNac.SelectedDate;
+            per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Text);
+            per.Legajo = int.Parse(txtLegajo.Text);
+            per.Nombre = txtNombre.Text;
+            per.Telefono= txtTelefono.Text;
+            per.TipoPersona = ddlTipoPersona.Text;
+        }
+        protected void editarLinkButton_Click(object sender, EventArgs e)
+        {
+
+            EnableForm(true);
             if (IsEntitySelected)
             {
-                formActionsPanel.Visible = true;
                 formPanel.Visible = true;
-                FormMode = FormModes.Baja;
-                EnableForm(false);
+                FormMode = FormModes.Modificacion;
                 LoadForm(SelectedID);
-                this.ShowButtons(false);
             }
         }
 
-        protected void nuevoLinkButton_Click(object sender, EventArgs e)
+        private void SaveEntity(Persona per)
         {
-            formActionsPanel.Visible = true;
-            formPanel.Visible = true;
-            
-            FormMode = FormModes.Alta;
-            ClearForm();
-            EnableForm(true);
-
+            Logic.Save(per);
         }
-
-        private void ClearForm()
-
-        {
-            txtApellido.Text = string.Empty;
-            txtNombre.Text = string.Empty;
-            txtLegajo.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtDia.Text = string.Empty;
-            txtMes.Text = string.Empty;
-            txtAnio.Text = string.Empty;
-            ddlTipoPersona.SelectedValue = null;
-            ddlIDPlan.SelectedValue = null;
-            //ddlEspecialidades.SelectedValue = string.Empty;
-        }
-
-   
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            switch (this.FormMode)
-            {
 
+            switch (FormMode)
+            {
+                case FormModes.Baja:
+                    DeleteEntity(SelectedID);
+                    LoadGrid();
+                    formPanel.Visible = false;
+                    break;
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {
@@ -203,72 +170,80 @@ namespace UI.Web
                     }
                     break;
                 case FormModes.Alta:
-                    this.Entity = new Business.Entities.Persona();
-                    this.LoadEntity(this.Entity);
-                    if (!Logic.Existe(Entity.Legajo))
+                    if (Page.IsValid)
                     {
-                        this.SaveEntity(Entity);
+                        this.Entity = new Persona();
+                        this.LoadEntity(this.Entity);
+                        this.SaveEntity(this.Entity);
+                        this.LoadGrid();
+                        formPanel.Visible = false;
                     }
-                    else
-                        Response.Write("<script>window.alert('El Legajo ingresado pertenece a una persona ya existente.');</script>");
-                    this.LoadGrid();
-                    this.ClearSession();
+                    break;
+                default:
                     break;
             }
-            this.ClearForm();
-            this.formPanel.Visible = false;
-            this.gridActionsPanel.Visible = true;
-            this.ShowButtons(false);
+
+
+
         }
 
-        private void LoadEntity(Business.Entities.Persona pers)
+        private void EnableForm(bool condicion)
+
         {
-            pers.Apellido = this.txtApellido.Text;
-            pers.Nombre = this.txtNombre.Text;
-            pers.Legajo = Convert.ToInt32(this.txtLegajo.Text);
-            pers.Direccion = this.txtDireccion.Text;
-            pers.Telefono = this.txtTelefono.Text;
-            pers.Email = this.txtEmail.Text;
-            pers.FechaNacimiento = new DateTime(Convert.ToInt32(txtAnio.Text), Convert.ToInt32(txtMes.Text), Convert.ToInt32(txtDia.Text));
-            pers.TipoPersona = this.ddlTipoPersona.SelectedItem.Text;
-            pers.IDPlan = int.Parse(this.ddlIDPlan.SelectedItem.Text);
-            //pers.Plan.Especialidad.ID = Convert.ToInt32(this.ddlEspecialidades.SelectedValue); // se va?
-            //pers.Plan.ID = Convert.ToInt32(this.ddlPlanes.SelectedValue);
+            txtApellido.Enabled = condicion;
+            txtDireccion.Enabled = condicion;
+            txtEmail.Enabled = condicion;
+            calFechaNac.Enabled = condicion;
+            ddlTipoPersona.Enabled = condicion;
+            ddlIDPlan.Enabled = condicion;
+            txtLegajo.Enabled = condicion;
+            txtNombre.Enabled = condicion;
+            txtTelefono.Enabled = condicion;
         }
 
-        private void SaveEntity(Business.Entities.Persona pers)
+        protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            try
+            if (IsEntitySelected)
             {
-                this.Logic.Save(pers);
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + ex.Message + "');</script>");
+                formPanel.Visible = true;
+                FormMode = FormModes.Baja;
+                EnableForm(false);
+                LoadForm(SelectedID);
             }
         }
 
-        private void ClearSession()
+        private void DeleteEntity(int id)
         {
-            Session["SelectedID"] = null;
+            Logic.Delete(id);
         }
 
-        private void ShowButtons(bool condicion)
+        protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
-            this.eliminarLinkButton.Visible = condicion;
-            this.editarLinkButton.Visible = condicion;
+            formPanel.Visible = true;
+            FormMode = FormModes.Alta;
+            ClearForm();
+            EnableForm(true);
+
         }
 
+        private void ClearForm()
+
+        {
+            txtApellido.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            calFechaNac.SelectedDate = DateTime.Today;
+            ddlTipoPersona.SelectedItem.Text = null;
+            ddlIDPlan.SelectedItem.Text = null;
+            txtLegajo.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+        }
+        //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
-            this.ClearForm();
-            this.formPanel.Visible = false;
-            this.gridActionsPanel.Visible = true;
-            this.ShowButtons(false);
+            ClearForm();
+            formPanel.Visible = false;
         }
-
-
-        //PLANES Y ESPECIALIDADES
-       
     }
 }

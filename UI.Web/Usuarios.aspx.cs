@@ -196,10 +196,10 @@ namespace UI.Web
         {
             this.idPersonaTextBox.Enabled = condicion;
             this.nombreUsuarioTextBox.Enabled = condicion;
-            this.claveTextBox.Visible = condicion;
-            this.claveLabel.Visible = condicion;
-            this.repetirClaveTextBox.Visible = condicion;
-            this.repetirClaveLabel.Visible = condicion;
+            this.claveTextBox.Enabled = condicion;
+            this.claveLabel.Enabled = condicion;
+            this.repetirClaveTextBox.Enabled = condicion;
+            this.repetirClaveLabel.Enabled = condicion;
 
         }
 
