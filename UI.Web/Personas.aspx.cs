@@ -16,7 +16,8 @@ namespace UI.Web
             if (!IsPostBack)
             {
                 LoadGrid();
-
+                formPanel.Visible = false;
+                formActionsPanel.Visible = false;
                 //ShowButtons(false);
                 //gridActionsPanel.Visible = true;
                 
@@ -39,7 +40,7 @@ namespace UI.Web
 
         private void LoadGrid()
         { 
-            gridPersonas.DataSource = Logic.GetAll();
+            gridPersonas.DataSource = Logic.GetAll(0);
             gridPersonas.DataBind();
         }
         
@@ -101,6 +102,7 @@ namespace UI.Web
             EnableForm(true);
             if (IsEntitySelected)
             {
+                formActionsPanel.Visible = true;
                 formPanel.Visible = true; //panel del form donde edito todo
                 FormMode = FormModes.Modificacion;
                 LoadForm(SelectedID);
@@ -120,39 +122,30 @@ namespace UI.Web
             txtMes.Text = this.Entity.FechaNacimiento.Month.ToString();
             txtAnio.Text = this.Entity.FechaNacimiento.Year.ToString();
             ddlTipoPersona.SelectedValue = this.Entity.TipoPersona;
-            //ddlEspecialidades.SelectedValue = this.Entity.Plan.Especialidad.ID.ToString();
-            // No ponemos el Plan ver si lo ponemos
+            ddlIDPlan.SelectedValue = this.Entity.IDPlan.ToString();
+    
         }
         private void EnableForm(bool condicion)
         { //cambiar text box
-            this.lblApellido.Visible = condicion;
-            this.txtApellido.Visible = condicion;
-            this.lblNombre.Visible = condicion;
-            this.txtNombre.Visible = condicion;
-            this.lblLegajo.Visible = condicion;
-            this.txtLegajo.Visible = condicion;
-            this.lblDireccion.Visible = condicion;
+            
+            this.txtApellido.Visible = condicion;    
+            this.txtNombre.Visible = condicion;    
+            this.txtLegajo.Visible = condicion; 
             this.txtDireccion.Visible = condicion;
-            this.lblTelefono.Visible = condicion;
             this.txtTelefono.Visible = condicion;
-            this.lblEmail.Visible = condicion;
             this.txtEmail.Visible = condicion;
-            this.lblFechaNacimiento.Visible = condicion;
             this.txtDia.Visible = condicion;
             this.txtMes.Visible = condicion;
             this.txtAnio.Visible = condicion;
-            this.lblTipoPersona.Visible = condicion;
             this.ddlTipoPersona.Visible = condicion;
-            //this.lblEspecialidad.Visible = condicion;
-            //this.ddlEspecialidades.Visible = condicion;
-            //this.lblPlan.Visible = condicion; // se va?
-            //this.ddlPlanes.Visible = condicion;
+            this.ddlIDPlan.Visible = condicion;
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
             if (IsEntitySelected)
             {
+                formActionsPanel.Visible = true;
                 formPanel.Visible = true;
                 FormMode = FormModes.Baja;
                 EnableForm(false);
@@ -163,7 +156,9 @@ namespace UI.Web
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
+            formActionsPanel.Visible = true;
             formPanel.Visible = true;
+            
             FormMode = FormModes.Alta;
             ClearForm();
             EnableForm(true);
@@ -182,7 +177,8 @@ namespace UI.Web
             txtDia.Text = string.Empty;
             txtMes.Text = string.Empty;
             txtAnio.Text = string.Empty;
-            ddlTipoPersona.SelectedValue = string.Empty;
+            ddlTipoPersona.SelectedValue = null;
+            ddlIDPlan.SelectedValue = null;
             //ddlEspecialidades.SelectedValue = string.Empty;
         }
 
@@ -192,6 +188,7 @@ namespace UI.Web
         {
             switch (this.FormMode)
             {
+
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {

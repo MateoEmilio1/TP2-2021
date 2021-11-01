@@ -98,10 +98,14 @@
                     <tr>
                         <td style="width: 347px">&nbsp;</td>
                         <td style="width: 103px">
-                            &nbsp;</td>
+                            <asp:Label ID="lblIDPlan" runat="server" Text="ID Plan:"></asp:Label>
+                        </td>
                         <td style="width: 216px">
                             
-                            &nbsp;</td>
+                            <asp:DropDownList ID="ddlIDPlan" runat="server" DataSourceID="SqlDataSource1" DataTextField="id_plan" DataValueField="id_plan">
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_plan] FROM [planes]"></asp:SqlDataSource>
+                        </td>
                         <td>
                             &nbsp;</td>
                         <td>&nbsp;</td>

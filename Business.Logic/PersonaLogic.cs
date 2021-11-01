@@ -43,9 +43,9 @@ namespace Business.Logic
             return _persona.ExistePersona(leg);
         }
 
-        public List<Persona> GetAll()
+        public List<Persona> GetAll(int id)
         {
-            return PersonaData.GetAll(0);
+            return PersonaData.GetAll(id);
         }
 
         public List<Persona> GetAlumnos()
