@@ -21,12 +21,12 @@ namespace Data.Database
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
                 while (drCursos.Read())
                 {
-                    Comision cur = new Comision();
-                    cur.ID = (int)drCursos["id_curso"];
-                    cur.AnioEspecialidad = (int)drCursos["anio_especialidad"];
-                    cur.Descripcion = (string)drCursos["id_comision"];
-                    cur.IDPlan = (int)drCursos["id_plan"];
-                    comisiones.Add(cur);
+                    Comision com = new Comision();
+                    com.ID = (int)drCursos["id_comision"];
+                    com.AnioEspecialidad = (int)drCursos["anio_especialidad"];
+                    com.Descripcion = (string)drCursos["id_comision"];
+                    com.IDPlan = (int)drCursos["id_plan"];
+                    comisiones.Add(com);
                 }
                 drCursos.Close();
             }
@@ -46,19 +46,19 @@ namespace Data.Database
 
         public Comision GetOne(int ID)
         {
-            Comision cur = new Comision();
+            Comision com = new Comision();
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdCurso = new SqlCommand("select * from comisiones where id_curso=@id", sqlConn);
+                SqlCommand cmdCurso = new SqlCommand("select * from comisiones where id_comision=@id", sqlConn);
                 cmdCurso.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drCursos = cmdCurso.ExecuteReader();
                 if (drCursos.Read())
                 {
-                    cur.ID = (int)drCursos["id_curso"];
-                    cur.AnioEspecialidad = (int)drCursos["anio_especialidad"];
-                    cur.Descripcion = (string)drCursos["id_comision"];                    
-                    cur.IDPlan = (int)drCursos["id_plan"];
+                    com.ID = (int)drCursos["id_comision"];
+                    com.AnioEspecialidad = (int)drCursos["anio_especialidad"];
+                    com.Descripcion = (string)drCursos["id_comision"];                    
+                    com.IDPlan = (int)drCursos["id_plan"];
                 }
                 drCursos.Close();
             }
@@ -72,7 +72,7 @@ namespace Data.Database
             {
                 this.CloseConnection();
             }
-            return cur;
+            return com;
         }
 
         public void Delete(int ID)
@@ -80,7 +80,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("delete comisiones where id_curso=@id", sqlConn);
+                SqlCommand cmdDelete = new SqlCommand("delete comisiones where id_comision=@id", sqlConn);
                 cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }
@@ -101,7 +101,7 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdUpdate = new SqlCommand("UPDATE comisiones SET id_comision=@Descripcion, anio_especialidad=@AnioEspecialidad, id_plan=@id_plan "
-                    + "WHERE id_curso=@id", sqlConn);
+                    + "WHERE id_comision=@id", sqlConn);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = comision.ID;
                 cmdUpdate.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = comision.Descripcion;
                 cmdUpdate.Parameters.Add("@AnioEspecialidad", SqlDbType.Int).Value = comision.AnioEspecialidad;
