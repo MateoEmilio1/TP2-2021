@@ -67,7 +67,7 @@ namespace Data.Database
             catch (Exception Ex)
             {
                 Exception ExcepcionManejada =
-                    new Exception("Error al recuperar datos del aluinsso", Ex);
+                    new Exception("Error al recuperar datos del aluins", Ex);
                 throw ExcepcionManejada;
             }
             finally
@@ -97,18 +97,18 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
-        public void Update(AlumnoInscripcion aluinsso)
+        public void Update(AlumnoInscripcion aluins)
         {
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUpdate = new SqlCommand("UPDATE alumnos_inscripciones SET id_comision=@IDCurso, id_materia=@IDAlumno, condicion=@condicion, nota=@nota "
+                SqlCommand cmdUpdate = new SqlCommand("UPDATE alumnos_inscripciones SET id_inscripcion=@id, id_alumno=@IDAlumno,id_curso = @IDCurso condicion=@condicion, nota=@nota "
                     + "WHERE id_inscripcion=@id", sqlConn);
-                cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = aluinsso.ID;
-                cmdUpdate.Parameters.Add("@IDCurso", SqlDbType.Int).Value = aluinsso.IDCurso;
-                cmdUpdate.Parameters.Add("@IDAlumno", SqlDbType.Int).Value = aluinsso.IDAlumno;
-                cmdUpdate.Parameters.Add("@condicion", SqlDbType.VarChar).Value = aluinsso.Condicion;
-                cmdUpdate.Parameters.Add("@nota", SqlDbType.Int).Value = aluinsso.Nota;
+                cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = aluins.ID;
+                cmdUpdate.Parameters.Add("@IDCurso", SqlDbType.Int).Value = aluins.IDCurso;
+                cmdUpdate.Parameters.Add("@IDAlumno", SqlDbType.Int).Value = aluins.IDAlumno;
+                cmdUpdate.Parameters.Add("@condicion", SqlDbType.VarChar).Value = aluins.Condicion;
+                cmdUpdate.Parameters.Add("@nota", SqlDbType.Int).Value = aluins.Nota;
                 cmdUpdate.ExecuteNonQuery();
             }
             catch (Exception Ex)
@@ -123,18 +123,18 @@ namespace Data.Database
             }
         }
 
-        public void Insert(AlumnoInscripcion aluinsso)
+        public void Insert(AlumnoInscripcion aluins)
         {
             try
             {
                 this.OpenConnection();
                 SqlCommand cmdInsert = new SqlCommand(
-                "insert into alumnos_inscripciones(id_materia,id_comision,condicion,nota) " +
+                "insert into alumnos_inscripciones(id_inscripcion,id_alumno,id_curso,nota) " +
                 "values(@IDAlumno,@IDCurso,@condicion,@nota) ", sqlConn);
-                cmdInsert.Parameters.Add("@IDAlumno", SqlDbType.Int).Value = aluinsso.IDAlumno;
-                cmdInsert.Parameters.Add("@IDCurso", SqlDbType.Int).Value = aluinsso.IDCurso;
-                cmdInsert.Parameters.Add("@condicion", SqlDbType.VarChar).Value = aluinsso.Condicion;
-                cmdInsert.Parameters.Add("@nota", SqlDbType.Int).Value = aluinsso.Nota;
+                cmdInsert.Parameters.Add("@IDAlumno", SqlDbType.Int).Value = aluins.IDAlumno;
+                cmdInsert.Parameters.Add("@IDCurso", SqlDbType.Int).Value = aluins.IDCurso;
+                cmdInsert.Parameters.Add("@condicion", SqlDbType.VarChar).Value = aluins.Condicion;
+                cmdInsert.Parameters.Add("@nota", SqlDbType.Int).Value = aluins.Nota;
                 cmdInsert.ExecuteNonQuery();
             }
             catch (Exception Ex)
@@ -151,21 +151,21 @@ namespace Data.Database
         }
 
 
-        public void Save(AlumnoInscripcion aluinsso)
+        public void Save(AlumnoInscripcion aluins)
         {
-            if (aluinsso.State == BusinessEntity.States.Deleted)
+            if (aluins.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(aluinsso.ID);
+                this.Delete(aluins.ID);
             }
-            else if (aluinsso.State == BusinessEntity.States.New)
+            else if (aluins.State == BusinessEntity.States.New)
             {
-                this.Insert(aluinsso);
+                this.Insert(aluins);
             }
-            else if (aluinsso.State == BusinessEntity.States.Modified)
+            else if (aluins.State == BusinessEntity.States.Modified)
             {
-                this.Update(aluinsso);
+                this.Update(aluins);
             }
-            aluinsso.State = BusinessEntity.States.Unmodified;
+            aluins.State = BusinessEntity.States.Unmodified;
         }
 
     }

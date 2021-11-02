@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="AlumnoInscripcionLogic.cs" />
+    <Compile Include="MateriaLogic.cs" />
+    <Compile Include="ComisionLogic.cs" />
     <Compile Include="CursoLogic.cs" />
     <Compile Include="PersonaLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
