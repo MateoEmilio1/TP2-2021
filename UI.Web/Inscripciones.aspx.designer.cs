@@ -11,7 +11,7 @@ namespace UI.Web
 {
 
 
-    public partial class Personas
+    public partial class Inscripciones
     {
 
         /// <summary>

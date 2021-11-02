@@ -12,6 +12,7 @@
                 <asp:BoundField HeaderText="ID Persona" DataField="IDPersona" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
+            <SelectedRowStyle BackColor="#000099" ForeColor="White" />
             </asp:GridView>
             <br />
             <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click" CausesValidation="False">Editar</asp:LinkButton>

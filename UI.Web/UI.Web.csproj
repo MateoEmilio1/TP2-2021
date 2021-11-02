@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Cursos.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Inscripciones.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inscripciones.aspx.cs">
+      <DependentUpon>Inscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inscripciones.aspx.designer.cs">
+      <DependentUpon>Inscripciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

@@ -14,6 +14,7 @@
                 <asp:BoundField HeaderText="Cupo" DataField="Cupo" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
+            <SelectedRowStyle BackColor="#000099" ForeColor="White" />
         </asp:GridView>
         <br />
         <br />
