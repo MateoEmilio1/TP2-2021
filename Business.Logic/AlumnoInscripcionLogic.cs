@@ -19,9 +19,9 @@ namespace Business.Logic
 
         public AlumnoInscripcion GetOne(int ID)
         {
-
-
             return (AluInsData.GetOne(ID));
+
+            
         }
 
         public List<AlumnoInscripcion> GetAll()

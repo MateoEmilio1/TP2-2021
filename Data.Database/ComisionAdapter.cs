@@ -24,7 +24,7 @@ namespace Data.Database
                     Comision com = new Comision();
                     com.ID = (int)drCursos["id_comision"];
                     com.AnioEspecialidad = (int)drCursos["anio_especialidad"];
-                    com.Descripcion = (string)drCursos["id_comision"];
+                    com.Descripcion = (string)drCursos["desc_comision"];
                     com.IDPlan = (int)drCursos["id_plan"];
                     comisiones.Add(com);
                 }
@@ -57,7 +57,7 @@ namespace Data.Database
                 {
                     com.ID = (int)drCursos["id_comision"];
                     com.AnioEspecialidad = (int)drCursos["anio_especialidad"];
-                    com.Descripcion = (string)drCursos["id_comision"];                    
+                    com.Descripcion = (string)drCursos["desc_comision"];                    
                     com.IDPlan = (int)drCursos["id_plan"];
                 }
                 drCursos.Close();
@@ -100,7 +100,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUpdate = new SqlCommand("UPDATE comisiones SET id_comision=@Descripcion, anio_especialidad=@AnioEspecialidad, id_plan=@id_plan "
+                SqlCommand cmdUpdate = new SqlCommand("UPDATE comisiones SET desc_comision=@Descripcion, anio_especialidad=@AnioEspecialidad, id_plan=@id_plan "
                     + "WHERE id_comision=@id", sqlConn);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = comision.ID;
                 cmdUpdate.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = comision.Descripcion;

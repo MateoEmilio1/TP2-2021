@@ -153,10 +153,10 @@ namespace Data.Database
                     pers.IDPlan = (int)drPersonas["id_plan"];
                     switch ((int)drPersonas["tipo_persona"])
                     {
-                        case 1:
+                        case 0:
                             pers.TipoPersona = "Alumno";
                             break;
-                        case 2:
+                        case 1:
                             pers.TipoPersona = "Docente";
                             break;
                     }

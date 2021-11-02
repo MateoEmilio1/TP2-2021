@@ -19,14 +19,18 @@ namespace Data.Database
                 OpenConnection();
                 SqlCommand cmdAlumnosInscripciones = new SqlCommand("select * from alumnos_inscripciones ", sqlConn);
                 SqlDataReader drAlumnosInscripciones = cmdAlumnosInscripciones.ExecuteReader();
+                PersonaAdapter PersonaAdapter = new PersonaAdapter();
+                CursoAdapter CursoAdapter = new CursoAdapter();
                 while (drAlumnosInscripciones.Read())
                 {
                     AlumnoInscripcion aluins = new AlumnoInscripcion();
                     aluins.ID = (int)drAlumnosInscripciones["id_inscripcion"];
-                    aluins.IDAlumno = (int)drAlumnosInscripciones["id_materia"];
-                    aluins.IDCurso = (int)drAlumnosInscripciones["id_comision"];
+                    aluins.IDAlumno = (int)drAlumnosInscripciones["id_alumno"];
+                    aluins.IDCurso = (int)drAlumnosInscripciones["id_curso"];
                     aluins.Condicion = (String)drAlumnosInscripciones["condicion"];
-                    aluins.Nota = (int)drAlumnosInscripciones["nota"];
+                    aluins.Nota = (int)drAlumnosInscripciones["nota"]; 
+                    aluins.Persona = PersonaAdapter.GetOne((int)drAlumnosInscripciones["id_alumno"]);
+                    aluins.Curso = CursoAdapter.GetOne((int)drAlumnosInscripciones["id_curso"]);
                     alumnos_inscripciones.Add(aluins);
                 }
                 drAlumnosInscripciones.Close();
@@ -54,15 +58,22 @@ namespace Data.Database
                 SqlCommand cmdAlumnoInscripcion = new SqlCommand("select * from alumnos_inscripciones where id_inscripcion=@id", sqlConn);
                 cmdAlumnoInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drAlumnosInscripciones = cmdAlumnoInscripcion.ExecuteReader();
+                PersonaAdapter PersonaAdapter = new PersonaAdapter();
+                CursoAdapter CursoAdapter= new CursoAdapter();
                 if (drAlumnosInscripciones.Read())
                 {
                     aluins.ID = (int)drAlumnosInscripciones["id_inscripcion"];
-                    aluins.IDAlumno = (int)drAlumnosInscripciones["id_materia"];
-                    aluins.IDCurso = (int)drAlumnosInscripciones["id_comision"];                    
+                    aluins.IDAlumno = (int)drAlumnosInscripciones["id_alumno"];
+                    aluins.IDCurso = (int)drAlumnosInscripciones["id_curso"];                    
                     aluins.Condicion = (String)drAlumnosInscripciones["condicion"];
                     aluins.Nota = (int)drAlumnosInscripciones["nota"];
+                    aluins.Persona = PersonaAdapter.GetOne((int)drAlumnosInscripciones["id_alumno"]);
+                    aluins.Curso = CursoAdapter.GetOne((int)drAlumnosInscripciones["id_curso"]);
                 }
                 drAlumnosInscripciones.Close();
+                
+                
+
             }
             catch (Exception Ex)
             {

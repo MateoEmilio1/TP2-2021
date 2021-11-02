@@ -24,14 +24,14 @@ namespace UI.Web
 
         }
 
-        PersonaLogic _logic;
-        private PersonaLogic Logic
+        AlumnoInscripcionLogic _logic;
+        private AlumnoInscripcionLogic Logic
         {
             get
             {
                 if (_logic == null)
                 {
-                    _logic = new PersonaLogic();
+                    _logic = new AlumnoInscripcionLogic();
                 }
                 return _logic;
             }
@@ -39,8 +39,8 @@ namespace UI.Web
 
         private void LoadGrid()
         {
-            gridPersonas.DataSource = Logic.GetAll();
-            gridPersonas.DataBind();
+            gridInscripciones.DataSource = Logic.GetAll();
+            gridInscripciones.DataBind();
             ddlTipoPersona.DataBind();
             ddlIDPlan.DataBind();
 
@@ -62,7 +62,7 @@ namespace UI.Web
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-        private Persona Entity
+        private AlumnoInscripcion Entity
         {
             get;
             set;
@@ -101,34 +101,34 @@ namespace UI.Web
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedID = (int)gridPersonas.SelectedValue;
+            SelectedID = (int)gridInscripciones.SelectedValue;
         }
 
         private void LoadForm(int id)
         {
-            Entity = Logic.GetOne(id);
-            txtApellido.Text = Entity.Apellido;
-            txtDireccion.Text = Entity.Direccion;
-            txtEmail.Text = Entity.Email;
-            calFechaNac.SelectedDate = Entity.FechaNacimiento;
-            ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
-            ddlIDPlan.SelectedItem.Text = Convert.ToString(Entity.IDPlan);
-            txtLegajo.Text = Convert.ToString(Entity.Legajo);
-            txtNombre.Text = Convert.ToString(Entity.Nombre);
-            txtTelefono.Text = Convert.ToString(Entity.Telefono);
+            //Entity = Logic.GetOne(id);
+            //txtApellido.Text = Entity.Apellido;
+            //txtDireccion.Text = Entity.Direccion;
+            //txtEmail.Text = Entity.Email;
+            //calFechaNac.SelectedDate = Entity.FechaNacimiento;
+            //ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
+            //ddlIDPlan.SelectedItem.Text = Convert.ToString(Entity.IDPlan);
+            //txtLegajo.Text = Convert.ToString(Entity.Legajo);
+            //txtNombre.Text = Convert.ToString(Entity.Nombre);
+            //txtTelefono.Text = Convert.ToString(Entity.Telefono);
         }
 
-        private void LoadEntity(Persona per)
+        private void LoadEntity(AlumnoInscripcion per)
         {
-            per.Apellido = txtApellido.Text;
-            per.Direccion = txtDireccion.Text;
-            per.Email = txtEmail.Text;
-            per.FechaNacimiento = calFechaNac.SelectedDate;
-            per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Text);
-            per.Legajo = int.Parse(txtLegajo.Text);
-            per.Nombre = txtNombre.Text;
-            per.Telefono= txtTelefono.Text;
-            per.TipoPersona = ddlTipoPersona.Text;
+            //per.Apellido = txtApellido.Text;
+            //per.Direccion = txtDireccion.Text;
+            //per.Email = txtEmail.Text;
+            //per.FechaNacimiento = calFechaNac.SelectedDate;
+            //per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Text);
+            //per.Legajo = int.Parse(txtLegajo.Text);
+            //per.Nombre = txtNombre.Text;
+            //per.Telefono= txtTelefono.Text;
+            //per.TipoPersona = ddlTipoPersona.Text;
         }
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
@@ -142,7 +142,7 @@ namespace UI.Web
             }
         }
 
-        private void SaveEntity(Persona per)
+        private void SaveEntity(AlumnoInscripcion per)
         {
             Logic.Save(per);
         }
@@ -160,7 +160,7 @@ namespace UI.Web
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {
-                        this.Entity = new Persona();
+                        this.Entity = new AlumnoInscripcion();
                         this.Entity.ID = this.SelectedID;
                         this.Entity.State = BusinessEntity.States.Modified;
                         this.LoadEntity(this.Entity);
@@ -172,7 +172,7 @@ namespace UI.Web
                 case FormModes.Alta:
                     if (Page.IsValid)
                     {
-                        this.Entity = new Persona();
+                        this.Entity = new AlumnoInscripcion();
                         this.LoadEntity(this.Entity);
                         this.SaveEntity(this.Entity);
                         this.LoadGrid();

@@ -5,18 +5,18 @@
     <br />
     <br />
     <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
-        <asp:GridView ID="gridPersonas" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridView_SelectedIndexChanged" >
+        <asp:GridView ID="gridInscripciones" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridView_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" />
-                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
-                <asp:BoundField HeaderText="E-Mail" DataField="Email" />
-                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                <asp:BoundField HeaderText="Fecha de Nacimiento" DataField="FechaNacimiento" />
-                <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-                <asp:BoundField HeaderText="Tipo" DataField="TipoPersona" />
-                <asp:BoundField HeaderText="IDPlan" DataField="IDPlan" />
+                <asp:BoundField HeaderText="IDAlumno" DataField="IDAlumno" />
+                <asp:BoundField HeaderText="IDAlumno" DataField="IDAlumno" />
+                <asp:BoundField HeaderText="IDCurso" DataField="IDCurso" />
+                <asp:BoundField HeaderText="Nota" DataField="Nota" />
+                <asp:BoundField HeaderText="Persona.ID" DataField="Persona.ID" />
+                <asp:BoundField HeaderText="Persona.Apellido" DataField="Persona.Apellido" />
+                <asp:BoundField HeaderText="Persona.Legajo" DataField="Persona.Legajo" />
+                <asp:BoundField HeaderText="Persona.TipoPersona" DataField="Persona.TipoPersona" />
+                <asp:BoundField HeaderText="Curso.ID" DataField="Curso.ID" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
         </asp:GridView>
