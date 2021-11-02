@@ -66,11 +66,9 @@ namespace Business.Entities
 
         }
 
+        public Persona Persona { get; set; }
 
-
-
-
-
+        public Curso Curso { get; set; }
 
 
 
