@@ -38,6 +38,11 @@ namespace Business.Logic
             MateriaData.Delete(ID);
         }
 
+        public void Update(Business.Entities.Materia materia)
+        {
+            MateriaData.Update(materia);
+        }
+
 
     }
 }

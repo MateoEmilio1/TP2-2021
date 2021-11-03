@@ -63,5 +63,12 @@ namespace UI.Desktop
         {
             this.Close();
         }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            MateriaDesktop formMateria = new MateriaDesktop(ApplicationForm.ModoForm.Alta);
+            formMateria.ShowDialog();
+            this.Listar();
+        }
     }
 }
