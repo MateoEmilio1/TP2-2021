@@ -55,7 +55,7 @@ namespace Business.Entities
         }
 
 
-
+        public Persona Persona { get; set; }
 
         public int IDPersona
         {

@@ -18,8 +18,7 @@ public class MateriaAdapter : Adapter
             OpenConnection();
             SqlCommand cmdMaterias = new SqlCommand("select * from materias ", sqlConn);
             SqlDataReader drMaterias = cmdMaterias.ExecuteReader();
-            PersonaAdapter PersonaAdapter = new PersonaAdapter();
-            CursoAdapter CursoAdapter = new CursoAdapter();
+
             while (drMaterias.Read())
             {
                 Materia mat = new Materia();
@@ -28,8 +27,7 @@ public class MateriaAdapter : Adapter
                 mat.HSSemanales = (int)drMaterias["hs_semanales"];
                 mat.HSTotales = (int)drMaterias["hs_totales"];
                 mat.IDPlan = (int)drMaterias["id_plan"];
-                mat.Persona = PersonaAdapter.GetOne((int)drMaterias["id_alumno"]);
-                mat.Curso = CursoAdapter.GetOne((int)drMaterias["id_curso"]);
+
                 materias.Add(mat);
             }
             drMaterias.Close();

@@ -24,7 +24,8 @@ namespace Data.Database
                 OpenConnection();
                 SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios", sqlConn);
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-
+                PersonaAdapter PersonaAdapter = new PersonaAdapter();
+               
                 while (drUsuarios.Read())
                 {
                     Usuario usr = new Usuario();
@@ -34,7 +35,8 @@ namespace Data.Database
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
                     usr.IDPersona = (int)drUsuarios["id_persona"];
-
+                    usr.Persona = PersonaAdapter.GetOne((int)drUsuarios["id_alumno"]);
+                    
                     usuarios.Add(usr);
                 }
 

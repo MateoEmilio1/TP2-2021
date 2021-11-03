@@ -20,5 +20,14 @@ namespace UI.Desktop
         }
 
         public Usuario user { get; set; }
+
+        private void btnMaterias_Click(object sender, EventArgs e)
+        {
+            //Application.Run(new Materias());
+            //this.Hide();
+            Materias mat = new Materias();
+            mat.ShowDialog();
+
+        }
     }
 }
