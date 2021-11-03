@@ -9,12 +9,12 @@
         <asp:GridView ID="gridCursos" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridView_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField HeaderText="Año" DataField="AnioCalendario" />
-                <asp:BoundField HeaderText="ID Comisión" DataField="IDComision" />
-                <asp:BoundField HeaderText="ID Materia" DataField="IDMateria" />
+                <asp:BoundField HeaderText="Comision" DataField="Comision.Descripcion" />
+                <asp:BoundField HeaderText="Materia" DataField="Materia.Descripcion" />
                 <asp:BoundField HeaderText="Cupo" DataField="Cupo" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
-            <SelectedRowStyle BackColor="#000099" ForeColor="White" />
+            <SelectedRowStyle BackColor="#336699" />
         </asp:GridView>
         <br />
         <br />
@@ -34,24 +34,24 @@
                 <tr>
                     <td style="width: 468px">&nbsp;</td>
                     <td style="width: 103px">
-                        <asp:Label ID="IDComisionLabel" runat="server" Text="IDComision"></asp:Label>
+                        <asp:Label ID="IDComisionLabel" runat="server" Text="Comision"></asp:Label>
                     </td>
                     <td dir="ltr" style="width: 249px">
-                        <asp:DropDownList ID="IDComisionDDL" runat="server" DataSourceID="DSIDComision" DataTextField="id_comision" DataValueField="id_comision">
+                        <asp:DropDownList ID="IDComisionDDL" runat="server" DataSourceID="DSIDComision" DataTextField="desc_comision" DataValueField="id_comision">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="DSIDComision" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_comision] FROM [comisiones]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="DSIDComision" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_comision], [desc_comision] FROM [comisiones]"></asp:SqlDataSource>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 468px">&nbsp;</td>
                     <td style="width: 103px">
-                        <asp:Label ID="IDMateriaLabel" runat="server" Text="IDMateria: "></asp:Label>
+                        <asp:Label ID="IDMateriaLabel" runat="server" Text="Materia: "></asp:Label>
                     </td>
                     <td dir="ltr" style="width: 249px">
-                        <asp:DropDownList ID="IDMateriaDDL" runat="server" DataSourceID="DSIDMateria" DataTextField="id_materia" DataValueField="id_materia">
+                        <asp:DropDownList ID="IDMateriaDDL" runat="server" DataSourceID="DSIDMateria" DataTextField="desc_materia" DataValueField="id_materia">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="DSIDMateria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_materia] FROM [materias]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="DSIDMateria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_materia], [desc_materia] FROM [materias]"></asp:SqlDataSource>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>

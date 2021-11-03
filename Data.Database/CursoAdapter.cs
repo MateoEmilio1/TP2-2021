@@ -19,14 +19,16 @@ namespace Data.Database
                 OpenConnection();
                 SqlCommand cmdCursos = new SqlCommand("select * from cursos ", sqlConn);
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
+                ComisionAdapter ComisionAdapter = new ComisionAdapter();
+                MateriaAdapter MateriaAdapter = new MateriaAdapter();
                 while (drCursos.Read())
                 {
                     Curso cur = new Curso();
                     cur.ID = (int)drCursos["id_curso"];
-                    cur.IDMateria = (int)drCursos["id_materia"];
-                    cur.IDComision = (int)drCursos["id_comision"];
                     cur.AnioCalendario = (int)drCursos["anio_calendario"];
                     cur.Cupo = (int)drCursos["cupo"];
+                    cur.Materia = MateriaAdapter.GetOne((int)drCursos["id_materia"]);
+                    cur.Comision = ComisionAdapter.GetOne((int)drCursos["id_comision"]);
                     cursos.Add(cur);
                 }
                 drCursos.Close();
@@ -45,6 +47,43 @@ namespace Data.Database
             return cursos;
         }
 
+        public List<Curso> GetCursosDocente(int ID)
+        {
+            List<Curso> cursos = new List<Curso>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdCurso = new SqlCommand("select * from cursos "+
+                "inner join docentes_cursos on cursos.id_curso = docentes_cursos.id_curso " +
+                "where docentes_cursos.id_docente=@id", sqlConn);
+                cmdCurso.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drCursos = cmdCurso.ExecuteReader();
+                ComisionAdapter ComisionAdapter = new ComisionAdapter();
+                MateriaAdapter MateriaAdapter = new MateriaAdapter();
+                if (drCursos.Read())
+                {
+                    Curso cur = new Curso();
+                    cur.ID = (int)drCursos["id_curso"];
+                    cur.AnioCalendario = (int)drCursos["anio_calendario"];
+                    cur.Cupo = (int)drCursos["cupo"];
+                    cur.Materia = MateriaAdapter.GetOne((int)drCursos["id_materia"]);
+                    cur.Comision = ComisionAdapter.GetOne((int)drCursos["id_comision"]);
+                    cursos.Add(cur);
+                }
+                drCursos.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                    new Exception("Error al recuperar datos del curso", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return cursos;
+        }
         public Curso GetOne(int ID)
         {
             Curso cur = new Curso();
@@ -54,13 +93,16 @@ namespace Data.Database
                 SqlCommand cmdCurso = new SqlCommand("select * from cursos where id_curso=@id", sqlConn);
                 cmdCurso.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drCursos = cmdCurso.ExecuteReader();
+                ComisionAdapter ComisionAdapter = new ComisionAdapter();
+                MateriaAdapter MateriaAdapter = new MateriaAdapter();
                 if (drCursos.Read())
                 {
                     cur.ID = (int)drCursos["id_curso"];
-                    cur.IDMateria = (int)drCursos["id_materia"];
-                    cur.IDComision = (int)drCursos["id_comision"];                    
                     cur.AnioCalendario = (int)drCursos["anio_calendario"];
                     cur.Cupo = (int)drCursos["cupo"];
+                    cur.Materia = MateriaAdapter.GetOne((int)drCursos["id_materia"]);
+                    cur.Comision = ComisionAdapter.GetOne((int)drCursos["id_comision"]);
+
                 }
                 drCursos.Close();
             }
@@ -76,7 +118,6 @@ namespace Data.Database
             }
             return cur;
         }
-
         public void Delete(int ID)
         {
             try
@@ -105,8 +146,8 @@ namespace Data.Database
                 SqlCommand cmdUpdate = new SqlCommand("UPDATE cursos SET id_comision=@IDComision, id_materia=@IDMateria, anio_calendario=@anio, cupo=@cupo "
                     + "WHERE id_curso=@id", sqlConn);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = curso.ID;
-                cmdUpdate.Parameters.Add("@IDComision", SqlDbType.Int).Value = curso.IDComision;
-                cmdUpdate.Parameters.Add("@IDMateria", SqlDbType.Int).Value = curso.IDMateria;
+                cmdUpdate.Parameters.Add("@IDComision", SqlDbType.Int).Value = curso.Comision.ID;
+                cmdUpdate.Parameters.Add("@IDMateria", SqlDbType.Int).Value = curso.Materia.ID;
                 cmdUpdate.Parameters.Add("@anio", SqlDbType.Int).Value = curso.AnioCalendario;
                 cmdUpdate.Parameters.Add("@cupo", SqlDbType.Int).Value = curso.Cupo;
                 cmdUpdate.ExecuteNonQuery();
@@ -131,8 +172,8 @@ namespace Data.Database
                 SqlCommand cmdInsert = new SqlCommand(
                 "insert into cursos(id_materia,id_comision,anio_calendario,cupo) " +
                 "values(@IDMateria,@IDComision,@anio,@cupo) ", sqlConn);
-                cmdInsert.Parameters.Add("@IDMateria", SqlDbType.Int).Value = curso.IDMateria;
-                cmdInsert.Parameters.Add("@IDComision", SqlDbType.Int).Value = curso.IDComision;
+                cmdInsert.Parameters.Add("@IDMateria", SqlDbType.Int).Value = curso.Materia.ID;
+                cmdInsert.Parameters.Add("@IDComision", SqlDbType.Int).Value = curso.Comision.ID;
                 cmdInsert.Parameters.Add("@anio", SqlDbType.Int).Value = curso.AnioCalendario;
                 cmdInsert.Parameters.Add("@cupo", SqlDbType.Int).Value = curso.Cupo;
                 cmdInsert.ExecuteNonQuery();

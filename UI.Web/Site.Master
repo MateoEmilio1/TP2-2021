@@ -1,10 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="UI.Web.Site" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title>Academia</title>
+    <link href="~/master.css" rel="stylesheet" type="text/css">
     </head>
     <body>
          <form id="bodyForm" runat="server">
@@ -15,7 +15,8 @@
         </asp:Menu>
         <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
+                
             </asp:ContentPlaceHolder>
         </div>
     </form>

@@ -13,7 +13,11 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Docente")
+            {
+                Response.Write("<script>window.alert('Página solo permitida para docentes');</script>");
+                Page.Response.Redirect("~/Default.aspx");
+            }
             if (!IsPostBack) //Indica que carga por primera vez
             {
                 LoadGrid();
@@ -48,10 +52,11 @@ namespace UI.Web
         }
 
 
+
         private void LoadGrid()
         {
-            this.gridView.DataSource = this.UsrLog.GetAll();
-            this.gridView.DataBind();
+            gridView.DataSource = UsrLog.GetAll();
+            gridView.DataBind();
 
         }
 
@@ -68,8 +73,8 @@ namespace UI.Web
 
         public FormModes FormMode
         {
-            get { return (FormModes)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"] = value; }
+            get { return (FormModes)ViewState["FormMode"]; }
+            set { ViewState["FormMode"] = value; }
         }
         private Usuario Entity
         {
@@ -81,9 +86,9 @@ namespace UI.Web
         {
             get
             {
-                if (this.ViewState["SelectedID"] != null)
+                if (ViewState["SelectedID"] != null)
                 {
-                    return (int)this.ViewState["SelectedID"];
+                    return (int)ViewState["SelectedID"];
                 }
                 else
                 {
@@ -92,7 +97,7 @@ namespace UI.Web
             }
             set
             {
-                this.ViewState["SelectedID"] = value;
+                ViewState["SelectedID"] = value;
 
             }
         }
@@ -104,7 +109,7 @@ namespace UI.Web
         {
             get
             {
-                return (this.SelectedID != 0);
+                return (SelectedID != 0);
             }
         }
 
@@ -112,75 +117,77 @@ namespace UI.Web
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gridView.SelectedValue;
+            SelectedID = (int)gridView.SelectedValue;
 
         }
 
         private void LoadForm(int id)
         {
-            this.Entity = this.UsrLog.GetOne(id);
-            this.habilitadoCheckBox.Checked = Entity.Habilitado;
-            this.nombreUsuarioTextBox.Text = Entity.NombreUsuario;
-            this.claveTextBox.Text = Entity.Clave;
-            this.repetirClaveTextBox.Text = Entity.Clave;
-            this.idPersonaTextBox.Text = Entity.IDPersona.ToString();
-            LoadPersona(Entity.IDPersona);
+            Entity = UsrLog.GetOne(id);
+            habilitadoCheckBox.Checked = Entity.Habilitado;
+            nombreUsuarioTextBox.Text = Entity.NombreUsuario;
+            claveTextBox.Text = Entity.Clave;
+            repetirClaveTextBox.Text = Entity.Clave;
+            idPersonaTextBox.Text = Entity.Persona.ID.ToString(); 
+            nombreTextBox.Text = Entity.Persona.Nombre;
+            apellidoTextBox.Text = Entity.Persona.Apellido;
+            emailTextBox.Text = Entity.Persona.Email;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
 
             EnableForm(true);
-            if (this.IsEntitySelected)
+            if (IsEntitySelected)
             {
-                this.formPanel.Visible = true;
-                this.FormMode = FormModes.Modificacion;
-                this.LoadForm(this.SelectedID);
+                formPanel.Visible = true;
+                FormMode = FormModes.Modificacion;
+                LoadForm(SelectedID);
             }
         }
 
         private void LoadEntity(Usuario usuario)
         {
-            usuario.IDPersona = int.Parse(this.idPersonaTextBox.Text);
-            usuario.NombreUsuario = this.nombreUsuarioTextBox.Text;
-            usuario.Clave = this.claveTextBox.Text;
-            usuario.Habilitado = this.habilitadoCheckBox.Checked;
+            usuario.Persona = PersLog.GetOne(int.Parse(idPersonaTextBox.Text));
+            usuario.NombreUsuario = nombreUsuarioTextBox.Text;
+            usuario.Clave = claveTextBox.Text;
+            usuario.Habilitado = habilitadoCheckBox.Checked;
         }
 
         private void SaveEntity(Usuario usuario)
         {
-            this.UsrLog.Save(usuario);
+            UsrLog.Save(usuario);
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            switch (this.FormMode)
+            switch (FormMode)
             {
 
                 case FormModes.Baja:
-                    this.DeleteEntity(this.SelectedID);
-                    this.LoadGrid();
+                    DeleteEntity(SelectedID);
+                    LoadGrid();
                     formPanel.Visible = false;
                     break;
                 case FormModes.Modificacion:
                     if (Page.IsValid)
                     {
-                        this.Entity = new Usuario();
-                        this.Entity.ID = this.SelectedID;
-                        this.Entity.State = BusinessEntity.States.Modified;
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
+                        Entity = new Usuario();
+                        Entity.ID = SelectedID;
+                        Entity.State = BusinessEntity.States.Modified;
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
                         formPanel.Visible = false;
                     }
                     break;
                 case FormModes.Alta:
                     if (Page.IsValid)
                     {
-                        this.Entity = new Usuario();
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
+                        Entity = new Usuario();
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
                         formPanel.Visible = false;
                     }
                     break;
@@ -188,76 +195,69 @@ namespace UI.Web
                     break;
             }
 
-            //this.formPanel.Visible = false;
+            //formPanel.Visible = false;
         }
 
         private void EnableForm(bool condicion)
 
         {
-            this.idPersonaTextBox.Enabled = condicion;
-            this.nombreUsuarioTextBox.Enabled = condicion;
-            this.claveTextBox.Enabled = condicion;
-            this.claveLabel.Enabled = condicion;
-            this.repetirClaveTextBox.Enabled = condicion;
-            this.repetirClaveLabel.Enabled = condicion;
+            idPersonaTextBox.Enabled = condicion;
+            nombreUsuarioTextBox.Enabled = condicion;
+            claveTextBox.Enabled = condicion;
+            claveLabel.Enabled = condicion;
+            repetirClaveTextBox.Enabled = condicion;
+            repetirClaveLabel.Enabled = condicion;
 
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (IsEntitySelected)
             {
-                this.formPanel.Visible = true;
-                this.FormMode = FormModes.Baja;
-                this.EnableForm(false);
-                this.LoadForm(this.SelectedID);
+                formPanel.Visible = true;
+                FormMode = FormModes.Baja;
+                EnableForm(false);
+                LoadForm(SelectedID);
             }
         }
 
         private void DeleteEntity(int id)
         {
-            this.UsrLog.Delete(id);
+            UsrLog.Delete(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
-            this.formPanel.Visible = true;
-            this.FormMode = FormModes.Alta;
-            this.ClearForm();
-            this.EnableForm(true);
+            formPanel.Visible = true;
+            FormMode = FormModes.Alta;
+            ClearForm();
+            EnableForm(true);
 
         }
 
         private void ClearForm()
 
         {
-            this.idPersonaTextBox.Text = string.Empty;
-            this.nombreTextBox.Text = string.Empty;
-            this.apellidoTextBox.Text = string.Empty;
-            this.emailTextBox.Text = string.Empty;
-            this.habilitadoCheckBox.Checked = false;
-            this.nombreUsuarioTextBox.Text = string.Empty;
-            this.claveTextBox.Text = string.Empty;
-            this.repetirClaveTextBox.Text = string.Empty;
+            idPersonaTextBox.Text = string.Empty;
+            nombreTextBox.Text = string.Empty;
+            apellidoTextBox.Text = string.Empty;
+            emailTextBox.Text = string.Empty;
+            habilitadoCheckBox.Checked = false;
+            nombreUsuarioTextBox.Text = string.Empty;
+            claveTextBox.Text = string.Empty;
+            repetirClaveTextBox.Text = string.Empty;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
-            this.ClearForm();
-            this.formPanel.Visible = false;
+            ClearForm();
+            formPanel.Visible = false;
         }
 
-        public Persona Per { get; set; }
 
         protected void BuscarPersona_Click(object sender, EventArgs e)
         {
-            Persona Per = new Persona();
-            LoadPersona(int.Parse(idPersonaTextBox.Text));
-        }
-
-        protected void LoadPersona(int id)
-        {
-            Per = PersLog.GetOne(id);
+            Persona Per = PersLog.GetOne(int.Parse(idPersonaTextBox.Text));
             if (Per.ID != 0)
             {
                 nombreTextBox.Text = Per.Nombre;
@@ -270,7 +270,8 @@ namespace UI.Web
                 apellidoTextBox.Text = String.Empty;
                 emailTextBox.Text = String.Empty;
             }
-
         }
+
+        
     }
 }

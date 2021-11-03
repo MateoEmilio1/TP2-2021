@@ -16,10 +16,10 @@
                 <asp:BoundField HeaderText="Fecha de Nacimiento" DataField="FechaNacimiento" />
                 <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
                 <asp:BoundField HeaderText="Tipo" DataField="TipoPersona" />
-                <asp:BoundField HeaderText="IDPlan" DataField="IDPlan" />
+                <asp:BoundField HeaderText="IDPlan" DataField="Plan.Descripcion" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
-            <SelectedRowStyle BackColor="#000099" ForeColor="White" />
+            <SelectedRowStyle BackColor="#336699" />
         </asp:GridView>
         <br />
         <br />
@@ -44,12 +44,14 @@
                     </td>
                     <td style="width: 103px">
                         <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtApellido" EnableViewState="False" ErrorMessage="El apellido no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 103px">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre: "></asp:Label>
                     </td>
                     <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtNombre" EnableViewState="False" ErrorMessage="El nombre no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -61,12 +63,15 @@
                     </td>
                     <td style="width: 103px">
                         <asp:TextBox ID="txtLegajo" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtLegajo" EnableViewState="False" ErrorMessage="El legajo no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToValidate="txtTelefono" ErrorMessage="Ingrese un número entero para el legajo" ForeColor="Red" Operator="DataTypeCheck" Type="Integer">*</asp:CompareValidator>
                     </td>
                     <td style="width: 103px">
                         <asp:Label ID="lblDireccion" runat="server" Text="Dirección: "></asp:Label>
                     </td>
                     <td dir="ltr" style="width: 249px">
                         <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtDireccion" EnableViewState="False" ErrorMessage="La dirección no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                     </td>
                     <td dir="ltr">&nbsp;</td>
                 </tr>
@@ -78,12 +83,15 @@
                     </td>
                     <td style="width: 103px">
                         <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtTelefono" EnableViewState="False" ErrorMessage="El telefono no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 103px">
                         <asp:Label ID="lblEmail" runat="server" Text="E-Mail: "></asp:Label>
                     </td>
                     <td style="width: 249px">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtEmail" EnableViewState="False" ErrorMessage="El email no puede estar vacío" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email inválido" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -111,9 +119,9 @@
                         <asp:Label ID="lblIDPlan" runat="server" Text="ID Plan:"></asp:Label>
                     </td>
                     <td style="width: 103px">
-                        <asp:DropDownList ID="ddlIDPlan" runat="server" DataSourceID="DSIDPlan" DataTextField="id_plan" DataValueField="id_plan">
+                        <asp:DropDownList ID="ddlIDPlan" runat="server" DataSourceID="DSIDPlan" DataTextField="desc_plan" DataValueField="id_plan">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="DSIDPlan" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_plan] FROM [planes]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="DSIDPlan" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStringLocal %>" SelectCommand="SELECT [id_plan],desc_plan FROM [planes]"></asp:SqlDataSource>
                     </td>
                     <td style="width: 103px">
                         <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento: "></asp:Label>

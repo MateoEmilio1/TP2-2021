@@ -9,10 +9,12 @@
             <Columns>
                 <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
                 <asp:BoundField HeaderText="Habilitado" DataField="Habilitado" />
-                <asp:BoundField HeaderText="ID Persona" DataField="IDPersona" />
+                <asp:BoundField HeaderText="Nombre" DataField="Persona.Nombre" />
+                <asp:BoundField HeaderText="Apellido" DataField="Persona.Apellido" />
+                <asp:BoundField HeaderText="Email" DataField="Persona.Email" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
-            <SelectedRowStyle BackColor="#000099" ForeColor="White" />
+            <SelectedRowStyle BackColor="#336699" />
             </asp:GridView>
             <br />
             <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click" CausesValidation="False">Editar</asp:LinkButton>

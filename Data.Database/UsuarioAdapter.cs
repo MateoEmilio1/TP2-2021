@@ -34,9 +34,8 @@ namespace Data.Database
                     usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.IDPersona = (int)drUsuarios["id_persona"];
-                    usr.Persona = PersonaAdapter.GetOne((int)drUsuarios["id_alumno"]);
-                    
+                    usr.Persona = PersonaAdapter.GetOne((int)drUsuarios["id_persona"]);
+
                     usuarios.Add(usr);
                 }
 
@@ -70,14 +69,14 @@ namespace Data.Database
                 SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario = @id", sqlConn);
                 cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-
+                PersonaAdapter PersonaAdapter = new PersonaAdapter();
                 if (drUsuarios.Read())
                 {
                     usr.ID = (int)drUsuarios["id_usuario"];
                     usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.IDPersona = (int)drUsuarios["id_persona"];
+                    usr.Persona = PersonaAdapter.GetOne((int)drUsuarios["id_persona"]);
 
                 }
 
@@ -133,7 +132,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.IDPersona;
+                cmdSave.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.Persona.ID;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex)
@@ -161,7 +160,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.IDPersona;
+                cmdSave.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.Persona.ID;
                 usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
                 //así se obtiene el ID que asignó al BD automáticamente
             }
@@ -232,6 +231,7 @@ namespace Data.Database
                 cmdUsuarios.Parameters.Add("@user", SqlDbType.VarChar).Value = user;
                 cmdUsuarios.Parameters.Add("@pass", SqlDbType.VarChar).Value = pass;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                PersonaAdapter PersonaAdapter = new PersonaAdapter();
 
                 if (drUsuarios.Read())
                 {
@@ -239,7 +239,7 @@ namespace Data.Database
                     usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.IDPersona = (int)drUsuarios["id_persona"];
+                    usr.Persona = PersonaAdapter.GetOne((int)drUsuarios["id_persona"]);
                 }
                 drUsuarios.Close();
             }

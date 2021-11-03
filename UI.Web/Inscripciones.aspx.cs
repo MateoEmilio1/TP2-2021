@@ -13,13 +13,16 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Alumno")
+            {
+                Response.Write("<script>window.alert('Página solo permitida para docente');</script>");
+                Page.Response.Redirect("~/Default.aspx");
+            }
             if (!IsPostBack)
             {
                 LoadGrid();
                 
-                ddlTipoPersona.DataBind();
-                ddlIDPlan.DataBind();
+                
             }
 
         }
@@ -37,13 +40,25 @@ namespace UI.Web
             }
         }
 
+        CursoLogic _clogic;
+        private CursoLogic CLogic
+        {
+            get
+            {
+                if (_clogic == null)
+                {
+                    _clogic = new CursoLogic();
+                }
+                return _clogic;
+            }
+        }
+
         private void LoadGrid()
         {
-            gridInscripciones.DataSource = Logic.GetAll();
+            gridInscripciones.DataSource = Logic.GetAllUsuarioActual(((Usuario)Session["UsuarioActual"]).Persona.ID);
             gridInscripciones.DataBind();
-            ddlTipoPersona.DataBind();
-            ddlIDPlan.DataBind();
-
+            gridForm.DataSource = CLogic.GetAll();
+            gridForm.DataBind();
         }
 
         public enum FormModes
@@ -88,6 +103,27 @@ namespace UI.Web
             }
         }
 
+        private int SelectedIDCurso
+        {
+            get
+            {
+                if (ViewState["SelectedIDCurso"] != null)
+                {
+                    return (int)ViewState["SelectedIDCurso"];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                ViewState["SelectedIDCurso"] = value;
+
+            }
+        }
+
+
 
         private bool IsEntitySelected
         {
@@ -96,55 +132,43 @@ namespace UI.Web
                 return (SelectedID != 0);
             }
         }
-
+        private bool IsCursoSelected
+        {
+            get
+            {
+                return (SelectedIDCurso != 0);
+            }
+        }
         //asd
 
-        protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gridInscripciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedID = (int)gridInscripciones.SelectedValue;
         }
 
-        private void LoadForm(int id)
+        protected void gridForm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Entity = Logic.GetOne(id);
-            //txtApellido.Text = Entity.Apellido;
-            //txtDireccion.Text = Entity.Direccion;
-            //txtEmail.Text = Entity.Email;
-            //calFechaNac.SelectedDate = Entity.FechaNacimiento;
-            //ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
-            //ddlIDPlan.SelectedItem.Text = Convert.ToString(Entity.IDPlan);
-            //txtLegajo.Text = Convert.ToString(Entity.Legajo);
-            //txtNombre.Text = Convert.ToString(Entity.Nombre);
-            //txtTelefono.Text = Convert.ToString(Entity.Telefono);
+            SelectedIDCurso = (int)gridForm.SelectedValue;
         }
 
-        private void LoadEntity(AlumnoInscripcion per)
+        private void LoadEntity(AlumnoInscripcion insc)
         {
-            //per.Apellido = txtApellido.Text;
-            //per.Direccion = txtDireccion.Text;
-            //per.Email = txtEmail.Text;
-            //per.FechaNacimiento = calFechaNac.SelectedDate;
-            //per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Text);
-            //per.Legajo = int.Parse(txtLegajo.Text);
-            //per.Nombre = txtNombre.Text;
-            //per.Telefono= txtTelefono.Text;
-            //per.TipoPersona = ddlTipoPersona.Text;
+            insc.State = BusinessEntity.States.New;
+            insc.Condicion = "Inscripto";
+            insc.Curso = CLogic.GetOne(SelectedIDCurso);
+            insc.Persona = ((Usuario)Session["UsuarioActual"]).Persona;
         }
-        protected void editarLinkButton_Click(object sender, EventArgs e)
+        
+        private void CambioCupo(Curso curso, int i)
         {
-
-            EnableForm(true);
-            if (IsEntitySelected)
-            {
-                formPanel.Visible = true;
-                FormMode = FormModes.Modificacion;
-                LoadForm(SelectedID);
-            }
+            curso.State = BusinessEntity.States.Modified;
+            curso.Cupo = curso.Cupo + i;
+            CLogic.Save(curso);
         }
 
-        private void SaveEntity(AlumnoInscripcion per)
+        private void SaveEntity(AlumnoInscripcion insc)
         {
-            Logic.Save(per);
+            Logic.Save(insc);
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
@@ -153,31 +177,23 @@ namespace UI.Web
             switch (FormMode)
             {
                 case FormModes.Baja:
+                    Entity = new AlumnoInscripcion();
+                    Entity.ID = SelectedID;
+                    CambioCupo((Logic.GetOne(SelectedID).Curso), +1);
                     DeleteEntity(SelectedID);
                     LoadGrid();
                     formPanel.Visible = false;
-                    break;
-                case FormModes.Modificacion:
-                    if (Page.IsValid)
-                    {
-                        this.Entity = new AlumnoInscripcion();
-                        this.Entity.ID = this.SelectedID;
-                        this.Entity.State = BusinessEntity.States.Modified;
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
-                        formPanel.Visible = false;
-                    }
+                    formActionsPanel.Visible = false;
                     break;
                 case FormModes.Alta:
-                    if (Page.IsValid)
-                    {
-                        this.Entity = new AlumnoInscripcion();
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
-                        formPanel.Visible = false;
-                    }
+                    
+                    Entity = new AlumnoInscripcion();
+                    LoadEntity(Entity);
+                    CambioCupo(Entity.Curso, -1);
+                    SaveEntity(Entity);
+                    LoadGrid();
+                    formPanel.Visible = false;
+                    formActionsPanel.Visible = false;
                     break;
                 default:
                     break;
@@ -187,28 +203,15 @@ namespace UI.Web
 
         }
 
-        private void EnableForm(bool condicion)
-
-        {
-            txtApellido.Enabled = condicion;
-            txtDireccion.Enabled = condicion;
-            txtEmail.Enabled = condicion;
-            calFechaNac.Enabled = condicion;
-            ddlTipoPersona.Enabled = condicion;
-            ddlIDPlan.Enabled = condicion;
-            txtLegajo.Enabled = condicion;
-            txtNombre.Enabled = condicion;
-            txtTelefono.Enabled = condicion;
-        }
+        
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
             if (IsEntitySelected)
             {
-                formPanel.Visible = true;
+                formPanel.Visible = false;
+                formActionsPanel.Visible = true;
                 FormMode = FormModes.Baja;
-                EnableForm(false);
-                LoadForm(SelectedID);
             }
         }
 
@@ -220,30 +223,16 @@ namespace UI.Web
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             formPanel.Visible = true;
+            formActionsPanel.Visible = true;
             FormMode = FormModes.Alta;
-            ClearForm();
-            EnableForm(true);
 
         }
 
-        private void ClearForm()
-
-        {
-            txtApellido.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            calFechaNac.SelectedDate = DateTime.Today;
-            ddlTipoPersona.SelectedItem.Text = null;
-            ddlIDPlan.SelectedItem.Text = null;
-            txtLegajo.Text = string.Empty;
-            txtNombre.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-        }
-        //hacer el punto 42
+        
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
-            ClearForm();
             formPanel.Visible = false;
+            formActionsPanel.Visible = false;
         }
     }
 }

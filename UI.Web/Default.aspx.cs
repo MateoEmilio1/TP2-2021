@@ -13,29 +13,13 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario UsrActual = (Usuario)Session["UsuarioActual"];
-            Persona PersonaActual = PersLog.GetOne(UsrActual.IDPersona);
-            lblNombre.Text = PersonaActual.Nombre;
-            lblApellido.Text = PersonaActual.Apellido;
-            lblTipo.Text = PersonaActual.TipoPersona;
+            
+            lblNombre.Text = ((Usuario)Session["UsuarioActual"]).Persona.Nombre;
+            lblApellido.Text = ((Usuario)Session["UsuarioActual"]).Persona.Apellido;
+            lblTipo.Text = ((Usuario)Session["UsuarioActual"]).Persona.TipoPersona;
         }
 
-        public Usuario UsrActual { get; set; }
-
-        public Persona PersonaActual { get; set; }
-
-        PersonaLogic _PersLog;
-        private PersonaLogic PersLog
-        {
-            get
-            {
-                if (_PersLog == null)
-                {
-                    _PersLog = new PersonaLogic();
-                }
-                return _PersLog;
-            }
-        }
+        
 
     }
 }

@@ -13,7 +13,11 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Docente")
+            {
+                Response.Write("<script>window.alert('Página solo permitida para docentes');</script>");
+                Page.Response.Redirect("~/Default.aspx");
+            }
             if (!IsPostBack)
             {
                 LoadGrid(); 
@@ -34,6 +38,31 @@ namespace UI.Web
                     _logic = new CursoLogic();
                 }
                 return _logic;
+            }
+        }
+
+        ComisionLogic _clogic;
+        private ComisionLogic ComisionLogic
+        {
+            get
+            {
+                if (_clogic == null)
+                {
+                    _clogic = new ComisionLogic();
+                }
+                return _clogic;
+            }
+        }
+        MateriaLogic _mlogic;
+        private MateriaLogic MateriaLogic
+        {
+            get
+            {
+                if (_mlogic == null)
+                {
+                    _mlogic = new MateriaLogic();
+                }
+                return _mlogic;
             }
         }
 
@@ -107,8 +136,8 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionDDL.SelectedItem.Text = Convert.ToString(Entity.IDComision);
-            IDMateriaDDL.SelectedItem.Text = Convert.ToString(Entity.IDMateria);
+            IDComisionDDL.SelectedItem.Value = Convert.ToString(Entity.Comision.ID);
+            IDMateriaDDL.SelectedItem.Value = Convert.ToString(Entity.Materia.ID);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -127,8 +156,8 @@ namespace UI.Web
         {
             curso.AnioCalendario = int.Parse(AñoTextBox.Text);
             curso.Cupo = int.Parse(CupoTextBox.Text);
-            curso.IDComision = int.Parse(IDComisionDDL.SelectedItem.Text);
-            curso.IDMateria = int.Parse(IDMateriaDDL.SelectedItem.Text);
+            curso.Comision = ComisionLogic.GetOne(int.Parse(IDComisionDDL.SelectedItem.Value));
+            curso.Materia = MateriaLogic.GetOne(int.Parse(IDMateriaDDL.SelectedItem.Value));
         }
 
         private void SaveEntity(Curso curso)
@@ -215,8 +244,8 @@ namespace UI.Web
         {
             AñoTextBox.Text = string.Empty;
             CupoTextBox.Text = string.Empty;
-            IDComisionDDL.SelectedItem.Text = null;
-            IDMateriaDDL.SelectedItem.Text = null;
+            IDComisionDDL.SelectedItem.Value = null;
+            IDMateriaDDL.SelectedItem.Value = null;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

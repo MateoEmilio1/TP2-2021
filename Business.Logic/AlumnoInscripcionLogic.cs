@@ -28,6 +28,10 @@ namespace Business.Logic
         {
             return AluInsData.GetAll(); 
         }
+        public List<AlumnoInscripcion> GetAllUsuarioActual(int IDActual)
+        {
+            return AluInsData.GetAllUsuarioActual(IDActual);
+        }
 
         public void Save(AlumnoInscripcion aluins)
         {

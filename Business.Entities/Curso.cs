@@ -10,8 +10,6 @@ namespace Business.Entities
     {
         private int _AnioCalendario;
         private int _Cupo;
-        private int _IDComision;
-        private int _IDMateria;
 
         public int AnioCalendario
         {
@@ -36,31 +34,11 @@ namespace Business.Entities
             }
         }
         
-        public int IDComision
-        {
-            get
-            {
-                return _IDComision;
-            }
-            set
-            {
-                _IDComision = value;
-            }
-        }
+        
 
-        public int IDMateria
-        {
-            get
-            {
-                return _IDMateria;
-            }
-            set
-            {
-                _IDMateria = value;
-            }
-        }
+        public Materia Materia { get; set; }
 
-
+        public Comision Comision { get; set; }
 
 
 

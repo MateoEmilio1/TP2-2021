@@ -13,7 +13,11 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Docente")
+            {
+                Response.Write("<script>window.alert('Página solo permitida para docentes');</script>");
+                Page.Response.Redirect("~/Default.aspx");
+            }
             if (!IsPostBack)
             {
                 LoadGrid();
@@ -112,7 +116,7 @@ namespace UI.Web
             txtEmail.Text = Entity.Email;
             calFechaNac.SelectedDate = Entity.FechaNacimiento;
             ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
-            ddlIDPlan.SelectedItem.Text = Convert.ToString(Entity.IDPlan);
+            ddlIDPlan.SelectedItem.Value = Convert.ToString(Entity.IDPlan);
             txtLegajo.Text = Convert.ToString(Entity.Legajo);
             txtNombre.Text = Convert.ToString(Entity.Nombre);
             txtTelefono.Text = Convert.ToString(Entity.Telefono);
@@ -124,7 +128,7 @@ namespace UI.Web
             per.Direccion = txtDireccion.Text;
             per.Email = txtEmail.Text;
             per.FechaNacimiento = calFechaNac.SelectedDate;
-            per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Text);
+            per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Value);
             per.Legajo = int.Parse(txtLegajo.Text);
             per.Nombre = txtNombre.Text;
             per.Telefono= txtTelefono.Text;
@@ -233,8 +237,6 @@ namespace UI.Web
             txtDireccion.Text = string.Empty;
             txtEmail.Text = string.Empty;
             calFechaNac.SelectedDate = DateTime.Today;
-            ddlTipoPersona.SelectedItem.Text = null;
-            ddlIDPlan.SelectedItem.Text = null;
             txtLegajo.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtTelefono.Text = string.Empty;

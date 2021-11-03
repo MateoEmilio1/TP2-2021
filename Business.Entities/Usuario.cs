@@ -14,7 +14,6 @@ namespace Business.Entities
         private string _nombreUsuario;
         private string _clave;
         private bool _habilitado;
-        private int _IDPersona;
 
         public string NombreUsuario //Propiedad
         {
@@ -57,11 +56,7 @@ namespace Business.Entities
 
         public Persona Persona { get; set; }
 
-        public int IDPersona
-        {
-            get { return _IDPersona; }
-            set { _IDPersona = value; }
-        }
+        
 
     }
 }

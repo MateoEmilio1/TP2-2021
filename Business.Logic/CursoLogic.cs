@@ -38,10 +38,13 @@ namespace Business.Logic
             //invocar metodo delete de Cursodata
             CursoData.Delete(ID);
         }
+        public List<Curso> GetCursosDocente(int id)
+        {
+            return CursoData.GetCursosDocente(id);
+        }
 
-        
 
-        
+
 
 
     }
