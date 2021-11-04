@@ -115,8 +115,8 @@ namespace UI.Web
             txtDireccion.Text = Entity.Direccion;
             txtEmail.Text = Entity.Email;
             calFechaNac.SelectedDate = Entity.FechaNacimiento;
-            ddlTipoPersona.SelectedItem.Text = Entity.TipoPersona;
-            ddlIDPlan.SelectedItem.Value = Convert.ToString(Entity.IDPlan);
+            ddlTipoPersona.SelectedValue = Entity.TipoPersona;
+            ddlIDPlan.SelectedValue = Convert.ToString(Entity.IDPlan);
             txtLegajo.Text = Convert.ToString(Entity.Legajo);
             txtNombre.Text = Convert.ToString(Entity.Nombre);
             txtTelefono.Text = Convert.ToString(Entity.Telefono);
@@ -128,7 +128,7 @@ namespace UI.Web
             per.Direccion = txtDireccion.Text;
             per.Email = txtEmail.Text;
             per.FechaNacimiento = calFechaNac.SelectedDate;
-            per.IDPlan = int.Parse(ddlIDPlan.SelectedItem.Value);
+            per.IDPlan = int.Parse(ddlIDPlan.SelectedValue);
             per.Legajo = int.Parse(txtLegajo.Text);
             per.Nombre = txtNombre.Text;
             per.Telefono= txtTelefono.Text;

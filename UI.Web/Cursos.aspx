@@ -6,6 +6,8 @@
     <br />
     <br />
     <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
+        <br />
+        Cursos<br />
         <asp:GridView ID="gridCursos" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridView_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField HeaderText="Año" DataField="AnioCalendario" />

@@ -22,8 +22,7 @@ namespace UI.Web
             {
                 LoadGrid(); 
                 
-                IDComisionDDL.DataBind();
-                IDMateriaDDL.DataBind();
+                
             }
 
         }
@@ -70,7 +69,8 @@ namespace UI.Web
         {
             gridCursos.DataSource = Logic.GetAll();
             gridCursos.DataBind();
-
+            IDComisionDDL.DataBind();
+            IDMateriaDDL.DataBind();
         }
 
         public enum FormModes
@@ -136,8 +136,9 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionDDL.SelectedItem.Value = Convert.ToString(Entity.Comision.ID);
-            IDMateriaDDL.SelectedItem.Value = Convert.ToString(Entity.Materia.ID);
+            IDComisionDDL.SelectedValue = Entity.Comision.Descripcion;
+            IDMateriaDDL.SelectedValue= Convert.ToString(Entity.Comision.ID);
+            IDMateriaDDL.SelectedValue = Convert.ToString(Entity.Materia.ID);
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -156,8 +157,8 @@ namespace UI.Web
         {
             curso.AnioCalendario = int.Parse(AñoTextBox.Text);
             curso.Cupo = int.Parse(CupoTextBox.Text);
-            curso.Comision = ComisionLogic.GetOne(int.Parse(IDComisionDDL.SelectedItem.Value));
-            curso.Materia = MateriaLogic.GetOne(int.Parse(IDMateriaDDL.SelectedItem.Value));
+            curso.Comision = ComisionLogic.GetOne(int.Parse(IDComisionDDL.SelectedValue));
+            curso.Materia = MateriaLogic.GetOne(int.Parse(IDMateriaDDL.SelectedValue));
         }
 
         private void SaveEntity(Curso curso)
@@ -244,8 +245,6 @@ namespace UI.Web
         {
             AñoTextBox.Text = string.Empty;
             CupoTextBox.Text = string.Empty;
-            IDComisionDDL.SelectedItem.Value = null;
-            IDMateriaDDL.SelectedItem.Value = null;
         }
         //hacer el punto 42
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

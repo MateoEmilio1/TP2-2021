@@ -5,18 +5,38 @@
 <head runat="server">
     <title>Academia</title>
     <link href="~/master.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-         <form id="bodyForm" runat="server">
-             <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Right">
-                 <asp:LinkButton ID="lbCerrarSesion" runat="server" ForeColor="Maroon" OnClick="lbCerrarSesion_Click" >Cerrar sesión</asp:LinkButton>
-             </asp:Panel>
-        <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
+</head>
+<body>
+    <form id="bodyForm" runat="server">
+        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Right">
+            <asp:LinkButton ID="lbCerrarSesion" runat="server" ForeColor="Maroon" OnClick="lbCerrarSesion_Click">Cerrar sesión</asp:LinkButton>
+        </asp:Panel>
+        <asp:Menu runat="server" ID="menu">
         </asp:Menu>
+        <div>
+             <ul class="nav">
+                 <li><a href="Default.aspx">Inicio</a></li>
+   <% 
+       Business.Entities.Usuario UsuarioActual = (Business.Entities.Usuario)Session["UsuarioActual"];
+
+       if (UsuarioActual.Persona.TipoPersona == "Alumno")
+       {
+           Response.Write("<li><a href='Inscripciones.aspx'>Cursado</a></li>");
+       }
+       else
+       {
+           Response.Write("<li><a href='Cursos.aspx'>Cursos</a></li>");
+           Response.Write("<li><a href='Personas.aspx'>Personas</a></li>");
+           Response.Write("<li><a href='Usuarios.aspx'>Usuarios</a></li>");
+           Response.Write("<li><a href='RegistroNotas.aspx'>Registro de notas</a></li>");
+       }
+    %>
+                 
+             </ul>
+        </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
-                
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>

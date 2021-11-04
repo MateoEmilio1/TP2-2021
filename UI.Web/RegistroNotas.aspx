@@ -5,7 +5,7 @@
     <br />
     <br />
     <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
-        <br />
+        Cursos:<br />
         <asp:GridView ID="gridCursos" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" HorizontalAlign="Center" OnSelectedIndexChanged="gridCursos_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="Materia.Descripcion" HeaderText="Materia" />
@@ -29,6 +29,10 @@
                     <asp:BoundField DataField="Curso.Materia.Descripcion" HeaderText="Materia" />
                     <asp:BoundField DataField="Curso.Comision.Descripcion" HeaderText="Comision" />
                     <asp:BoundField DataField="Condicion" HeaderText="Condicion" />
+                    <asp:BoundField DataField="Nota" HeaderText="Nota" />
+                    <asp:BoundField DataField="Persona.Legajo" HeaderText="Legajo" />
+                    <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
                     <asp:BoundField DataField="Nota" HeaderText="Nota" />
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>

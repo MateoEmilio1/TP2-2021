@@ -5,6 +5,9 @@
     <br />
     <br />
     <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
+        <br />
+        <asp:Label ID="Label1" runat="server" Text="Inscripciones"></asp:Label>
+        <br />
         <asp:GridView ID="gridInscripciones" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridInscripciones_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField HeaderText="Materia" DataField="Curso.Materia.Descripcion" />
@@ -24,8 +27,10 @@
                 <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click" CausesValidation="False">Nuevo</asp:LinkButton>
             </asp:Panel>
     </asp:Panel>
-        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Left">
+        <asp:Panel ID="formPanel" Visible="False" runat="server" HorizontalAlign="Center">
             
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Materias"></asp:Label>
             <br />
             <asp:GridView ID="gridForm" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" HorizontalAlign="Center" OnSelectedIndexChanged="gridForm_SelectedIndexChanged">
                 <Columns>
@@ -33,7 +38,7 @@
                     <asp:BoundField DataField="Comision.Descripcion" HeaderText="Comision" />
                     <asp:BoundField DataField="AnioCalendario" HeaderText="Año" />
                     <asp:BoundField DataField="Cupo" HeaderText="Cupo" />
-                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:CommandField SelectText="Inscribirse" ShowSelectButton="True" />
                 </Columns>
             <SelectedRowStyle BackColor="#336699" />
             </asp:GridView>

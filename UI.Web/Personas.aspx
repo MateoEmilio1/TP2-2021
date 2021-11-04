@@ -2,9 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      
 
-    <br />
-    <br />
     <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
+        
+        <br />
+        
+        Personas<br />
+        
+    <br />
+
         <asp:GridView ID="gridPersonas" runat="server" DataKeyNames="ID" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="gridView_SelectedIndexChanged" >
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" />
@@ -16,7 +21,7 @@
                 <asp:BoundField HeaderText="Fecha de Nacimiento" DataField="FechaNacimiento" />
                 <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
                 <asp:BoundField HeaderText="Tipo" DataField="TipoPersona" />
-                <asp:BoundField HeaderText="IDPlan" DataField="Plan.Descripcion" />
+                <asp:BoundField HeaderText="IDPlan" DataField="IDPlan" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
             <SelectedRowStyle BackColor="#336699" />

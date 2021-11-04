@@ -5,22 +5,22 @@
         <div>
         </div>
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
-            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnSelectedIndexChanged="gridView_SelectedIndexChanged" HorizontalAlign="Center">
-            <Columns>
-                <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
-                <asp:BoundField HeaderText="Habilitado" DataField="Habilitado" />
-                <asp:BoundField HeaderText="Nombre" DataField="Persona.Nombre" />
-                <asp:BoundField HeaderText="Apellido" DataField="Persona.Apellido" />
-                <asp:BoundField HeaderText="Email" DataField="Persona.Email" />
-                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
-            </Columns>
-            <SelectedRowStyle BackColor="#336699" />
+            <br />
+            Usuarios<br />&nbsp;<asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" HorizontalAlign="Center" OnSelectedIndexChanged="gridView_SelectedIndexChanged">
+                <Columns>
+                    <asp:BoundField DataField="NombreUsuario" HeaderText="Usuario" />
+                    <asp:BoundField DataField="Habilitado" HeaderText="Habilitado" />
+                    <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
+                    <asp:BoundField DataField="Persona.Email" HeaderText="Email" />
+                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                </Columns>
+                <SelectedRowStyle BackColor="#336699" />
             </asp:GridView>
             <br />
-            <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click" CausesValidation="False">Editar</asp:LinkButton>
-            &nbsp;
-            <asp:LinkButton ID="eliminarLinkButton" runat="server" OnClick="eliminarLinkButton_Click" CausesValidation="False">Eliminar</asp:LinkButton>
-            &nbsp;
+            <asp:LinkButton ID="editarLinkButton" runat="server" CausesValidation="False" OnClick="editarLinkButton_Click">Editar</asp:LinkButton>
+&nbsp;&nbsp;<asp:LinkButton ID="eliminarLinkButton" runat="server" CausesValidation="False" OnClick="eliminarLinkButton_Click">Eliminar</asp:LinkButton>
+&nbsp;
             <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click" CausesValidation="False">Nuevo</asp:LinkButton>
             <br />
         </asp:Panel>
