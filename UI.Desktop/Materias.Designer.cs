@@ -115,6 +115,7 @@ namespace UI.Desktop
             this.dgvMaterias.Name = "dgvMaterias";
             this.dgvMaterias.ReadOnly = true;
             this.dgvMaterias.RowHeadersWidth = 62;
+            this.dgvMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMaterias.Size = new System.Drawing.Size(1192, 604);
             this.dgvMaterias.TabIndex = 0;
             // 
@@ -124,6 +125,7 @@ namespace UI.Desktop
             this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
             this.descripcionDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descripcionDataGridViewTextBoxColumn.Width = 150;
             // 
             // hSSemanalesDataGridViewTextBoxColumn
@@ -132,6 +134,7 @@ namespace UI.Desktop
             this.hSSemanalesDataGridViewTextBoxColumn.HeaderText = "HSSemanales";
             this.hSSemanalesDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.hSSemanalesDataGridViewTextBoxColumn.Name = "hSSemanalesDataGridViewTextBoxColumn";
+            this.hSSemanalesDataGridViewTextBoxColumn.ReadOnly = true;
             this.hSSemanalesDataGridViewTextBoxColumn.Width = 150;
             // 
             // hSTotalesDataGridViewTextBoxColumn
@@ -140,6 +143,7 @@ namespace UI.Desktop
             this.hSTotalesDataGridViewTextBoxColumn.HeaderText = "HSTotales";
             this.hSTotalesDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.hSTotalesDataGridViewTextBoxColumn.Name = "hSTotalesDataGridViewTextBoxColumn";
+            this.hSTotalesDataGridViewTextBoxColumn.ReadOnly = true;
             this.hSTotalesDataGridViewTextBoxColumn.Width = 150;
             // 
             // iDPlanDataGridViewTextBoxColumn
@@ -148,6 +152,7 @@ namespace UI.Desktop
             this.iDPlanDataGridViewTextBoxColumn.HeaderText = "IDPlan";
             this.iDPlanDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.iDPlanDataGridViewTextBoxColumn.Name = "iDPlanDataGridViewTextBoxColumn";
+            this.iDPlanDataGridViewTextBoxColumn.ReadOnly = true;
             this.iDPlanDataGridViewTextBoxColumn.Width = 150;
             // 
             // iDDataGridViewTextBoxColumn
@@ -156,6 +161,7 @@ namespace UI.Desktop
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             this.iDDataGridViewTextBoxColumn.Width = 150;
             // 
             // materiaBindingSource
