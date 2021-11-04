@@ -13,11 +13,7 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Docente")
-            {
-                Response.Write("<script>alert('Página solo permitida para docentes');</script>");
-            }
-
+            
             if (gridCursos.SelectedIndex == -1)
             {
                 formPanel.Visible = false;

@@ -13,11 +13,7 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (((Usuario)Session["UsuarioActual"]).Persona.TipoPersona != "Alumno")
-            {
-                Response.Write("<script>window.alert('Página solo permitida para docente');</script>");
-                Page.Response.Redirect("~/Default.aspx");
-            }
+            
             if (!IsPostBack)
             {
                 LoadGrid();
