@@ -62,11 +62,13 @@ namespace UI.Desktop
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Gray;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlMaterias);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1200, 654);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1200, 692);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -84,11 +86,12 @@ namespace UI.Desktop
             this.tlMaterias.Controls.Add(this.btnSalir, 1, 1);
             this.tlMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMaterias.Location = new System.Drawing.Point(0, 0);
+            this.tlMaterias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tlMaterias.Name = "tlMaterias";
             this.tlMaterias.RowCount = 2;
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(800, 425);
+            this.tlMaterias.Size = new System.Drawing.Size(1200, 654);
             this.tlMaterias.TabIndex = 0;
             // 
             // dgvMaterias
@@ -104,40 +107,52 @@ namespace UI.Desktop
             this.tlMaterias.SetColumnSpan(this.dgvMaterias, 2);
             this.dgvMaterias.DataSource = this.materiaBindingSource;
             this.dgvMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaterias.Location = new System.Drawing.Point(3, 3);
+            this.dgvMaterias.Location = new System.Drawing.Point(4, 5);
+            this.dgvMaterias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvMaterias.Name = "dgvMaterias";
-            this.dgvMaterias.Size = new System.Drawing.Size(794, 390);
+            this.dgvMaterias.RowHeadersWidth = 62;
+            this.dgvMaterias.Size = new System.Drawing.Size(1192, 599);
             this.dgvMaterias.TabIndex = 0;
             // 
             // descripcionDataGridViewTextBoxColumn
             // 
             this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
             this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.Width = 150;
             // 
             // hSSemanalesDataGridViewTextBoxColumn
             // 
             this.hSSemanalesDataGridViewTextBoxColumn.DataPropertyName = "HSSemanales";
             this.hSSemanalesDataGridViewTextBoxColumn.HeaderText = "HSSemanales";
+            this.hSSemanalesDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.hSSemanalesDataGridViewTextBoxColumn.Name = "hSSemanalesDataGridViewTextBoxColumn";
+            this.hSSemanalesDataGridViewTextBoxColumn.Width = 150;
             // 
             // hSTotalesDataGridViewTextBoxColumn
             // 
             this.hSTotalesDataGridViewTextBoxColumn.DataPropertyName = "HSTotales";
             this.hSTotalesDataGridViewTextBoxColumn.HeaderText = "HSTotales";
+            this.hSTotalesDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.hSTotalesDataGridViewTextBoxColumn.Name = "hSTotalesDataGridViewTextBoxColumn";
+            this.hSTotalesDataGridViewTextBoxColumn.Width = 150;
             // 
             // iDPlanDataGridViewTextBoxColumn
             // 
             this.iDPlanDataGridViewTextBoxColumn.DataPropertyName = "IDPlan";
             this.iDPlanDataGridViewTextBoxColumn.HeaderText = "IDPlan";
+            this.iDPlanDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.iDPlanDataGridViewTextBoxColumn.Name = "iDPlanDataGridViewTextBoxColumn";
+            this.iDPlanDataGridViewTextBoxColumn.Width = 150;
             // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.Width = 150;
             // 
             // materiaBindingSource
             // 
@@ -145,9 +160,10 @@ namespace UI.Desktop
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(3, 399);
+            this.btnActualizar.Location = new System.Drawing.Point(4, 614);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.Size = new System.Drawing.Size(112, 35);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -155,9 +171,10 @@ namespace UI.Desktop
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Location = new System.Drawing.Point(1084, 614);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(112, 35);
             this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -166,13 +183,14 @@ namespace UI.Desktop
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
             this.tbsEditar,
             this.tbsEliminar});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip2.Location = new System.Drawing.Point(4, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(120, 33);
             this.toolStrip2.TabIndex = 1;
             // 
             // tsbNuevo
@@ -181,7 +199,7 @@ namespace UI.Desktop
             this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
             this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
+            this.tsbNuevo.Size = new System.Drawing.Size(34, 28);
             this.tsbNuevo.Text = "toolStripButton1";
             this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
@@ -191,7 +209,7 @@ namespace UI.Desktop
             this.tbsEditar.Image = ((System.Drawing.Image)(resources.GetObject("tbsEditar.Image")));
             this.tbsEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbsEditar.Name = "tbsEditar";
-            this.tbsEditar.Size = new System.Drawing.Size(23, 22);
+            this.tbsEditar.Size = new System.Drawing.Size(34, 28);
             this.tbsEditar.Text = "toolStripButton1";
             this.tbsEditar.Click += new System.EventHandler(this.tbsEditar_Click);
             // 
@@ -201,16 +219,17 @@ namespace UI.Desktop
             this.tbsEliminar.Image = ((System.Drawing.Image)(resources.GetObject("tbsEliminar.Image")));
             this.tbsEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbsEliminar.Name = "tbsEliminar";
-            this.tbsEliminar.Size = new System.Drawing.Size(23, 22);
+            this.tbsEliminar.Size = new System.Drawing.Size(34, 28);
             this.tbsEliminar.Text = "toolStripButton2";
             this.tbsEliminar.Click += new System.EventHandler(this.tbsEliminar_Click);
             // 
             // Materias
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.toolStripContainer1);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Materias";
             this.Text = "Materias";
             this.Load += new System.EventHandler(this.Materias_Load);

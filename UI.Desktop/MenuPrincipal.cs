@@ -35,5 +35,11 @@ namespace UI.Desktop
             Usuarios usu = new Usuarios();
             usu.ShowDialog();
         }
+
+        private void btnComisiones_Click(object sender, EventArgs e)
+        {
+            Comisiones com = new Comisiones();
+            com.ShowDialog();
+        }
     }
 }
