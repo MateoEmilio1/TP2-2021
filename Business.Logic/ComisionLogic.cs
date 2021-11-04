@@ -39,9 +39,12 @@ namespace Business.Logic
             ComisionData.Delete(ID);
         }
 
-        
+        public void Update(Business.Entities.Comision com)
+        {
+            ComisionData.Update(com);
+        }
 
-        
+
 
 
     }

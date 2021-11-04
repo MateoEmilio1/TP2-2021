@@ -24,16 +24,46 @@ namespace UI.Desktop
         public ComisionesDesktop(ModoForm modo) : this()
         {
             Modo = modo;
-            this.MapearPlanes();
+            fillCmb();
+        }
+
+        private void fillCmb()
+        {
+            try
+            {
+                PlanLogic plan = new PlanLogic();
+                cmbPlanes.DataSource = plan.GetAll();
+                cmbPlanes.ValueMember = "ID";
+                cmbPlanes.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public ComisionesDesktop(int ID, ModoForm modo) : this()
         {
+            /*
             Modo = modo;
             ComisionLogic comision = new ComisionLogic();
             ComisionActual = comision.GetOne(ID);
             this.MapearDeDatos();
-            this.MapearPlanes();
+            this.MapearPlanes();*/
+            //-------------------
+            Modo = modo;
+            ComisionLogic comiLogic = new ComisionLogic();
+            try
+            {
+                ComisionActual = comiLogic.GetOne(ID);
+                fillCmb();
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         public override void MapearDeDatos()
@@ -41,6 +71,7 @@ namespace UI.Desktop
             this.txtID.Text = this.ComisionActual.ID.ToString();
             this.txtDescripcion.Text = this.ComisionActual.Descripcion;
             this.txtAnioEspecialidad.Text = this.ComisionActual.AnioEspecialidad.ToString();
+            this.cmbPlanes.SelectedValue = this.ComisionActual.IDPlan;
             if (Modo == ModoForm.Alta)
             {
                 btnAceptar.Text = "Guardar";
@@ -106,24 +137,12 @@ namespace UI.Desktop
                 btnAceptar.Text = "Aceptar";
         }
 
-        public void MapearPlanes()
-        {
-            ComisionLogic cl = new ComisionLogic();
-            cmbPlanes.DataSource = cl.GetPlanes();
-            cmbPlanes.ValueMember = "ID";
-            cmbPlanes.DisplayMember = "Descripcion";
-            if (Modo != ModoForm.Alta)
-            {
-                cmbPlanes.SelectedValue = ComisionActual.IDPlan;
-
-            };
-        }
-
         public override void GuardarCambios()
         {
             this.MapearADatos();
 
         }
+
         public override bool Validar()
         {
             if (this.txtDescripcion.Text.ToString() != "" && this.txtAnioEspecialidad.Text.ToString() != "" && this.cmbPlanes.SelectedItem.ToString() != string.Empty && this.txtAnioEspecialidad.Text.ToString() != "0")

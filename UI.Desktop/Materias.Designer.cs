@@ -63,7 +63,7 @@ namespace UI.Desktop
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Gray;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlMaterias);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1200, 654);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1200, 659);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -91,11 +91,13 @@ namespace UI.Desktop
             this.tlMaterias.RowCount = 2;
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(1200, 654);
+            this.tlMaterias.Size = new System.Drawing.Size(1200, 659);
             this.tlMaterias.TabIndex = 0;
             // 
             // dgvMaterias
             // 
+            this.dgvMaterias.AllowUserToAddRows = false;
+            this.dgvMaterias.AllowUserToDeleteRows = false;
             this.dgvMaterias.AutoGenerateColumns = false;
             this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaterias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -109,9 +111,11 @@ namespace UI.Desktop
             this.dgvMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMaterias.Location = new System.Drawing.Point(4, 5);
             this.dgvMaterias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvMaterias.MultiSelect = false;
             this.dgvMaterias.Name = "dgvMaterias";
+            this.dgvMaterias.ReadOnly = true;
             this.dgvMaterias.RowHeadersWidth = 62;
-            this.dgvMaterias.Size = new System.Drawing.Size(1192, 599);
+            this.dgvMaterias.Size = new System.Drawing.Size(1192, 604);
             this.dgvMaterias.TabIndex = 0;
             // 
             // descripcionDataGridViewTextBoxColumn
@@ -160,7 +164,7 @@ namespace UI.Desktop
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(4, 614);
+            this.btnActualizar.Location = new System.Drawing.Point(4, 619);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(112, 35);
@@ -171,7 +175,7 @@ namespace UI.Desktop
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(1084, 614);
+            this.btnSalir.Location = new System.Drawing.Point(1084, 619);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(112, 35);

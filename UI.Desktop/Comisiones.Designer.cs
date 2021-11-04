@@ -59,7 +59,7 @@ namespace UI.Desktop
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlUsuarios);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(933, 468);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(933, 473);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -85,12 +85,12 @@ namespace UI.Desktop
             this.tlUsuarios.RowCount = 2;
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlUsuarios.Size = new System.Drawing.Size(933, 468);
+            this.tlUsuarios.Size = new System.Drawing.Size(933, 473);
             this.tlUsuarios.TabIndex = 0;
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(4, 428);
+            this.btnActualizar.Location = new System.Drawing.Point(4, 433);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(112, 35);
@@ -101,7 +101,7 @@ namespace UI.Desktop
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(817, 428);
+            this.btnSalir.Location = new System.Drawing.Point(817, 433);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(112, 35);
@@ -125,7 +125,8 @@ namespace UI.Desktop
             this.dgvComisiones.Name = "dgvComisiones";
             this.dgvComisiones.RowHeadersWidth = 62;
             this.dgvComisiones.RowTemplate.Height = 28;
-            this.dgvComisiones.Size = new System.Drawing.Size(927, 417);
+            this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvComisiones.Size = new System.Drawing.Size(927, 422);
             this.dgvComisiones.TabIndex = 4;
             // 
             // anioEspecialidadDataGridViewTextBoxColumn
@@ -146,8 +147,8 @@ namespace UI.Desktop
             // 
             // iDDataGridViewTextBoxColumn
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "IDPlan";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID Plan";
             this.iDDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             this.iDDataGridViewTextBoxColumn.Width = 150;
@@ -166,7 +167,7 @@ namespace UI.Desktop
             this.tsbEliminar});
             this.toolStrip1.Location = new System.Drawing.Point(4, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(166, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(120, 33);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbNuevo
@@ -230,10 +231,10 @@ namespace UI.Desktop
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEditar;
+        private System.Windows.Forms.BindingSource comisionBindingSource;
+        private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn anioEspecialidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource comisionBindingSource;
-        private System.Windows.Forms.ToolStripButton tsbEliminar;
     }
 }
