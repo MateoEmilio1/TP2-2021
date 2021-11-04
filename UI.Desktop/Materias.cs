@@ -73,20 +73,25 @@ namespace UI.Desktop
 
         private void tbsEditar_Click(object sender, EventArgs e)
         {
+            
             if (this.dgvMaterias.SelectedRows != null)
             {
+
                 int ID = ((Business.Entities.Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
                 MateriaDesktop formMateria = new MateriaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 formMateria.ShowDialog(); //muestro el formulario UsuarioDesktop
                 this.Listar();
+
             }
+
+
         }
 
         private void tbsEliminar_Click(object sender, EventArgs e)
         {
             if (this.dgvMaterias.SelectedRows != null)
             {
-                int ID = ((Business.Entities.Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
+                int ID = ((Business.Entities.Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID; //error aca
                 MateriaDesktop formMateria = new MateriaDesktop(ID, ApplicationForm.ModoForm.Baja);
                 formMateria.ShowDialog();
                 this.Listar();

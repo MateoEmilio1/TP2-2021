@@ -56,7 +56,7 @@ namespace UI.Desktop
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.38028F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.61972F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 263F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 265F));
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNombre, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtEmail, 1, 2);
@@ -116,21 +116,21 @@ namespace UI.Desktop
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(449, 38);
+            this.txtApellido.Location = new System.Drawing.Point(447, 38);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(100, 20);
             this.txtApellido.TabIndex = 4;
             // 
-            // txtNombreUsuario
+            // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(449, 77);
-            this.txtUsuario.Name = "txtNombreUsuario";
+            this.txtUsuario.Location = new System.Drawing.Point(447, 77);
+            this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtUsuario.TabIndex = 5;
             // 
             // txtConfirmarClave
             // 
-            this.txtConfirmarClave.Location = new System.Drawing.Point(449, 117);
+            this.txtConfirmarClave.Location = new System.Drawing.Point(447, 117);
             this.txtConfirmarClave.Name = "txtConfirmarClave";
             this.txtConfirmarClave.Size = new System.Drawing.Size(100, 20);
             this.txtConfirmarClave.TabIndex = 6;
@@ -174,7 +174,7 @@ namespace UI.Desktop
             // chkHabilitado
             // 
             this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(356, 3);
+            this.chkHabilitado.Location = new System.Drawing.Point(354, 3);
             this.chkHabilitado.Name = "chkHabilitado";
             this.chkHabilitado.Size = new System.Drawing.Size(73, 17);
             this.chkHabilitado.TabIndex = 7;
@@ -184,7 +184,7 @@ namespace UI.Desktop
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(356, 35);
+            this.label5.Location = new System.Drawing.Point(354, 35);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 12;
@@ -193,7 +193,7 @@ namespace UI.Desktop
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(356, 74);
+            this.label6.Location = new System.Drawing.Point(354, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 13;
@@ -202,7 +202,7 @@ namespace UI.Desktop
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(356, 114);
+            this.label7.Location = new System.Drawing.Point(354, 114);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 13);
             this.label7.TabIndex = 14;
@@ -210,7 +210,7 @@ namespace UI.Desktop
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(356, 155);
+            this.btnAceptar.Location = new System.Drawing.Point(354, 155);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 15;
@@ -220,7 +220,7 @@ namespace UI.Desktop
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(449, 155);
+            this.btnCancelar.Location = new System.Drawing.Point(447, 155);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 16;

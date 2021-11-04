@@ -31,13 +31,14 @@ namespace UI.Desktop
         {
             this.btnMaterias = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMaterias
             // 
             this.btnMaterias.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnMaterias.Location = new System.Drawing.Point(270, 178);
+            this.btnMaterias.Location = new System.Drawing.Point(229, 178);
             this.btnMaterias.Name = "btnMaterias";
             this.btnMaterias.Size = new System.Drawing.Size(84, 56);
             this.btnMaterias.TabIndex = 0;
@@ -50,8 +51,9 @@ namespace UI.Desktop
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.17315F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.82685F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 233F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
             this.tableLayoutPanel1.Controls.Add(this.btnMaterias, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnUsuarios, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -61,6 +63,16 @@ namespace UI.Desktop
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Location = new System.Drawing.Point(482, 178);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(89, 56);
+            this.btnUsuarios.TabIndex = 1;
+            this.btnUsuarios.Text = "IrAUsuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // MenuPrincipal
             // 
@@ -79,5 +91,6 @@ namespace UI.Desktop
 
         private System.Windows.Forms.Button btnMaterias;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnUsuarios;
     }
 }

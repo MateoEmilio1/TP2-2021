@@ -64,7 +64,6 @@ namespace UI.Desktop
                 formUsuario.ShowDialog(); //muestro el formulario UsuarioDesktop
                 this.Listar();
 
-
             }
 
         }

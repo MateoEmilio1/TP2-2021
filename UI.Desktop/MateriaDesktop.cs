@@ -26,8 +26,6 @@ namespace UI.Desktop
         {
             Modo = modo;
             fillCmb();
-           
-
         }
 
         public MateriaDesktop(int ID, ModoForm modo) : this()
@@ -53,8 +51,9 @@ namespace UI.Desktop
         {
             try
             {
-                MateriaLogic mat = new MateriaLogic();
-                cmbPlan.DataSource = mat.GetAll();
+               
+                PlanLogic plan = new PlanLogic();
+                cmbPlan.DataSource = plan.GetAll();
                 cmbPlan.ValueMember = "ID";
                 cmbPlan.SelectedIndex = -1;
             }

@@ -13,12 +13,14 @@ public class MateriaAdapter : Adapter
     public List<Materia> GetAll()
     {
         List<Materia> materias = new List<Materia>();
+      
         try
         {
+        
             OpenConnection();
             SqlCommand cmdMaterias = new SqlCommand("select * from materias ", sqlConn);
             SqlDataReader drMaterias = cmdMaterias.ExecuteReader();
-
+            PlanAdapter PlanAdapter = new PlanAdapter();
             while (drMaterias.Read())
             {
                 Materia mat = new Materia();
@@ -27,7 +29,7 @@ public class MateriaAdapter : Adapter
                 mat.HSSemanales = (int)drMaterias["hs_semanales"];
                 mat.HSTotales = (int)drMaterias["hs_totales"];
                 mat.IDPlan = (int)drMaterias["id_plan"];
-
+                mat.Plan = PlanAdapter.GetOne((int)drMaterias["id_plan"]);
                 materias.Add(mat);
             }
             drMaterias.Close();
@@ -55,6 +57,7 @@ public class MateriaAdapter : Adapter
             SqlCommand cmdMateria = new SqlCommand("select * from materias where id_materia=@id", sqlConn);
             cmdMateria.Parameters.Add("@id", SqlDbType.Int).Value = ID;
             SqlDataReader drMaterias = cmdMateria.ExecuteReader();
+            PlanAdapter PlanAdapter = new PlanAdapter();
             if (drMaterias.Read())
             {
                 mat.ID = (int)drMaterias["id_materia"];
@@ -62,6 +65,7 @@ public class MateriaAdapter : Adapter
                 mat.HSSemanales = (int)drMaterias["hs_semanales"];
                 mat.HSTotales = (int)drMaterias["hs_totales"];
                 mat.IDPlan = (int)drMaterias["id_plan"];
+                mat.Plan = PlanAdapter.GetOne((int)drMaterias["id_plan"]);
             }
             drMaterias.Close();
         }
