@@ -44,6 +44,8 @@ namespace UI.Desktop
             this.btnSalir = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+            this.tbsEditar = new System.Windows.Forms.ToolStripButton();
+            this.tbsEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -165,10 +167,12 @@ namespace UI.Desktop
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNuevo});
+            this.tsbNuevo,
+            this.tbsEditar,
+            this.tbsEliminar});
             this.toolStrip2.Location = new System.Drawing.Point(3, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(66, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(112, 25);
             this.toolStrip2.TabIndex = 1;
             // 
             // tsbNuevo
@@ -180,6 +184,26 @@ namespace UI.Desktop
             this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
             this.tsbNuevo.Text = "toolStripButton1";
             this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
+            // 
+            // tbsEditar
+            // 
+            this.tbsEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbsEditar.Image = ((System.Drawing.Image)(resources.GetObject("tbsEditar.Image")));
+            this.tbsEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbsEditar.Name = "tbsEditar";
+            this.tbsEditar.Size = new System.Drawing.Size(23, 22);
+            this.tbsEditar.Text = "toolStripButton1";
+            this.tbsEditar.Click += new System.EventHandler(this.tbsEditar_Click);
+            // 
+            // tbsEliminar
+            // 
+            this.tbsEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbsEliminar.Image = ((System.Drawing.Image)(resources.GetObject("tbsEliminar.Image")));
+            this.tbsEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbsEliminar.Name = "tbsEliminar";
+            this.tbsEliminar.Size = new System.Drawing.Size(23, 22);
+            this.tbsEliminar.Text = "toolStripButton2";
+            this.tbsEliminar.Click += new System.EventHandler(this.tbsEliminar_Click);
             // 
             // Materias
             // 
@@ -219,5 +243,7 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource materiaBindingSource;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
+        private System.Windows.Forms.ToolStripButton tbsEditar;
+        private System.Windows.Forms.ToolStripButton tbsEliminar;
     }
 }

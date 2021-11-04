@@ -106,7 +106,7 @@ public class MateriaAdapter : Adapter
             SqlCommand cmdUpdate = new SqlCommand("UPDATE materias SET desc_materia=@Descripcion, hs_semanales=@HSSMateria, hs_totales=@HSTotales, id_plan=@IDPlan "
                 + "WHERE id_materia=@id", sqlConn);
             cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = materia.ID;
-            cmdUpdate.Parameters.Add("@Descripcion", SqlDbType.Int).Value = materia.Descripcion;
+            cmdUpdate.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = materia.Descripcion;
             cmdUpdate.Parameters.Add("@HSSMateria", SqlDbType.Int).Value = materia.HSSemanales;
             cmdUpdate.Parameters.Add("@HSTotales", SqlDbType.Int).Value = materia.HSTotales;
             cmdUpdate.Parameters.Add("@IDPlan", SqlDbType.Int).Value = materia.IDPlan;
@@ -130,14 +130,14 @@ public class MateriaAdapter : Adapter
         {
             this.OpenConnection();
             SqlCommand cmdInsert = new SqlCommand(
-            "insert into materias(id_materia,desc_materia,hs_semanales,hs_totales,id_plan) " +
-            "values(@IDMateria,@DescMateria,@HSSemanales,@HSTotales,@IDPlan) ", sqlConn);
-            cmdInsert.Parameters.Add("@IDMateria", SqlDbType.Int).Value = materia.ID;
-            cmdInsert.Parameters.Add("@DescMateria", SqlDbType.Int).Value = materia.Descripcion;
+            "insert into materias(desc_materia,hs_semanales,hs_totales,id_plan) " +
+            "values(@DescMateria,@HSSemanales,@HSTotales,@IDPlan) select @@identity ", sqlConn);
+            cmdInsert.Parameters.Add("@DescMateria", SqlDbType.VarChar).Value = materia.Descripcion;
             cmdInsert.Parameters.Add("@HSSemanales", SqlDbType.Int).Value = materia.HSSemanales;
             cmdInsert.Parameters.Add("@HSTotales", SqlDbType.Int).Value = materia.HSTotales;
             cmdInsert.Parameters.Add("@IDPlan", SqlDbType.Int).Value = materia.IDPlan;
-            cmdInsert.ExecuteNonQuery();
+            materia.ID = Decimal.ToInt32((decimal)cmdInsert.ExecuteScalar());
+     
         }
         catch (Exception Ex)
         {

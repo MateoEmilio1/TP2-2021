@@ -40,12 +40,18 @@ namespace UI.Desktop
             this.txtHsTotales = new System.Windows.Forms.TextBox();
             this.lblIdPlan = new System.Windows.Forms.Label();
             this.cmbPlan = new System.Windows.Forms.ComboBox();
-            this.planBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materiaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.planBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.planBindingSource)).BeginInit();
+            this.materiaLogicBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.materiaLogicBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.materiaLogicBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.materiaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.planBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblID
@@ -125,22 +131,22 @@ namespace UI.Desktop
             // 
             // cmbPlan
             // 
-            this.cmbPlan.DataSource = this.planBindingSource;
-            this.cmbPlan.DisplayMember = "ID";
-            this.cmbPlan.ForeColor = System.Drawing.SystemColors.Window;
+            this.cmbPlan.DataSource = this.materiaBindingSource;
+            this.cmbPlan.DisplayMember = "IDPlan";
+            this.cmbPlan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cmbPlan.FormattingEnabled = true;
             this.cmbPlan.Location = new System.Drawing.Point(114, 234);
             this.cmbPlan.Name = "cmbPlan";
             this.cmbPlan.Size = new System.Drawing.Size(181, 21);
             this.cmbPlan.TabIndex = 13;
             // 
-            // planBindingSource
-            // 
-            this.planBindingSource.DataSource = typeof(Business.Entities.Plan);
-            // 
             // materiaBindingSource
             // 
             this.materiaBindingSource.DataSource = typeof(Business.Entities.Materia);
+            // 
+            // planBindingSource
+            // 
+            this.planBindingSource.DataSource = typeof(Business.Entities.Plan);
             // 
             // btnAceptar
             // 
@@ -162,6 +168,18 @@ namespace UI.Desktop
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // materiaLogicBindingSource
+            // 
+            this.materiaLogicBindingSource.DataSource = typeof(Business.Logic.MateriaLogic);
+            // 
+            // materiaLogicBindingSource1
+            // 
+            this.materiaLogicBindingSource1.DataSource = typeof(Business.Logic.MateriaLogic);
+            // 
+            // materiaLogicBindingSource2
+            // 
+            this.materiaLogicBindingSource2.DataSource = typeof(Business.Logic.MateriaLogic);
+            // 
             // MateriaDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,8 +199,11 @@ namespace UI.Desktop
             this.Controls.Add(this.lblID);
             this.Name = "MateriaDesktop";
             this.Text = "Materia";
-            ((System.ComponentModel.ISupportInitialize)(this.planBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materiaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.planBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materiaLogicBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +225,8 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.BindingSource materiaBindingSource;
         private System.Windows.Forms.BindingSource planBindingSource;
+        private System.Windows.Forms.BindingSource materiaLogicBindingSource;
+        private System.Windows.Forms.BindingSource materiaLogicBindingSource1;
+        private System.Windows.Forms.BindingSource materiaLogicBindingSource2;
     }
 }

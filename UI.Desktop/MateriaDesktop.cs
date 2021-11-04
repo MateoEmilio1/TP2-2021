@@ -17,7 +17,7 @@ namespace UI.Desktop
         public MateriaDesktop()
         {
             InitializeComponent();
-      
+           
         }
 
         public Materia MateriaActual { get; set; }
@@ -25,8 +25,43 @@ namespace UI.Desktop
         public MateriaDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            fillCmb();
            
 
+        }
+
+        public MateriaDesktop(int ID, ModoForm modo) : this()
+        {
+            Modo = modo;
+            MateriaLogic materiaLogic = new MateriaLogic();
+            try
+            {
+                MateriaActual = materiaLogic.GetOne(ID);
+                fillCmb();
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void fillCmb()
+        {
+            try
+            {
+                MateriaLogic mat = new MateriaLogic();
+                cmbPlan.DataSource = mat.GetAll();
+                cmbPlan.ValueMember = "ID";
+                cmbPlan.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void MapearDeDatos()
