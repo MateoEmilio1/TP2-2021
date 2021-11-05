@@ -23,8 +23,6 @@ namespace UI.Desktop
 
         private void btnMaterias_Click(object sender, EventArgs e)
         {
-            //Application.Run(new Materias());
-            //this.Hide();
             Materias mat = new Materias();
             mat.ShowDialog();
 
@@ -36,10 +34,17 @@ namespace UI.Desktop
             usu.ShowDialog();
         }
 
+<<<<<<< HEAD
         private void btnReporte_Click(object sender, EventArgs e)
         {
             ReporteCursos rep = new ReporteCursos();
             rep.ShowDialog();
+=======
+        private void btnComisiones_Click(object sender, EventArgs e)
+        {
+            Comisiones com = new Comisiones();
+            com.ShowDialog();
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
         }
     }
 }
