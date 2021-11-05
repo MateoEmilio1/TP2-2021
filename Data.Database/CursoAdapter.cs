@@ -17,7 +17,16 @@ namespace Data.Database
             try
             {
                 OpenConnection();
-                SqlCommand cmdCursos = new SqlCommand("select * from cursos ", sqlConn);
+                SqlCommand cmdCursos = new SqlCommand(" " +
+                    "select *, nombre + ' ' + apellido as nombre_completo " +
+                    "from cursos " +
+                    "inner join " +
+                    "(select id_curso, coalesce(count(*),0) cantidad_alumnos, convert(varchar(50),coalesce(avg(nota),0),3) nota_promedio from alumnos_inscripciones group by id_curso) a " +
+                    "on cursos.id_curso = a.id_curso " +
+                    "inner join docentes_cursos " +
+                    "on docentes_cursos.id_curso = cursos.id_curso " +
+                    "inner join personas " +
+                    "on personas.id_persona = docentes_cursos.id_docente", sqlConn);
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
                 ComisionAdapter ComisionAdapter = new ComisionAdapter();
                 MateriaAdapter MateriaAdapter = new MateriaAdapter();
@@ -29,6 +38,9 @@ namespace Data.Database
                     cur.Cupo = (int)drCursos["cupo"];
                     cur.Materia = MateriaAdapter.GetOne((int)drCursos["id_materia"]);
                     cur.Comision = ComisionAdapter.GetOne((int)drCursos["id_comision"]);
+                    cur.CantidadAlumnos = (int)drCursos["cantidad_alumnos"];
+                    cur.NotaPromedio = double.Parse((string)drCursos["nota_promedio"]);
+                    cur.NombreDocente = (string)drCursos["nombre_completo"];
                     cursos.Add(cur);
                 }
                 drCursos.Close();

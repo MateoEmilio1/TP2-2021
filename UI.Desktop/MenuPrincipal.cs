@@ -35,5 +35,11 @@ namespace UI.Desktop
             Usuarios usu = new Usuarios();
             usu.ShowDialog();
         }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteCursos rep = new ReporteCursos();
+            rep.ShowDialog();
+        }
     }
 }

@@ -41,8 +41,21 @@ namespace Business.Entities
         public Comision Comision { get; set; }
 
 
+        //Estos métodos son necesarios para ser utilizados en el reporte de cursos.
+        public string MateriaDescripcion
+        {
+            get { return Materia.Descripcion; }
+        }
 
+        public string ComisionDescripcion
+        {
+            get { return Comision.Descripcion; }
+        }
 
+        public int CantidadAlumnos { get; set; }
 
+        public string NombreDocente { get; set; }
+
+        public double NotaPromedio { get; set; }
     }
 }
