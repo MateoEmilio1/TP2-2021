@@ -70,13 +70,14 @@
     <Compile Include="ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+
     <Compile Include="ReporteCursos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteCursos.Designer.cs">
       <DependentUpon>ReporteCursos.cs</DependentUpon>
-=======
+		<SubType>Form</SubType>
+	</Compile>
     <Compile Include="Comisiones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,7 +89,6 @@
     </Compile>
     <Compile Include="ComisionesDesktop.Designer.cs">
       <DependentUpon>ComisionesDesktop.cs</DependentUpon>
->>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -170,12 +170,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-<<<<<<< HEAD
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Business.Entities.Curso.datasource" />
-=======
     <None Include="Properties\DataSources\Business.Entities.Comision.datasource" />
->>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
     <None Include="Properties\DataSources\Business.Entities.Materia.datasource" />
     <None Include="Properties\DataSources\Business.Entities.Plan.datasource" />
     <None Include="Properties\DataSources\Business.Logic.MateriaLogic.datasource" />
