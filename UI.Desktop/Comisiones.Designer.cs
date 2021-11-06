@@ -112,8 +112,6 @@ namespace UI.Desktop
             // 
             // dgvComisiones
             // 
-            this.dgvComisiones.AllowUserToAddRows = false;
-            this.dgvComisiones.AllowUserToDeleteRows = false;
             this.dgvComisiones.AutoGenerateColumns = false;
             this.dgvComisiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComisiones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -124,14 +122,12 @@ namespace UI.Desktop
             this.dgvComisiones.DataSource = this.comisionBindingSource;
             this.dgvComisiones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvComisiones.Location = new System.Drawing.Point(3, 3);
-            this.dgvComisiones.MultiSelect = false;
             this.dgvComisiones.Name = "dgvComisiones";
-            this.dgvComisiones.ReadOnly = true;
             this.dgvComisiones.RowHeadersWidth = 62;
             this.dgvComisiones.RowTemplate.Height = 28;
             this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComisiones.Size = new System.Drawing.Size(927, 422);
-            this.dgvComisiones.TabIndex = 0;
+            this.dgvComisiones.TabIndex = 4;
             // 
             // anioEspecialidadDataGridViewTextBoxColumn
             // 
