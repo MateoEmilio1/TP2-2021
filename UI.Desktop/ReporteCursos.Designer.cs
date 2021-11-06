@@ -29,11 +29,22 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.CursoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.CursoBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // CursoBindingSource
+            // 
+            this.CursoBindingSource.DataSource = typeof(Business.Entities.Curso);
             // 
             // reportViewer1
             // 
+            reportDataSource1.Name = "ReporteCursos";
+            reportDataSource1.Value = this.CursoBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "UI.Desktop.ReporteCursos.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 12);
             this.reportViewer1.Name = "reportViewer1";
@@ -55,5 +66,6 @@ namespace UI.Desktop
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource CursoBindingSource;
     }
 }

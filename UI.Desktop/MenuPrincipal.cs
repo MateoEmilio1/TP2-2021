@@ -34,10 +34,17 @@ namespace UI.Desktop
             usu.ShowDialog();
         }
 
+<<<<<<< HEAD
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteCursos rep = new ReporteCursos();
+            rep.ShowDialog();
+=======
         private void btnComisiones_Click(object sender, EventArgs e)
         {
             Comisiones com = new Comisiones();
             com.ShowDialog();
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
         }
 
         private void btnReporte_Click(object sender, EventArgs e)

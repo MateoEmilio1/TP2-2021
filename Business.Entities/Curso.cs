@@ -57,7 +57,15 @@ namespace Business.Entities
 
         public double NotaPromedio { get; set; }
 
+        public string ComisionDescripcion
+        {
+            get { return Comision.Descripcion; }
+        }
 
+        public int CantidadAlumnos { get; set; }
 
+        public string NombreDocente { get; set; }
+
+        public double NotaPromedio { get; set; }
     }
 }

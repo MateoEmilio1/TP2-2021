@@ -32,6 +32,9 @@ namespace UI.Desktop
             this.btnMaterias = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUsuarios = new System.Windows.Forms.Button();
+<<<<<<< HEAD
+            this.button1 = new System.Windows.Forms.Button();
+=======
             this.btnComisiones = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,6 +59,9 @@ namespace UI.Desktop
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
             this.tableLayoutPanel1.Controls.Add(this.btnMaterias, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnUsuarios, 2, 1);
+<<<<<<< HEAD
+            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 2);
+=======
             this.tableLayoutPanel1.Controls.Add(this.btnComisiones, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,6 +84,17 @@ namespace UI.Desktop
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
+<<<<<<< HEAD
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(229, 353);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Reporte Cursos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnReporte_Click);
+=======
             // btnComisiones
             // 
             this.btnComisiones.Location = new System.Drawing.Point(2, 177);
@@ -88,6 +105,7 @@ namespace UI.Desktop
             this.btnComisiones.Text = "IrAComisiones";
             this.btnComisiones.UseVisualStyleBackColor = true;
             this.btnComisiones.Click += new System.EventHandler(this.btnComisiones_Click);
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
             // 
             // button1
             // 
@@ -118,6 +136,9 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnMaterias;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnUsuarios;
+<<<<<<< HEAD
+        private System.Windows.Forms.Button button1;
+=======
         private System.Windows.Forms.Button btnComisiones;
         private System.Windows.Forms.Button button1;
     }

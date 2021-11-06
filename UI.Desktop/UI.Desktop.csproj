@@ -70,6 +70,13 @@
     <Compile Include="ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="ReporteCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteCursos.Designer.cs">
+      <DependentUpon>ReporteCursos.cs</DependentUpon>
+=======
     <Compile Include="Comisiones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +88,7 @@
     </Compile>
     <Compile Include="ComisionesDesktop.Designer.cs">
       <DependentUpon>ComisionesDesktop.cs</DependentUpon>
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
     </Compile>
     <Compile Include="ReporteCursos.cs">
       <SubType>Form</SubType>
@@ -151,6 +159,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteCursos.rdlc" />
+    <EmbeddedResource Include="ReporteCursos.resx">
+      <DependentUpon>ReporteCursos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioDesktop.resx">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
