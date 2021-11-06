@@ -39,5 +39,11 @@ namespace UI.Desktop
             Comisiones com = new Comisiones();
             com.ShowDialog();
         }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            ReporteCursos rep = new ReporteCursos();
+            rep.ShowDialog();
+        }
     }
 }
