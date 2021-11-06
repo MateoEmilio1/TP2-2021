@@ -32,9 +32,11 @@ namespace UI.Desktop
             this.btnMaterias = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUsuarios = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.button1 = new System.Windows.Forms.Button();
-
+=======
             this.btnComisiones = new System.Windows.Forms.Button();
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,11 +60,11 @@ namespace UI.Desktop
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 480F));
             this.tableLayoutPanel1.Controls.Add(this.btnMaterias, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnUsuarios, 2, 1);
-
+<<<<<<< HEAD
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 2);
-
+=======
             this.tableLayoutPanel1.Controls.Add(this.btnComisiones, 0, 1);
-
+>>>>>>> f57803801f4c42e03adbd8e8673be0d841d917aa
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -85,7 +87,7 @@ namespace UI.Desktop
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
-
+<<<<<<< HEAD
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(229, 353);
@@ -95,7 +97,7 @@ namespace UI.Desktop
             this.button1.Text = "Reporte Cursos";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnReporte_Click);
-
+=======
             // btnComisiones
             // 
             this.btnComisiones.Location = new System.Drawing.Point(3, 273);
