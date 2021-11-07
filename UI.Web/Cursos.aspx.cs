@@ -132,7 +132,6 @@ namespace UI.Web
             Entity = Logic.GetOne(id);
             AñoTextBox.Text = Convert.ToString(Entity.AnioCalendario);
             CupoTextBox.Text = Convert.ToString(Entity.Cupo);
-            IDComisionDDL.SelectedValue = Entity.Comision.Descripcion;
             IDMateriaDDL.SelectedValue= Convert.ToString(Entity.Comision.ID);
             IDMateriaDDL.SelectedValue = Convert.ToString(Entity.Materia.ID);
         }
