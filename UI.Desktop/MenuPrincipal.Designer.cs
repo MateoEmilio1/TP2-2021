@@ -31,7 +31,6 @@ namespace UI.Desktop
         {
             this.btnMaterias = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnComisiones = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -55,7 +54,6 @@ namespace UI.Desktop
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.82685F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
             this.tableLayoutPanel1.Controls.Add(this.btnMaterias, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnUsuarios, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnComisiones, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -67,16 +65,6 @@ namespace UI.Desktop
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Location = new System.Drawing.Point(482, 178);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(89, 56);
-            this.btnUsuarios.TabIndex = 1;
-            this.btnUsuarios.Text = "IrAUsuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = true;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnComisiones
             // 
@@ -117,7 +105,6 @@ namespace UI.Desktop
 
         private System.Windows.Forms.Button btnMaterias;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnComisiones;
         private System.Windows.Forms.Button button1;
     }

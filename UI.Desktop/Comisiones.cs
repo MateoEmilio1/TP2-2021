@@ -90,5 +90,10 @@ namespace UI.Desktop
 
 
         }
+
+        private void Comisiones_Load(object sender, EventArgs e)
+        {
+            Listar();
+        }
     }
 }
