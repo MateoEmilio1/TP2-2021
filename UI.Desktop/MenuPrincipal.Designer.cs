@@ -42,7 +42,7 @@ namespace UI.Desktop
             // btnMaterias
             // 
             this.btnMaterias.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnMaterias.Location = new System.Drawing.Point(553, 429);
+            this.btnMaterias.Location = new System.Drawing.Point(487, 429);
             this.btnMaterias.Name = "btnMaterias";
             this.btnMaterias.Size = new System.Drawing.Size(84, 56);
             this.btnMaterias.TabIndex = 0;
@@ -71,12 +71,12 @@ namespace UI.Desktop
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 59.02005F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 111F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1298, 628);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1232, 628);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnComisiones
             // 
-            this.btnComisiones.Location = new System.Drawing.Point(254, 428);
+            this.btnComisiones.Location = new System.Drawing.Point(188, 428);
             this.btnComisiones.Margin = new System.Windows.Forms.Padding(2);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(105, 57);
@@ -87,7 +87,7 @@ namespace UI.Desktop
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(838, 429);
+            this.button1.Location = new System.Drawing.Point(772, 429);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(79, 56);
             this.button1.TabIndex = 3;
@@ -97,12 +97,12 @@ namespace UI.Desktop
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.tableLayoutPanel1.SetColumnSpan(this.pictureBox1, 4);
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 3);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1280, 168);
+            this.pictureBox1.Size = new System.Drawing.Size(1217, 168);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -111,7 +111,7 @@ namespace UI.Desktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1298, 628);
+            this.ClientSize = new System.Drawing.Size(1232, 628);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
