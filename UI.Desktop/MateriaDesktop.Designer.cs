@@ -30,6 +30,7 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MateriaDesktop));
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -197,6 +198,7 @@ namespace UI.Desktop
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.lblID);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MateriaDesktop";
             this.Text = "Materia";
             ((System.ComponentModel.ISupportInitialize)(this.materiaBindingSource)).EndInit();
