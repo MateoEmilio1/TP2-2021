@@ -28,11 +28,7 @@ namespace UI.Desktop
 
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
-        {
-            Usuarios usu = new Usuarios();
-            usu.ShowDialog();
-        }
+        
 
         private void btnComisiones_Click(object sender, EventArgs e)
         {
