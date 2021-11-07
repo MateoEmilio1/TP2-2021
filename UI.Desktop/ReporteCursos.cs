@@ -31,7 +31,7 @@ namespace UI.Desktop
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            ReportDataSource rds = new ReportDataSource("ReporteCursos", Logic.GetAll());
+            ReportDataSource rds = new ReportDataSource("ReporteCursos", Logic.GetAllReporte());
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             this.reportViewer1.RefreshReport();

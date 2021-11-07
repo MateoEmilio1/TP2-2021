@@ -28,6 +28,10 @@ namespace Business.Logic
         {
             return CursoData.GetAll(); 
         }
+        public List<Curso> GetAllReporte()
+        {
+            return CursoData.GetAllReporte();
+        }
 
         public void Save(Curso curso)
         {

@@ -18,6 +18,42 @@ namespace Data.Database
             {
                 OpenConnection();
                 SqlCommand cmdCursos = new SqlCommand(" " +
+                    "select * from cursos", sqlConn);
+                SqlDataReader drCursos = cmdCursos.ExecuteReader();
+                ComisionAdapter ComisionAdapter = new ComisionAdapter();
+                MateriaAdapter MateriaAdapter = new MateriaAdapter();
+                while (drCursos.Read())
+                {
+                    Curso cur = new Curso();
+                    cur.ID = (int)drCursos["id_curso"];
+                    cur.AnioCalendario = (int)drCursos["anio_calendario"];
+                    cur.Cupo = (int)drCursos["cupo"];
+                    cur.Materia = MateriaAdapter.GetOne((int)drCursos["id_materia"]);
+                    cur.Comision = ComisionAdapter.GetOne((int)drCursos["id_comision"]);
+                    cursos.Add(cur);
+                }
+                drCursos.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                    new Exception("Error al recuperar lista de cursos", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+
+            return cursos;
+        }
+        public List<Curso> GetAllReporte()
+        {
+            List<Curso> cursos = new List<Curso>();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmdCursos = new SqlCommand(" " +
                     "select *, nombre + ' ' + apellido as nombre_completo " +
                     "from cursos " +
                     "inner join " +
@@ -72,7 +108,7 @@ namespace Data.Database
                 SqlDataReader drCursos = cmdCurso.ExecuteReader();
                 ComisionAdapter ComisionAdapter = new ComisionAdapter();
                 MateriaAdapter MateriaAdapter = new MateriaAdapter();
-                if (drCursos.Read())
+                while (drCursos.Read())
                 {
                     Curso cur = new Curso();
                     cur.ID = (int)drCursos["id_curso"];
