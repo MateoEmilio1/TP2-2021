@@ -29,6 +29,7 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@ namespace UI.Desktop
             // 
             this.txtClave.Location = new System.Drawing.Point(117, 111);
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(100, 20);
             this.txtClave.TabIndex = 1;
             // 
@@ -89,6 +91,7 @@ namespace UI.Desktop
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtNombreUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.Text = "Login";
             this.ResumeLayout(false);
