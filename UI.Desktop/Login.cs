@@ -28,14 +28,25 @@ namespace UI.Desktop
             usr = UsuarioLog.GetUsuarioLogin(txtNombreUsuario.Text, txtClave.Text);
             if (usr.ID != 0)
             {
-                if (usr.Habilitado)
+                if (usr.Persona.TipoPersona == "Docente")
                 {
-                    this.DialogResult = DialogResult.OK;
+                    if (usr.Habilitado)
+                    {
+
+                        this.DialogResult = DialogResult.OK;
+
+                    }
+                    else
+                    {
+
+                        this.Notificar("Usuario no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    this.Notificar("Usuario no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Notificar("Solo docentes permitidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+           
             }
             else
             {
