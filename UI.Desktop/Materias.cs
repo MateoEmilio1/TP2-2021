@@ -25,23 +25,6 @@ namespace UI.Desktop
         }
 
 
-        protected SqlDataAdapter _daMaterias;
-
-        public SqlDataAdapter daMaterias
-        {
-            get { return _daMaterias; }
-            set { _daMaterias = value; }
-        }
-
-        protected SqlConnection _conn;
-
-        public SqlConnection Conn
-        {
-            get { return _conn; }
-            set { _conn = value; }
-        }
-
-
 
         public void Listar()
         {

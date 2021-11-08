@@ -51,7 +51,6 @@ namespace UI.Desktop
         {
             try
             {
-               
                 PlanLogic plan = new PlanLogic();
                 cmbPlan.DataSource = plan.GetAll();
                 cmbPlan.ValueMember = "ID";

@@ -20,24 +20,6 @@ namespace UI.Desktop
         }
 
 
-        protected SqlDataAdapter _daComisiones;
-
-        public SqlDataAdapter daComisiones
-        {
-            get { return _daComisiones; }
-            set { _daComisiones = value; }
-        }
-
-        protected SqlConnection _conn;
-
-        public SqlConnection Conn
-        {
-            get { return _conn; }
-            set { _conn = value; }
-        }
-
-
-
 
         public void Listar()
         {
