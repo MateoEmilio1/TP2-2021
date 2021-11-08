@@ -44,13 +44,6 @@ namespace UI.Desktop
 
         public ComisionesDesktop(int ID, ModoForm modo) : this()
         {
-            /*
-            Modo = modo;
-            ComisionLogic comision = new ComisionLogic();
-            ComisionActual = comision.GetOne(ID);
-            this.MapearDeDatos();
-            this.MapearPlanes();*/
-            //-------------------
             Modo = modo;
             ComisionLogic comiLogic = new ComisionLogic();
             try
