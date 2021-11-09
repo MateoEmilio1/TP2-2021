@@ -54,7 +54,9 @@ namespace UI.Desktop
                 PlanLogic plan = new PlanLogic();
                 cmbPlan.DataSource = plan.GetAll();
                 cmbPlan.ValueMember = "ID";
+                cmbPlan.DisplayMember = "Descripcion";
                 cmbPlan.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
@@ -119,6 +121,7 @@ namespace UI.Desktop
                 MateriaActual.HSSemanales = Convert.ToInt32(this.txtHsSemanales.Text);
                 MateriaActual.HSTotales = Convert.ToInt32(this.txtHsTotales.Text);
                 MateriaActual.IDPlan = Convert.ToInt32(cmbPlan.SelectedValue.ToString());
+
 
                 MateriaLogic nuevaMat = new MateriaLogic();
                 nuevaMat.Update(MateriaActual);

@@ -30,6 +30,7 @@ public class MateriaAdapter : Adapter
                 mat.HSTotales = (int)drMaterias["hs_totales"];
                 mat.IDPlan = (int)drMaterias["id_plan"];
                 mat.Plan = PlanAdapter.GetOne((int)drMaterias["id_plan"]);
+
                 materias.Add(mat);
             }
             drMaterias.Close();
@@ -58,6 +59,7 @@ public class MateriaAdapter : Adapter
             cmdMateria.Parameters.Add("@id", SqlDbType.Int).Value = ID;
             SqlDataReader drMaterias = cmdMateria.ExecuteReader();
             PlanAdapter PlanAdapter = new PlanAdapter();
+
             if (drMaterias.Read())
             {
                 mat.ID = (int)drMaterias["id_materia"];
@@ -65,7 +67,10 @@ public class MateriaAdapter : Adapter
                 mat.HSSemanales = (int)drMaterias["hs_semanales"];
                 mat.HSTotales = (int)drMaterias["hs_totales"];
                 mat.IDPlan = (int)drMaterias["id_plan"];
+
                 mat.Plan = PlanAdapter.GetOne((int)drMaterias["id_plan"]);
+
+         
             }
             drMaterias.Close();
         }

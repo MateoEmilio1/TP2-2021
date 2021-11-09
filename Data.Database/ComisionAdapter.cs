@@ -19,6 +19,7 @@ namespace Data.Database
                 OpenConnection();
                 SqlCommand cmdCursos = new SqlCommand("select * from comisiones ", sqlConn);
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
+                PlanAdapter PlanAdapter = new PlanAdapter();
                 while (drCursos.Read())
                 {
                     Comision com = new Comision();
@@ -26,6 +27,7 @@ namespace Data.Database
                     com.AnioEspecialidad = (int)drCursos["anio_especialidad"];
                     com.Descripcion = (string)drCursos["desc_comision"];
                     com.IDPlan = (int)drCursos["id_plan"];
+                    com.Plan = PlanAdapter.GetOne((int)drCursos["id_plan"]);
                     comisiones.Add(com);
                 }
                 drCursos.Close();

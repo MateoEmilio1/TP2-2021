@@ -13,6 +13,7 @@ namespace Business.Entities
         private int _HSTotales;
         private int _IDPlan;
 
+    
         public string Descripcion
         {
             get
@@ -66,7 +67,21 @@ namespace Business.Entities
 
         }
 
+        public string DescPlan
+        {
+            get
+            {
+                return Plan.Descripcion;
+            }
+            set
+            {
+                Plan.Descripcion = value;
+            }
+
+        }
+
         public Plan Plan { get; set; }
+
 
     }
 }
