@@ -34,6 +34,7 @@ namespace UI.Desktop
                 PlanLogic plan = new PlanLogic();
                 cmbPlanes.DataSource = plan.GetAll();
                 cmbPlanes.ValueMember = "ID";
+                cmbPlanes.DisplayMember = "Descripcion";
                 cmbPlanes.SelectedIndex = -1;
             }
             catch (Exception ex)
