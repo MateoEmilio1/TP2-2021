@@ -36,14 +36,11 @@ namespace UI.Web
 
         private void LoadGridAlumnos()
         {
-            List<AlumnoInscripcion> alumnosInscriptos = new List<AlumnoInscripcion>();
-            foreach (AlumnoInscripcion ai in Logic.GetAll())
-            {
-                if (ai.Curso.ID == SelectedIDCurso)
-                    alumnosInscriptos.Add(ai);
-            }
-            gridAlumnos.DataSource = alumnosInscriptos;
-            gridAlumnos.DataBind();
+            //List<AlumnoInscripcion> alumnosInscriptos = Logic.AlumnosCurso(SelectedIDCurso);
+            //gridAlumnos.DataSource = alumnosInscriptos;
+            //gridAlumnos.DataBind();
+            ObjectDataSource1.SelectParameters.Clear();//add this line
+            ObjectDataSource1.SelectParameters.Add("id_curso", SelectedIDCurso.ToString());
         }
         AlumnoInscripcionLogic _logic;
         private AlumnoInscripcionLogic Logic

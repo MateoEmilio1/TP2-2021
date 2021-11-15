@@ -24,20 +24,21 @@
             <asp:Label ID="lblAlumnos" runat="server" Text="Alumnos: "></asp:Label>
             
             <br />
-            <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged">
+            <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" DataSourceID="ObjectDataSource1" style="margin-right: 4px">
                 <Columns>
-                    <asp:BoundField DataField="Curso.Materia.Descripcion" HeaderText="Materia" />
-                    <asp:BoundField DataField="Curso.Comision.Descripcion" HeaderText="Comision" />
-                    <asp:BoundField DataField="Condicion" HeaderText="Condicion" />
-                    <asp:BoundField DataField="Nota" HeaderText="Nota" />
-                    <asp:BoundField DataField="Persona.Legajo" HeaderText="Legajo" />
-                    <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
-                    <asp:BoundField DataField="Nota" HeaderText="Nota" />
-                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+                    <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" SortExpression="Apellido" />
+                    <asp:BoundField DataField="Persona.Legajo" HeaderText="Legajo" SortExpression="Legajo" />
+                    <asp:BoundField DataField="Condicion" HeaderText="Condicion" SortExpression="Condicion" />
+                    <asp:BoundField DataField="Nota" HeaderText="Nota" SortExpression="Nota" />
                 </Columns>
                 <SelectedRowStyle BackColor="#336699" />
             </asp:GridView>
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="Business.Entities.AlumnoInscripcion" SelectMethod="GetAlumnosCurso" TypeName="Business.Logic.AlumnoInscripcionLogic" UpdateMethod="Save">
+                <SelectParameters>
+                    <asp:Parameter DbType="Int32" DefaultValue="0" Name="id_curso" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
             <br />
             <br />
             <asp:Label ID="lblNota" runat="server">Nota:</asp:Label>

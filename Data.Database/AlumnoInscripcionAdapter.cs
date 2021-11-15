@@ -194,7 +194,20 @@ namespace Data.Database
             }
         }
 
-
+        public List<AlumnoInscripcion> GetAlumnosCurso(int id_curso )
+        {
+            List<AlumnoInscripcion> alumnosInscriptos = new List<AlumnoInscripcion>();
+            foreach (AlumnoInscripcion ai in GetAll())
+            {
+                if (ai.Curso.ID == id_curso)
+                {
+                    ai.State = BusinessEntity.States.Modified;
+                    alumnosInscriptos.Add(ai);
+                }
+                    
+            }
+            return alumnosInscriptos;
+        }
         public void Save(AlumnoInscripcion aluins)
         {
             if (aluins.State == BusinessEntity.States.Deleted)

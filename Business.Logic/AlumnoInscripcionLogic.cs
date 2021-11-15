@@ -43,9 +43,13 @@ namespace Business.Logic
             AluInsData.Delete(ID);
         }
 
-        
+        public List<AlumnoInscripcion> GetAlumnosCurso(int id_curso)
+        {
+            return AluInsData.GetAlumnosCurso(id_curso);
+        }
 
-        
+
+
 
 
     }
