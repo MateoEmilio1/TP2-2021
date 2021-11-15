@@ -126,9 +126,9 @@ namespace UI.Desktop
             this.lblIdPlan.AutoSize = true;
             this.lblIdPlan.Location = new System.Drawing.Point(12, 237);
             this.lblIdPlan.Name = "lblIdPlan";
-            this.lblIdPlan.Size = new System.Drawing.Size(48, 13);
+            this.lblIdPlan.Size = new System.Drawing.Size(31, 13);
             this.lblIdPlan.TabIndex = 12;
-            this.lblIdPlan.Text = "ID Plan: ";
+            this.lblIdPlan.Text = "Plan:";
             // 
             // cmbPlan
             // 
@@ -151,7 +151,7 @@ namespace UI.Desktop
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(114, 272);
+            this.btnAceptar.Location = new System.Drawing.Point(114, 289);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 14;
@@ -161,7 +161,7 @@ namespace UI.Desktop
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(220, 272);
+            this.btnCancelar.Location = new System.Drawing.Point(220, 289);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 15;
@@ -185,7 +185,7 @@ namespace UI.Desktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 321);
+            this.ClientSize = new System.Drawing.Size(339, 354);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.cmbPlan);

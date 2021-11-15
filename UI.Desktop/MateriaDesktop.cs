@@ -54,7 +54,10 @@ namespace UI.Desktop
                 PlanLogic plan = new PlanLogic();
                 cmbPlan.DataSource = plan.GetAll();
                 cmbPlan.ValueMember = "ID";
+                cmbPlan.DisplayMember = "Descripcion";
+
                 cmbPlan.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
@@ -69,7 +72,8 @@ namespace UI.Desktop
             this.txtHsSemanales.Text = this.MateriaActual.HSSemanales.ToString();
             this.txtHsTotales.Text = this.MateriaActual.HSTotales.ToString();
             this.cmbPlan.SelectedValue = this.MateriaActual.IDPlan;
-      
+            //this.cmbPlanDesc.SelectedValue = this.MateriaActual.DescPlan;
+
 
             if (Modo == ModoForm.Alta)
             {
@@ -87,6 +91,7 @@ namespace UI.Desktop
                 txtHsSemanales.Enabled = false;
                 txtHsTotales.Enabled = false;
                 cmbPlan.Enabled = false;
+                //cmbPlanDesc.Enabled = false;
             }
             else
             {
@@ -105,6 +110,7 @@ namespace UI.Desktop
                 MatNueva.HSSemanales = Convert.ToInt32(this.txtHsSemanales.Text);
                 MatNueva.HSTotales = Convert.ToInt32(this.txtHsTotales.Text);
                 MatNueva.IDPlan = Convert.ToInt32(cmbPlan.SelectedValue.ToString());
+                //MatNueva.DescPlan = this.cmbPlanDesc.Text.ToString();
 
                 MateriaActual = MatNueva;
                 MateriaLogic nuevaMat = new MateriaLogic();
@@ -119,6 +125,7 @@ namespace UI.Desktop
                 MateriaActual.HSSemanales = Convert.ToInt32(this.txtHsSemanales.Text);
                 MateriaActual.HSTotales = Convert.ToInt32(this.txtHsTotales.Text);
                 MateriaActual.IDPlan = Convert.ToInt32(cmbPlan.SelectedValue.ToString());
+                //MateriaActual.DescPlan = this.cmbPlanDesc.SelectedValue.ToString();
 
                 MateriaLogic nuevaMat = new MateriaLogic();
                 nuevaMat.Update(MateriaActual);
@@ -131,6 +138,7 @@ namespace UI.Desktop
                 MateriaActual.HSSemanales = 0;
                 MateriaActual.HSTotales = 0;
                 MateriaActual.IDPlan = 0;
+                //MateriaActual.DescPlan = "";
                 MateriaLogic nuevaMat = new MateriaLogic();
                 nuevaMat.Delete(MateriaActual.ID);
             }
