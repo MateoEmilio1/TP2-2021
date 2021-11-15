@@ -27,7 +27,7 @@ namespace Data.Database
 
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
 
-
+                PlanAdapter PlanAdapter = new PlanAdapter();
                 while (drPersonas.Read())
                 {
                     Persona pers = new Persona();
@@ -39,7 +39,8 @@ namespace Data.Database
                     pers.Telefono = (string)drPersonas["telefono"];
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
-                    pers.IDPlan = (int)drPersonas["id_plan"];
+
+                    pers.Plan = PlanAdapter.GetOne((int)drPersonas["id_plan"]);
 
                     switch ((int)drPersonas["tipo_persona"])
                     {
@@ -87,6 +88,7 @@ namespace Data.Database
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
 
 
+                PlanAdapter PlanAdapter = new PlanAdapter();
                 while (drPersonas.Read())
                 {
                     Persona pers = new Persona();
@@ -99,6 +101,7 @@ namespace Data.Database
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
                     pers.IDPlan = (int)drPersonas["id_plan"];
+                    pers.Plan = PlanAdapter.GetOne((int)drPersonas["id_plan"]);
 
                     switch ((int)drPersonas["tipo_persona"])
                     {
@@ -140,6 +143,7 @@ namespace Data.Database
                 SqlCommand cmdPersona = new SqlCommand("SELECT * FROM PERSONAS WHERE id_persona = @id ", sqlConn);
                 cmdPersona.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersona.ExecuteReader();
+                PlanAdapter PlanAdapter = new PlanAdapter();
                 if (drPersonas.Read())
                 {
                     pers.ID = (int)drPersonas["id_persona"];
@@ -151,6 +155,7 @@ namespace Data.Database
                     pers.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
                     pers.Legajo = (int)drPersonas["legajo"];
                     pers.IDPlan = (int)drPersonas["id_plan"];
+                    pers.Plan = PlanAdapter.GetOne((int)drPersonas["id_plan"]);
                     switch ((int)drPersonas["tipo_persona"])
                     {
                         case 0:
@@ -209,7 +214,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("delete personas where id_persona=@id", sqlConn);
+                SqlCommand cmdDelete = new SqlCommand("update personas set habilitado = 0 where id_persona=@id", sqlConn);
                 cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }

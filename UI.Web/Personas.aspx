@@ -21,7 +21,7 @@
                 <asp:BoundField HeaderText="Fecha de Nacimiento" DataField="FechaNacimiento" />
                 <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
                 <asp:BoundField HeaderText="Tipo" DataField="TipoPersona" />
-                <asp:BoundField HeaderText="IDPlan" DataField="IDPlan" />
+                <asp:BoundField HeaderText="Plan" DataField="Plan.Descripcion" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
             <SelectedRowStyle BackColor="#336699" />
@@ -121,7 +121,7 @@
                     <td style="width: 468px">
                         &nbsp;</td>
                     <td style="width: 276px">
-                        <asp:Label ID="lblIDPlan" runat="server" Text="ID Plan:"></asp:Label>
+                        <asp:Label ID="lblIDPlan" runat="server" Text="Plan:"></asp:Label>
                     </td>
                     <td style="width: 103px">
                         <asp:DropDownList ID="ddlIDPlan" runat="server" DataSourceID="DSIDPlan" DataTextField="desc_plan" DataValueField="id_plan">

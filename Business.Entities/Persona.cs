@@ -123,7 +123,7 @@ namespace Business.Entities
 
         public Persona() //Constructor base 
         {
-            this.Plan = new Plan();
+            
         }
 
         public Plan Plan
