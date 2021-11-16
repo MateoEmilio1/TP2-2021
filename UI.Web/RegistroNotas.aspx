@@ -24,35 +24,36 @@
             <asp:Label ID="lblAlumnos" runat="server" Text="Alumnos: "></asp:Label>
             
             <br />
-            <asp:GridView ID="gridAlumnos" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" HorizontalAlign="Left" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" DataSourceID="ObjectDataSource1" style="margin-right: 4px">
-                <Columns>
-                    <asp:CommandField ShowEditButton="True" UpdateText="Guardar" CancelText="Cancelar" EditText="Editar" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" ReadOnly="True" InsertVisible="False" />
-                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" ReadOnly="True" InsertVisible="False"  />
-                    <asp:BoundField DataField="Legajo" HeaderText="Legajo" ReadOnly="True" InsertVisible="False"  />
-                    <asp:TemplateField HeaderText="Nota">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtNota" runat="server" Text='<%# Bind("Nota") %>'></asp:TextBox>
-                            <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToValidate="txtNota" ErrorMessage="Ingrese un número entero para la nota" ForeColor="Red" Operator="DataTypeCheck" Type="Integer">*</asp:CompareValidator>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtNota" EnableViewState="False" ErrorMessage="La nota no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Nota") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Condicion">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtCondicion" runat="server" Text='<%# Bind("Condicion") %>'></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCondicion" EnableViewState="False" ErrorMessage="La condición no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Condicion") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    
-                </Columns>
-                <SelectedRowStyle BackColor="#336699" />
-            </asp:GridView>
+            <asp:Panel ID="Panel3" runat="server" HorizontalAlign="Center">
+                <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ObjectDataSource1" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" style="margin-right: 4px">
+                    <Columns>
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" InsertVisible="False" ReadOnly="True" />
+                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" InsertVisible="False" ReadOnly="True" />
+                        <asp:BoundField DataField="Legajo" HeaderText="Legajo" InsertVisible="False" ReadOnly="True" />
+                        <asp:TemplateField HeaderText="Nota">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtNota" runat="server" Text='<%# Bind("Nota") %>'></asp:TextBox>
+                                <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToValidate="txtNota" ErrorMessage="Ingrese un número entero para la nota" ForeColor="Red" Operator="DataTypeCheck" Type="Integer">*</asp:CompareValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtNota" EnableViewState="False" ErrorMessage="La nota no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Nota") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Condicion">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtCondicion" runat="server" Text='<%# Bind("Condicion") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCondicion" EnableViewState="False" ErrorMessage="La condición no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Condicion") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField CancelText="Cancelar" EditText="Editar" ShowEditButton="True" UpdateText="Guardar" />
+                    </Columns>
+                    <SelectedRowStyle BackColor="#336699" />
+                </asp:GridView>
+            </asp:Panel>
             
             
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetAlumnosCurso" TypeName="Business.Logic.AlumnoInscripcionLogic" UpdateMethod="GuardarNota">
