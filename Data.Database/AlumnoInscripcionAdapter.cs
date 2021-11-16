@@ -208,6 +208,32 @@ namespace Data.Database
             }
             return alumnosInscriptos;
         }
+
+
+         public void GuardarNota(int Nota, string Condicion, int ID)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUpdate = new SqlCommand("UPDATE alumnos_inscripciones SET condicion=@condicion, nota=@nota "
+                    + "WHERE id_inscripcion=@id", sqlConn);
+                cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                cmdUpdate.Parameters.Add("@condicion", SqlDbType.VarChar).Value = Condicion;
+                cmdUpdate.Parameters.Add("@nota", SqlDbType.Int).Value = Nota;
+                cmdUpdate.ExecuteNonQuery();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada =
+                    new Exception("Error al crear una nueva inscripción", Ex);
+
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+        }
         public void Save(AlumnoInscripcion aluins)
         {
             if (aluins.State == BusinessEntity.States.Deleted)

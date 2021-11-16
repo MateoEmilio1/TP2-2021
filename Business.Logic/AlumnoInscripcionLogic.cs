@@ -48,7 +48,10 @@ namespace Business.Logic
             return AluInsData.GetAlumnosCurso(id_curso);
         }
 
-
+        public void GuardarNota(int Nota, string Condicion, int ID)
+        {
+            AluInsData.GuardarNota(Nota, Condicion, ID);
+        }
 
 
 

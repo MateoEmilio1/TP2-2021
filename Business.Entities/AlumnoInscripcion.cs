@@ -39,6 +39,26 @@ namespace Business.Entities
 
         public Persona Persona { get; set; }
 
+        public string Nombre
+        {
+            get { return Persona.Nombre; }
+            set { Persona.Nombre = value; }
+        }
+        public string Apellido
+        {
+            get { return Persona.Apellido; }
+            set { Persona.Apellido = value; }
+        }
+        public int Legajo
+        {
+            get { return Persona.Legajo; }
+            set { Persona.Legajo = value; }
+        }
+        private int myVar;
+
+        
+
+
         public Curso Curso { get; set; }
     }
 }

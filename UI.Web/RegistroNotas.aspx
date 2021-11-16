@@ -24,21 +24,44 @@
             <asp:Label ID="lblAlumnos" runat="server" Text="Alumnos: "></asp:Label>
             
             <br />
-            <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" DataSourceID="ObjectDataSource1" style="margin-right: 4px">
+            <asp:GridView ID="gridAlumnos" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" HorizontalAlign="Left" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" DataSourceID="ObjectDataSource1" style="margin-right: 4px">
                 <Columns>
-                    <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                    <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" SortExpression="Apellido" />
-                    <asp:BoundField DataField="Persona.Legajo" HeaderText="Legajo" SortExpression="Legajo" />
-                    <asp:BoundField DataField="Condicion" HeaderText="Condicion" SortExpression="Condicion" />
-                    <asp:BoundField DataField="Nota" HeaderText="Nota" SortExpression="Nota" />
+                    <asp:CommandField ShowEditButton="True" UpdateText="Guardar" CancelText="Cancelar" EditText="Editar" />
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" ReadOnly="True" InsertVisible="False" />
+                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" ReadOnly="True" InsertVisible="False"  />
+                    <asp:BoundField DataField="Legajo" HeaderText="Legajo" ReadOnly="True" InsertVisible="False"  />
+                    <asp:TemplateField HeaderText="Nota">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtNota" runat="server" Text='<%# Bind("Nota") %>'></asp:TextBox>
+                            <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToValidate="txtNota" ErrorMessage="Ingrese un número entero para la nota" ForeColor="Red" Operator="DataTypeCheck" Type="Integer">*</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtNota" EnableViewState="False" ErrorMessage="La nota no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Nota") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Condicion">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtCondicion" runat="server" Text='<%# Bind("Condicion") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCondicion" EnableViewState="False" ErrorMessage="La condición no puede estar vacía" ForeColor="Red" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Condicion") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
                 </Columns>
                 <SelectedRowStyle BackColor="#336699" />
             </asp:GridView>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="Business.Entities.AlumnoInscripcion" SelectMethod="GetAlumnosCurso" TypeName="Business.Logic.AlumnoInscripcionLogic" UpdateMethod="Save">
+            
+            
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetAlumnosCurso" TypeName="Business.Logic.AlumnoInscripcionLogic" UpdateMethod="GuardarNota">
                 <SelectParameters>
                     <asp:Parameter DbType="Int32" DefaultValue="0" Name="id_curso" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
             <br />
             <br />
             <asp:Label ID="lblNota" runat="server">Nota:</asp:Label>
