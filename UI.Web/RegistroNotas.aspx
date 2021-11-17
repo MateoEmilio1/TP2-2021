@@ -24,9 +24,14 @@
             <asp:Label ID="lblAlumnos" runat="server" Text="Alumnos: "></asp:Label>
             
             <br />
-            <asp:Panel ID="Panel3" runat="server" HorizontalAlign="Center">
+            <asp:Panel ID="Panel3" runat="server" HorizontalAlign="Center" CssClass="auto-style1" style="margin-left: 536px" Width="508px">
+                <style type = "text/css">
+    .GridViewClass th {
+        text-align: center !important;
+    }
+</style>
                 <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ObjectDataSource1" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" style="margin-right: 4px">
-        
+                
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" InsertVisible="False" ReadOnly="True" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" InsertVisible="False" ReadOnly="True" />
