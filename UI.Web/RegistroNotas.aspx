@@ -26,6 +26,7 @@
             <br />
             <asp:Panel ID="Panel3" runat="server" HorizontalAlign="Center">
                 <asp:GridView ID="gridAlumnos" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ObjectDataSource1" HorizontalAlign="Center" OnSelectedIndexChanged="gridAlumnos_SelectedIndexChanged" style="margin-right: 4px">
+        
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" InsertVisible="False" ReadOnly="True" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" InsertVisible="False" ReadOnly="True" />
@@ -65,33 +66,9 @@
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
             <br />
             <br />
-            <asp:Label ID="lblNota" runat="server">Nota:</asp:Label>
-            <asp:DropDownList ID="ddlNota" runat="server">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
-                <asp:ListItem>5</asp:ListItem>
-                <asp:ListItem>6</asp:ListItem>
-                <asp:ListItem>7</asp:ListItem>
-                <asp:ListItem>8</asp:ListItem>
-                <asp:ListItem>9</asp:ListItem>
-                <asp:ListItem>10</asp:ListItem>
-            </asp:DropDownList>
             <br />
-            <asp:Label ID="lblCondicion" runat="server">Condición:</asp:Label>
-            <asp:DropDownList ID="ddlCondicion" runat="server">
-                <asp:ListItem>Aprobado</asp:ListItem>
-                <asp:ListItem>Libre</asp:ListItem>
-                <asp:ListItem>Recupera</asp:ListItem>
-            </asp:DropDownList>
             <br />
             </asp:Panel>
-        <asp:Panel ID="formActionsPanel" runat="server" HorizontalAlign="Center" Visible="False">
-            <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
-            &nbsp;<asp:LinkButton ID="borrarNotaLinkButton" runat="server" OnClick="borrarNotaLinkButton_Click">Borrar Nota</asp:LinkButton>
-&nbsp;<asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click" CausesValidation="False">Cancelar</asp:LinkButton>
-              </asp:Panel>
-
+        
 
 </asp:Content>

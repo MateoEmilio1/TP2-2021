@@ -11,7 +11,7 @@ namespace UI.Web
 {
     public partial class RegistroNotas : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             
             if (gridCursos.SelectedIndex == -1)
@@ -26,7 +26,7 @@ namespace UI.Web
             }
 
         }
-        private void LoadGrid()
+        public void LoadGrid()
         {
             gridCursos.DataSource = CLogic.GetCursosDocente(((Usuario)Session["UsuarioActual"]).Persona.ID);
             gridCursos.DataBind();
@@ -119,23 +119,6 @@ namespace UI.Web
             }
         }
 
-
-
-        private bool IsEntitySelected
-        {
-            get
-            {
-                return (SelectedID != 0);
-            }
-        }
-        private bool IsCursoSelected
-        {
-            get
-            {
-                return (SelectedIDCurso != 0);
-            }
-        }
-
         protected void gridAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedID = (int)gridAlumnos.SelectedValue;
@@ -146,72 +129,8 @@ namespace UI.Web
             SelectedIDCurso = (int)gridCursos.SelectedValue;
             LoadGridAlumnos();
             formPanel.Visible = true;
-            formActionsPanel.Visible = true;
+           
         }
 
-        private void LoadEntity(AlumnoInscripcion insc)
-        {
-            insc.Condicion = ddlCondicion.SelectedItem.Text;
-            insc.Nota = int.Parse(ddlNota.SelectedItem.Text);
-        }
-        
-        
-
-        private void SaveEntity(AlumnoInscripcion insc)
-        {
-            Logic.Save(insc);
-        }
-
-        protected void aceptarLinkButton_Click(object sender, EventArgs e)
-        {
-            if (IsEntitySelected)
-            {
-                Entity = Logic.GetOne(SelectedID);
-                LoadEntity(Entity);
-                Entity.State = BusinessEntity.States.Modified;
-                SaveEntity(Entity);
-                LoadGridAlumnos();
-            }
-        }
-
-
-        private void DeleteEntity(int id)
-        {
-            Logic.Delete(id);
-        }
-
-        
-
-        
-        protected void cancelarLinkButton_Click(object sender, EventArgs e)
-        {
-            formPanel.Visible = false;
-            formActionsPanel.Visible = false;
-            ClearForm();
-        }
-        private void ClearForm()
-        {
-            gridCursos.SelectedIndex = -1;
-            gridAlumnos.DataSource = null;
-            gridAlumnos.DataBind();
-            lblAlumnos.Visible = false;
-        }
-        private void EnableForm(bool enable)
-        {
-            gridAlumnos.Visible = enable;
-        }
-
-        protected void borrarNotaLinkButton_Click(object sender, EventArgs e)
-        {
-            if (IsEntitySelected)
-            {
-                Entity = Logic.GetOne(SelectedID);
-                Entity.Nota = 0;
-                Entity.Condicion = "Inscripto";
-                Entity.State = BusinessEntity.States.Modified;
-                SaveEntity(Entity);
-                LoadGridAlumnos();
-            }
-        }
     }
 }
